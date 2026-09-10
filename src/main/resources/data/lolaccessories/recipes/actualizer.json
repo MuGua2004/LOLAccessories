@@ -2,10 +2,13 @@
   "type": "lolaccessories:paid_smithing",
   "components": [
     {
+      "item": "lolaccessories:blasting_wand"
+    },
+    {
       "item": "lolaccessories:lost_chapter"
     },
     {
-      "item": "lolaccessories:blasting_wand"
+      "item": "minecraft:gold_ingot"
     }
   ],
   "result": {

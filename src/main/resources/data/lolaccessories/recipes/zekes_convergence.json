@@ -2,10 +2,13 @@
   "type": "lolaccessories:paid_smithing",
   "components": [
     {
-      "item": "lolaccessories:chain_vest"
+      "item": "lolaccessories:kindlegem"
     },
     {
-      "item": "lolaccessories:negatron_cloak"
+      "item": "lolaccessories:cloth_armor"
+    },
+    {
+      "item": "lolaccessories:null_magic_mantle"
     }
   ],
   "result": {

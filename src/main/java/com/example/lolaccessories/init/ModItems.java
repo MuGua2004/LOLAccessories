@@ -332,9 +332,11 @@ public final class ModItems {
 
     /**
      * 凡性的提醒（Mortal Reminder）。槽位：背饰 back。
-     * +35 攻击力 / +30% 护甲穿透 / +25% 暴击率。
-     * 唯一被动「重伤」：物理伤害（近战/弹射物/铁魔法法术——铁魔法实际吃护甲减免）
-     * 命中敌人后施加 40% 重伤 3 秒。
+     * +35% 弹射物伤害（原 +35 攻击力，按本模组 10 攻击力 = 10% 弹射物伤害换算）
+     * / +30% 护甲穿透 / +25% 暴击率。
+     * 唯一被动「重伤」：物理伤害（近战直击 / 弹射物）命中敌人后施加 40% 重伤 3 秒。
+     * 铁魔法法术伤害虽属物理口径（吃护甲减免），但按本模组规则<b>不计入</b>物理触发，
+     * 见 {@code LolNewEpicPassiveEvents#isBasicPhysical} 中的铁魔法排除。
      */
     public static final RegistryObject<GearItem> MORTAL_REMINDER =
             ITEMS.register("mortal_reminder",

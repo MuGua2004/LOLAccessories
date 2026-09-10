@@ -2,10 +2,13 @@
   "type": "lolaccessories:paid_smithing",
   "components": [
     {
-      "item": "lolaccessories:giant_belt"
+      "item": "lolaccessories:tunneler"
     },
     {
-      "item": "lolaccessories:recurve_bow"
+      "item": "lolaccessories:phage"
+    },
+    {
+      "item": "lolaccessories:dagger"
     }
   ],
   "result": {

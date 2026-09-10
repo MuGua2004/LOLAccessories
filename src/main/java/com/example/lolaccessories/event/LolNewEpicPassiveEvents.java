@@ -430,11 +430,11 @@ public final class LolNewEpicPassiveEvents {
                                 applyWoundsFromConfig(victim, effect);
                             }
                         }
-                        // 凡性的提醒：物理伤害（近战直击 / 弹射物 / 铁魔法法术——铁魔法伤害
-                        // 实际也吃护甲减免，同属物理系）命中后施加重伤
+                        // 凡性的提醒：物理伤害（近战直击 / 弹射物）命中后施加重伤。
+                        // 铁魔法法术伤害虽属物理口径，但按本模组规则不计入物理触发
+                        // （已在 isBasicPhysical 中统一排除）
                         case "grievous_wounds_physical" -> {
-                            if ((isBasicPhysical(source) || IronsCompat.isIronSpellDamage(source))
-                                    && isEnemyOf(wearer, victim)) {
+                            if (isBasicPhysical(source) && isEnemyOf(wearer, victim)) {
                                 applyWoundsFromConfig(victim, effect);
                             }
                         }
@@ -687,8 +687,19 @@ public final class LolNewEpicPassiveEvents {
                 || source.is(DamageTypes.INDIRECT_MAGIC);
     }
 
-    /** 是否为“普通攻击/直接命中”类物理伤害（排除魔法、火焰、爆炸、荆棘）。 */
+    /**
+     * 是否为“普通攻击/直接命中”类物理伤害（排除魔法、火焰、爆炸、荆棘、铁魔法法术）。
+     *
+     * <p><b>铁魔法法术不计入物理：</b>铁魔法（Iron's Spellbooks）的法术伤害本质走物理口径
+     * （吃护甲减免），但其 {@code DamageSource} 是模组自定义类型、不是原版
+     * {@code DamageTypes.MAGIC}，若不显式排除就会被本判定当成物理伤害。按本模组规则，
+     * 一切「由物理伤害触发」的效果都不应由铁魔法法术触发，故在此统一挡掉。</p>
+     */
     private static boolean isBasicPhysical(DamageSource source) {
+        // 铁魔法法术伤害：虽然本质是物理口径，但按本模组规则不计入「物理伤害触发」
+        if (IronsCompat.isIronSpellDamage(source)) {
+            return false;
+        }
         // 1.20.1 的 DamageSource 没有 isMagic()/isFire()/isExplosion() 便捷方法，
         // 统一用伤害类型标签判定
         if (source.is(DamageTypes.MAGIC) || source.is(DamageTypes.INDIRECT_MAGIC)

@@ -2,10 +2,10 @@
   "type": "lolaccessories:paid_smithing",
   "components": [
     {
-      "item": "lolaccessories:recurve_bow"
+      "item": "lolaccessories:hearthbound_axe"
     },
     {
-      "item": "lolaccessories:cloak_of_agility"
+      "item": "lolaccessories:zeal"
     }
   ],
   "result": {

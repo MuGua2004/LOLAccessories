@@ -2,10 +2,13 @@
   "type": "lolaccessories:paid_smithing",
   "components": [
     {
-      "item": "lolaccessories:giant_belt"
+      "item": "lolaccessories:pickaxe"
     },
     {
-      "item": "lolaccessories:long_sword"
+      "item": "lolaccessories:tunneler"
+    },
+    {
+      "item": "lolaccessories:ruby_crystal"
     }
   ],
   "result": {

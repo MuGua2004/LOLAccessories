@@ -2,10 +2,10 @@
   "type": "lolaccessories:paid_smithing",
   "components": [
     {
-      "item": "lolaccessories:negatron_cloak"
+      "item": "lolaccessories:spectres_cowl"
     },
     {
-      "item": "lolaccessories:giant_belt"
+      "item": "lolaccessories:kindlegem"
     }
   ],
   "result": {

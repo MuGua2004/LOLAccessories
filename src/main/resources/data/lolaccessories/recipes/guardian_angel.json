@@ -2,13 +2,10 @@
   "type": "lolaccessories:paid_smithing",
   "components": [
     {
+      "item": "lolaccessories:steel_sigil"
+    },
+    {
       "item": "lolaccessories:bf_sword"
-    },
-    {
-      "item": "lolaccessories:long_sword"
-    },
-    {
-      "item": "lolaccessories:cloth_armor"
     }
   ],
   "result": {

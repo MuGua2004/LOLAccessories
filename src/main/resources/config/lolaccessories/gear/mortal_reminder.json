@@ -5,10 +5,10 @@
   "max_stack_size": 1,
   "attributes": [
     {
-      "id": "minecraft:generic.attack_damage",
-      "operation": "ADDITION",
-      "amount": 35,
-      "percent": false
+      "id": "attributeslib:arrow_damage",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.35,
+      "percent": true
     },
     {
       "id": "attributeslib:armor_shred",

@@ -2,10 +2,13 @@
   "type": "lolaccessories:paid_smithing",
   "components": [
     {
+      "item": "lolaccessories:cloth_armor"
+    },
+    {
       "item": "lolaccessories:kindlegem"
     },
     {
-      "item": "lolaccessories:cloth_armor"
+      "item": "lolaccessories:null_magic_mantle"
     }
   ],
   "result": {

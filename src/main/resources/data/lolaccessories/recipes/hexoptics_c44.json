@@ -2,10 +2,13 @@
   "type": "lolaccessories:paid_smithing",
   "components": [
     {
+      "item": "lolaccessories:pickaxe"
+    },
+    {
       "item": "lolaccessories:noonquiver"
     },
     {
-      "item": "lolaccessories:pickaxe"
+      "item": "lolaccessories:long_sword"
     }
   ],
   "result": {

@@ -2,6 +2,9 @@
   "type": "lolaccessories:paid_smithing",
   "components": [
     {
+      "item": "lolaccessories:sheen"
+    },
+    {
       "item": "lolaccessories:blasting_wand"
     },
     {

@@ -2,10 +2,13 @@
   "type": "lolaccessories:paid_smithing",
   "components": [
     {
+      "item": "lolaccessories:bamis_cinder"
+    },
+    {
       "item": "lolaccessories:chain_vest"
     },
     {
-      "item": "lolaccessories:giant_belt"
+      "item": "lolaccessories:ruby_crystal"
     }
   ],
   "result": {
