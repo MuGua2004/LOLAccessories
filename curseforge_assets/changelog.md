@@ -1,5 +1,23 @@
 # LOLAccessories 更新日志 / Changelog
 
+## 1.2
+
+### English
+
+- **Mythic item icons redrawn** — Clear Sky's Wish and Demon Heart now use
+  League of Legends style 32x32 pixel art icons: a faceted sky-blue gem with
+  gold filigree and light rays, and a demonic heart wrapped in black iron
+  thorns and curved horns with a dark violet core
+- Sigil FX textures and the sigil renderer are **unchanged** in this release
+
+### 中文
+
+- **神话装备图标重绘** —— 澄空之愿与魔王之心改为英雄联盟风格的 32×32 像素图标：
+  澄空之愿为天青宝石切面配金框与光芒，魔王之心为缠绕黑荆棘与犄角的恶魔心脏（暗紫核心）
+- **法阵贴图与法阵渲染逻辑本版本未做任何改动**
+
+---
+
 ## 1.1
 
 ### English
