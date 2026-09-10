@@ -1,5 +1,20 @@
 # LOLAccessories 更新日志 / Changelog
 
+## 1.2.2
+
+### English
+
+- **Mythic item icons enlarged** — Clear Sky's Wish and Demon Heart artwork is
+  now sized up (~10-20%) to fill their 32x32 canvas better while keeping the
+  original designs untouched. Sigil FX unchanged.
+
+### 中文
+
+- **神话装备图标适度调大** —— 澄空之愿（20×30 → 24×32）与魔王之心（28×29 → 31×32）
+  在保持原设计不变的前提下整体放大约 10-20%，图标更饱满。法阵无改动。
+
+---
+
 ## 1.2.1
 
 ### English
