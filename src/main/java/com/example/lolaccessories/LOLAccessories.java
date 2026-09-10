@@ -9,6 +9,7 @@ import com.example.lolaccessories.init.ModEntityTypes;
 import com.example.lolaccessories.init.ModItems;
 import com.example.lolaccessories.init.ModMobEffects;
 import com.example.lolaccessories.init.ModRecipeSerializers;
+import com.example.lolaccessories.init.ModSounds;
 import com.example.lolaccessories.networking.LOLNetworking;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -52,6 +53,7 @@ public class LOLAccessories {
         ModCreativeModeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         ModMobEffects.MOB_EFFECTS.register(modEventBus);
         ModEntityTypes.ENTITY_TYPES.register(modEventBus);
+        ModSounds.SOUND_EVENTS.register(modEventBus);
         ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
 
         // 引用铁魔法事件 API 的订阅器统一在此延迟注册（内部先探测铁魔法是否加载再反射加载）

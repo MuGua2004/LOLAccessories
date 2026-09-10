@@ -93,7 +93,6 @@ public final class IronsSpellDamage {
             java.util.Map.entry("sunfire_aegis/sunfire", "fire"),
             java.util.Map.entry("blackfire_torch/baleful_blaze", "fire"),
             java.util.Map.entry("dusk_and_dawn/spellblade", "holy"),
-            java.util.Map.entry("sheen/spellblade", "holy"),
             java.util.Map.entry("zekes_convergence/zeal", "ice"),
             java.util.Map.entry("hextech_alternator/revved", "lightning"),
             java.util.Map.entry("scouts_slingshot/bullseye", "lightning"),

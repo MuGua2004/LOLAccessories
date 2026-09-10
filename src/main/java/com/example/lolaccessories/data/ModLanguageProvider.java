@@ -87,6 +87,74 @@ public class ModLanguageProvider extends LanguageProvider {
 
         // ---------- 物品 ----------
         addItem(ModItems.BLACK_CLEAVER, chinese ? "黑色切割者" : "The Black Cleaver");
+        addItem(ModItems.RAVENOUS_HYDRA, chinese ? "贪欲九头蛇" : "Ravenous Hydra");
+        addItem(ModItems.THORNMAIL, chinese ? "荆棘之甲" : "Thornmail");
+        addItem(ModItems.TRINITY_FORCE, chinese ? "三相之力" : "Trinity Force");
+        addItem(ModItems.WARMOGS_ARMOR, chinese ? "狂徒铠甲" : "Warmog's Armor");
+        addItem(ModItems.HEARTSTEEL, chinese ? "心之钢" : "Heartsteel");
+        add("subtitles.lolaccessories.heartsteel_shatter",
+                chinese ? "心之钢：击碎印记" : "Heartsteel shatters mark");
+        add("passive.lolaccessories.heartsteel.progress",
+                chinese ? "已累积生命值：%1$s" : "Bonus health accumulated: %1$s");
+        // ---------- 第六批 5 件传说的装备专属被动词条（官方名，数值为本模组实现口径） ----------
+        add("passive.lolaccessories.ravenous_hydra.cleave.title",
+                chinese ? "唯一被动—顺劈" : "Unique Passive - Cleave");
+        add("passive.lolaccessories.ravenous_hydra.cleave.desc",
+                chinese ? "普攻会额外对目标周围 %1$s 格内的其他敌人造成相当于 %2$s 攻击力的物理伤害。"
+                        : "Basic attacks deal physical damage equal to %2$s of your attack damage to other "
+                                + "enemies within %1$s blocks of the target.");
+        add("active.lolaccessories.ravenous_hydra.crescent.title",
+                chinese ? "唯一主动—嗜血新月" : "Unique Active - Ravenous Crescent");
+        add("active.lolaccessories.ravenous_hydra.crescent.desc",
+                chinese ? "对周围 %2$s 格内的所有敌人造成相当于 %1$s 攻击力的物理伤害。冷却时间：%3$s 秒。"
+                        : "Deal physical damage equal to %1$s of your attack damage to all enemies within "
+                                + "%2$s blocks. Cooldown: %3$s seconds.");
+        add("passive.lolaccessories.thornmail.thorns.title",
+                chinese ? "唯一被动—荆棘" : "Unique Passive - Thorns");
+        add("passive.lolaccessories.thornmail.thorns.desc",
+                chinese ? "受到普攻命中时，对攻击者造成 %1$s 点外加 %2$s 额外护甲的自然魔法伤害，"
+                                + "并使其受到的治疗效果降低 %3$s，持续 %4$s 秒。"
+                        : "When struck by a basic attack, deal %1$s nature magic damage plus %2$s of your "
+                                + "bonus armor to the attacker and reduce their healing by %3$s for %4$s seconds.");
+        add("passive.lolaccessories.trinity_force.quicken.title",
+                chinese ? "唯一被动—疾行" : "Unique Passive - Quicken");
+        add("passive.lolaccessories.trinity_force.quicken.desc",
+                chinese ? "普攻命中后获得 %1$s 移动速度，持续 %2$s 秒。"
+                        : "Basic attacks grant %1$s movement speed for %2$s seconds.");
+        add("passive.lolaccessories.warmogs_armor.warmog_vigor.title",
+                chinese ? "唯一被动—狂徒之活力" : "Unique Passive - Warmog's Vigor");
+        add("passive.lolaccessories.warmogs_armor.warmog_vigor.desc",
+                chinese ? "获得额外生命值，相当于装备生命值的 %1$s。"
+                        : "Gain bonus health equal to %1$s of your equipped health.");
+        add("passive.lolaccessories.trinity_force.spellblade.title",
+                chinese ? "唯一被动—咒刃" : "Unique Passive - Spellblade");
+        add("passive.lolaccessories.trinity_force.spellblade.desc",
+                chinese ? "施放法术后，你的下一次普攻额外造成相当于 %1$s 攻击力的物理伤害，冷却 1.5 秒。"
+                        : "After using an ability, your next basic attack deals bonus physical damage equal to "
+                                + "%1$s of your attack damage. Cooldown: 1.5 seconds.");
+        add("passive.lolaccessories.warmogs_armor.warmog_heart.title",
+                chinese ? "唯一被动—狂徒之心" : "Unique Passive - Warmog's Heart");
+        add("passive.lolaccessories.warmogs_armor.warmog_heart.desc",
+                chinese ? "若拥有 %1$s 额外生命值，且在 %3$s 秒内未受到伤害，则每秒回复 %2$s 最大生命值。"
+                        : "If you have at least %1$s bonus health and have not taken damage for %3$s seconds, "
+                                + "restore %2$s of your max health each second.");
+        add("entity.lolaccessories.test_brute",
+                chinese ? "测试蛮兵（100万血）" : "Test Brute (1,000,000 HP)");
+        add("entity.lolaccessories.test_player_dummy",
+                chinese ? "测试假人（玩家标签）" : "Test Dummy (Player Tag)");
+        add("passive.lolaccessories.goliath.title",
+                chinese ? "唯一被动—歌莉娅巨人" : "Unique Passive - Goliath");
+        add("passive.lolaccessories.goliath.desc",
+                chinese ? "每 1000 最大生命值获得 3% 物理伤害减免。"
+                        : "Gain 3% physical damage reduction per 1000 max health.");
+        add("passive.lolaccessories.colossal_consumption.title",
+                chinese ? "唯一被动—庞然吞食" : "Unique Passive - Colossal Consumption");
+        add("passive.lolaccessories.colossal_consumption.desc",
+                chinese ? "与目标交战时对其施加吞食印记，印记在 3 秒内成熟；用攻击命中被标记的目标，"
+                                + "造成 70 + 6% 最大生命值的物理伤害，并获得相当于该伤害 10% 的最大生命值。"
+                        : "While fighting a target, brand it with a mark that matures over 3 seconds; "
+                                + "hitting the marked target with an attack deals 70 + 6% of your max health "
+                                + "as physical damage and grants max health equal to 10% of the damage.");
         addItem(ModItems.LUDENS_ECHO, chinese ? "卢登的回声" : "Luden's Echo");
         addItem(ModItems.INFINITY_EDGE, chinese ? "无尽之刃" : "Infinity Edge");
         // 第六批 5 件 3 级（传说）装备（中文名采用官方译名风格，经 ddragon zh_CN 核验）
@@ -325,16 +393,13 @@ public class ModLanguageProvider extends LanguageProvider {
                         : "Each magic hit permanently grants +%1$s max mana, up to +%2$s. Stacks are "
                                 + "only gained and applied while equipped.");
         add("passive.lolaccessories.mana_flow.progress",
-                chinese ? "当前加成：+%s 最大法力（上限 +%s）"
-                        : "Current: +%s max mana (cap +%s)");
+                chinese ? "当前加成：+%s 最大法力，上限 +%s"
+                        : "Current: +%s max mana, cap +%s");
         add("passive.lolaccessories.glory.title",
                 chinese ? "唯一被动—荣耀" : "Unique Passive - Glory");
         add("passive.lolaccessories.glory.desc",
-                chinese ? "击杀最大生命值远超你的生物时，获得 %1$s 层荣耀（至多 %4$s 层）；"
-                                + "阵亡时损失 %2$s 层。每层提供 +%3$s 法术强度，仅在装备时生效。"
-                        : "Killing creatures with far more max health than you grants %1$s Glory stacks "
-                                + "(up to %4$s). Dying while equipped loses %2$s stacks. Each stack grants "
-                                + "+%3$s spell power while equipped.");
+                chinese ? "击杀最大生命值远超你的生物时，获得 %1$s 层荣耀，至多 %4$s 层；阵亡时损失 %2$s 层。每层提供 +%3$s 法术强度，仅在装备时生效。"
+                        : "Killing creatures with far more max health than you grants %1$s Glory stacks, up to %4$s. Dying while equipped loses %2$s stacks. Each stack grants +%3$s spell power while equipped.");
         add("passive.lolaccessories.glory.progress",
                 chinese ? "当前层数：%s / %s" : "Current stacks: %s / %s");
 
@@ -343,15 +408,15 @@ public class ModLanguageProvider extends LanguageProvider {
         add("passive.lolaccessories.immolate.title",
                 chinese ? "唯一被动—灼烧" : "Unique Passive - Immolate");
         add("passive.lolaccessories.immolate.desc",
-                chinese ? "造成或受到伤害时，点燃周围 %2$s 格内的敌人，使其每秒受到 %1$s 点魔法伤害，"
+                chinese ? "造成或受到伤害时，点燃周围 %2$s 格内的敌人，使其每秒受到 %1$s 点火焰魔法伤害，"
                                 + "持续 %3$s 秒。"
                         : "When you deal or take damage, ignite enemies within %2$s blocks, burning "
-                                + "them for %1$s magic damage per second for %3$s seconds.");
+                                + "them for %1$s fire magic damage per second for %3$s seconds.");
         add("passive.lolaccessories.inflame.title",
                 chinese ? "唯一被动—引燃" : "Unique Passive - Inflame");
         add("passive.lolaccessories.inflame.desc",
-                chinese ? "魔法伤害命中敌人时将其点燃，使其每秒受到 %1$s 点魔法伤害，持续 %2$s 秒。"
-                        : "Magic damage ignites the target, dealing %1$s magic damage per second for %2$s seconds.");
+                chinese ? "魔法伤害命中敌人时将其点燃，使其每秒受到 %1$s 点火焰魔法伤害，持续 %2$s 秒。"
+                        : "Magic damage ignites the target, dealing %1$s fire magic damage per second for %2$s seconds.");
         add("passive.lolaccessories.thorns.title",
                 chinese ? "唯一被动—尖刺" : "Unique Passive - Thorns");
         add("passive.lolaccessories.thorns.desc",
@@ -365,22 +430,22 @@ public class ModLanguageProvider extends LanguageProvider {
         add("passive.lolaccessories.madness.title",
                 chinese ? "唯一被动—疯狂" : "Unique Passive - Madness");
         add("passive.lolaccessories.madness.desc",
-                chinese ? "对敌方造成伤害会叠加疯狂（至多 %2$s 层），每层使你造成的伤害提高 %3$s；%1$s 秒内未继续命中则层数消失。"
-                        : "Dealing damage to enemies builds Madness (max %2$s stacks), granting %3$s increased damage per stack. Stacks expire after %1$s seconds without a hit.");
+                chinese ? "对敌方造成伤害会叠加疯狂，每层使你造成的伤害提高 %3$s，至多 %2$s 层；%1$s 秒内未继续命中则层数消失。"
+                        : "Dealing damage to enemies builds Madness, granting %3$s increased damage per stack, up to %2$s stacks. Stacks expire after %1$s seconds without a hit.");
         add("passive.lolaccessories.revved.title",
                 chinese ? "唯一被动—充能" : "Unique Passive - Revved");
         add("passive.lolaccessories.revved.desc",
-                chinese ? "命中敌人时释放积蓄的充能，额外造成 %1$s 点魔法伤害；"
+                chinese ? "命中敌人时释放积蓄的充能，额外造成 %1$s 点闪电魔法伤害；"
                                 + "每 %2$s 秒至多触发一次。"
-                        : "Hitting an enemy releases stored charge, dealing %1$s bonus magic damage. "
-                                + "Triggers at most once every %2$s seconds.");
+                        : "Hitting an enemy releases stored charge, dealing %1$s bonus lightning "
+                                + "magic damage. Triggers at most once every %2$s seconds.");
         add("passive.lolaccessories.bullseye.title",
                 chinese ? "唯一被动—牛眼" : "Unique Passive - Bullseye");
         add("passive.lolaccessories.bullseye.desc",
-                chinese ? "精准命中敌人的要害，额外造成 %1$s 点魔法伤害；"
+                chinese ? "精准命中敌人的要害，额外造成 %1$s 点闪电魔法伤害；"
                                 + "每 %2$s 秒至多触发一次。"
-                        : "A well-aimed hit finds the enemy's weak point, dealing %1$s bonus magic "
-                                + "damage. Triggers at most once every %2$s seconds.");
+                        : "A well-aimed hit finds the enemy's weak point, dealing %1$s bonus lightning "
+                                + "magic damage. Triggers at most once every %2$s seconds.");
         add("passive.lolaccessories.rage.title",
                 chinese ? "唯一被动—狂怒" : "Unique Passive - Rage");
         add("passive.lolaccessories.rage.desc",
@@ -442,24 +507,24 @@ public class ModLanguageProvider extends LanguageProvider {
                 chinese ? "唯一被动—报应" : "Unique Passive - Retribution");
         add("passive.lolaccessories.retribution.desc",
                 chinese ? "你的生命值越低，获得的攻击伤害加成越高，至多为当前攻击伤害的 %1$s"
-                                + "（不含本被动自身的加成）。"
+                                + "。"
                         : "The lower your health, the more attack damage you gain—up to %1$s of your "
-                                + "current attack damage (excluding this passive's own bonus).");
+                                + "current attack damage .");
         add("passive.lolaccessories.anguish.title",
                 chinese ? "唯一被动—苦楚" : "Unique Passive - Anguish");
         add("passive.lolaccessories.anguish.desc",
-                chinese ? "战斗中每 %2$s 秒，对 %3$s 格内的敌人造成相当于你额外生命值 %1$s 的魔法伤害，"
+                chinese ? "战斗中每 %2$s 秒，对 %3$s 格内的敌人造成相当于你额外生命值 %1$s 的邪术魔法伤害，"
                                 + "并为你回复该伤害 %4$s 的生命值。"
-                        : "While in combat, every %2$s seconds deal magic damage equal to %1$s of "
+                        : "While in combat, every %2$s seconds deal eldritch magic damage equal to %1$s of "
                                 + "your maximum health to enemies within %3$s blocks, healing you for "
                                 + "%4$s of the damage dealt.");
         add("passive.lolaccessories.baleful_blaze.title",
                 chinese ? "唯一被动—不祥灼烧" : "Unique Passive - Baleful Blaze");
         add("passive.lolaccessories.baleful_blaze.desc",
                 chinese ? "你的魔法伤害会灼烧目标，持续 %2$s 秒：每秒两跳，每跳造成 %1$s + %3$s×法术强度"
-                                + " 的魔法伤害；每名正在灼烧的敌人使你造成的魔法伤害提高 %4$s。"
+                                + " 的火焰魔法伤害；每名正在灼烧的敌人使你造成的魔法伤害提高 %4$s。"
                         : "Your magic damage burns the target for %2$s seconds: two ticks per second, "
-                                + "each dealing %1$s + %3$s × spell power magic damage. Each burning "
+                                + "each dealing %1$s + %3$s × spell power fire magic damage. Each burning "
                                 + "enemy increases your magic damage by %4$s.");
         add("passive.lolaccessories.magebane.title",
                 chinese ? "唯一被动—法师之祸" : "Unique Passive - Magebane");
@@ -521,7 +586,7 @@ public class ModLanguageProvider extends LanguageProvider {
         // ---------- 主动技能：时间停止（探索者的护臂） ----------
         // tooltip 条目（金色标题 + 灰色描述，由 GearItem 的 time_stop 分支渲染）
         add("active.lolaccessories.time_stop.title",
-                chinese ? "唯一主动—时间停止（凝滞）" : "Unique Active - Time Stop");
+                chinese ? "唯一主动—时间停止" : "Unique Active - Time Stop");
         add("active.lolaccessories.time_stop.desc",
                 chinese ? "进入凝滞状态 %1$s 秒：免疫所有伤害且无法被选中，期间无法移动、攻击或与外界"
                                 + "交互，但可以打开背包。冷却时间：%2$s 秒，受冷却缩减影响。"
@@ -606,10 +671,10 @@ public class ModLanguageProvider extends LanguageProvider {
                 chinese ? "唯一被动—咒刃" : "Unique Passive - Spellblade");
         add("passive.lolaccessories.dusk_spellblade.desc",
                 chinese ? "施放法术后，你的下一次攻击携带咒刃，持续 %1$s 秒：命中时额外造成"
-                                + " %3$s×攻击力 + %4$s×法术强度 的魔法伤害，并为你回复 %5$s×法术强度"
+                                + " %3$s×攻击力 + %4$s×法术强度 的神圣魔法伤害，并为你回复 %5$s×法术强度"
                                 + " + %6$s×最大生命 的生命值。咒刃触发后，需再等 %2$s 秒才能由施法重新装填。"
                         : "After casting a spell, your next attack gains Spellblade for %1$s seconds: "
-                                + "it deals %3$s × attack damage + %4$s × spell power bonus magic "
+                                + "it deals %3$s × attack damage + %4$s × spell power bonus holy magic "
                                 + "damage and heals you for %5$s × spell power + %6$s × max health. "
                                 + "After it triggers, it can be primed again by casting only after "
                                 + "%2$s seconds.");
@@ -648,20 +713,18 @@ public class ModLanguageProvider extends LanguageProvider {
                 chinese ? "唯一被动—嘹亮旋律" : "Unique Passive - Fanfare");
         add("passive.lolaccessories.fanfare.desc",
                 chinese ? "对近期被你伤害过的敌人施加负面效果后，你获得 %1$s 移动速度，并使 %5$s 格内的友军"
-                                + "（包括你自己）获得 %2$s 攻击速度，持续 %3$s 秒。冷却时间：%4$s 秒。"
+                                + "获得 %2$s 攻击速度，持续 %3$s 秒。冷却时间：%4$s 秒。"
                         : "After afflicting an enemy you recently damaged with a harmful effect, you "
-                                + "gain %1$s movement speed and allies within %5$s blocks (including "
-                                + "you) gain %2$s attack speed for %3$s seconds. Cooldown: %4$s seconds.");
+                                + "gain %1$s movement speed and allies within %5$s blocks  gain %2$s attack speed for %3$s seconds. Cooldown: %4$s seconds.");
         // 原生质护带：救主灵刃
         add("passive.lolaccessories.protoplasm.title",
                 chinese ? "唯一被动—救主灵刃" : "Unique Passive - Protoplasm");
         add("passive.lolaccessories.protoplasm.desc",
                 chinese ? "当一次伤害将使你的生命值降至 %1$s 以下时，获得 %2$s~%3$s 点临时最大生命值，并在"
-                                + " %6$s 秒内逐步回复 %4$s~%5$s 点生命（数值随你的等级成长）；同时移动速度提升"
+                                + " %6$s 秒内逐步回复 %4$s~%5$s 点生命；同时移动速度提升"
                                 + " %8$s、韧性提升 %9$s。冷却时间：%7$s 秒。"
                         : "When damage would drop your health below %1$s, gain %2$s–%3$s temporary max "
-                                + "health and recover %4$s–%5$s health over %6$s seconds (scaling with "
-                                + "your level), along with %8$s movement speed and %9$s tenacity. "
+                                + "health and recover %4$s–%5$s health over %6$s seconds , along with %8$s movement speed and %9$s tenacity. "
                                 + "Cooldown: %7$s seconds.");
         // 猎魔人弩箭：开战弹幕
         add("passive.lolaccessories.barrage.title",
@@ -681,8 +744,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("passive.lolaccessories.vigil.title",
                 chinese ? "唯一被动—守夜" : "Unique Passive - Vigil");
         add("passive.lolaccessories.ultimate_cdr.desc",
-                chinese ? "获得 %1$s 终极技能冷却缩减（终极技能急速）。"
-                        : "Grants %1$s ultimate cooldown reduction (ultimate haste).");
+                chinese ? "获得 %1$s 终极技能冷却缩减。"
+                        : "Grants %1$s ultimate cooldown reduction .");
         // 澄空之愿：唯一被动—澄澈天空（弹射物伤害概率转虚空/真实伤害）
         add("passive.lolaccessories.clear_sky.title",
                 chinese ? "唯一被动—澄澈天空" : "Unique Passive - Clear Sky");
@@ -704,11 +767,11 @@ public class ModLanguageProvider extends LanguageProvider {
                 chinese ? "唯一被动—霜火风暴" : "Unique Passive - Frostfire Tempest");
         add("passive.lolaccessories.zeal.desc",
                 chinese ? "施放终极技能后，%3$s 秒内就绪一个风暴；进入战斗后召唤风暴环绕自身，"
-                                + "持续 %3$s 秒，每秒对 %2$s 格内的敌人造成 %1$s 点魔法伤害并施加 30% 减速。"
+                                + "持续 %3$s 秒，每秒对 %2$s 格内的敌人造成 %1$s 点冰霜魔法伤害并施加 30% 减速。"
                                 + "冷却时间：%4$s 秒。"
                         : "After casting an ultimate, a storm is readied for %3$s seconds. Upon "
                                 + "entering combat, a storm surrounds you for %3$s seconds, dealing %1$s "
-                                + "magic damage per second to enemies within %2$s blocks and slowing them "
+                                + "ice magic damage per second to enemies within %2$s blocks and slowing them "
                                 + "by 30%. Cooldown: %4$s seconds.");
         add("passive.lolaccessories.vigor.title",
                 chinese ? "唯一被动—无拘活力" : "Unique Passive - Boundless Vitality");
@@ -718,9 +781,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add("passive.lolaccessories.sunfire.title",
                 chinese ? "唯一被动—献祭" : "Unique Passive - Sunfire");
         add("passive.lolaccessories.sunfire.desc",
-                chinese ? "进入战斗后，灼烧 %3$s 格内的敌人，每秒造成 %1$s 点外加 %2$s 额外生命值的魔法伤害。"
+                chinese ? "进入战斗后，灼烧 %3$s 格内的敌人，每秒造成 %1$s 点外加 %2$s 额外生命值的火焰魔法伤害。"
                         : "While in combat, scorch enemies within %3$s blocks for %1$s plus %2$s bonus "
-                                + "health magic damage per second.");
+                                + "health fire magic damage per second.");
         add("passive.lolaccessories.remnant.title",
                 chinese ? "唯一被动—灵液护盾" : "Unique Passive - Ichorshield");
         add("passive.lolaccessories.remnant.desc",
@@ -730,9 +793,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add("passive.lolaccessories.overdrive.title",
                 chinese ? "唯一被动—过载" : "Unique Passive - Overdrive");
         add("passive.lolaccessories.overdrive.desc",
-                chinese ? "施放终极技能后 %3$s 秒内获得 +50%% 攻击速度（含等额蓄力速度）与 +20%% 移速。"
+                chinese ? "施放终极技能后 %3$s 秒内获得 +%1$s 攻击速度与等额蓄力速度、+%2$s 移速。"
                                 + "内部冷却：%4$s 秒。"
-                        : "Casting an ultimate grants +%1$s attack speed (and equal draw speed) and "
+                        : "Casting an ultimate grants +%1$s attack speed, equal draw speed and "
                                 + "+%2$s movement speed for %3$s seconds. Internal cooldown: %4$s seconds.");
         add("passive.lolaccessories.demon_king.title",
                 chinese ? "唯一被动—我是大魔王" : "Unique Passive - I Am the Demon King");
@@ -796,10 +859,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("passive.lolaccessories.tear_stack.title",
                 chinese ? "唯一被动—法力流" : "Unique Passive - Manaflow");
         add("passive.lolaccessories.tear_stack.desc",
-                chinese ? "每 8 秒获得一层充能，普攻或技能命中时消耗充能获得 %1$s 点额外法力"
-                                + "（命中玩家翻倍）；叠满 360 额外法力后自动蜕变。"
-                        : "Gain a charge every 8 seconds; attacks and spells consume a charge to grant "
-                                + "%1$s bonus mana (doubled against champions). Transforms at 360 bonus mana.");
+                chinese ? "每 8 秒获得一层充能，普攻或技能命中时消耗充能获得 %1$s 点额外法力，命中玩家时翻倍；叠满 360 额外法力后自动蜕变。"
+                        : "Gain a charge every 8 seconds; attacks and spells consume a charge to grant %1$s bonus mana, doubled against champions. Transforms at 360 bonus mana.");
         add("passive.lolaccessories.tear_shock.title",
                 chinese ? "唯一被动—冲击" : "Unique Passive - Shock");
         add("passive.lolaccessories.tear_awe.title",
@@ -820,24 +881,18 @@ public class ModLanguageProvider extends LanguageProvider {
                 chinese ? "每 100 点额外法力提供 %1$s 治疗与护盾强度。"
                         : "Grants %1$s heal and shield power per 100 bonus mana.");
         add("passive.lolaccessories.tear_shock.desc",
-                chinese ? "普攻命中英雄时附加 1.2%% 最大法力的物理伤害；技能命中时附加"
-                                + " 4%%（近战）/3%%（远程）最大法力的物理伤害（同一目标 6.5 秒内最多触发一次）。"
-                        : "Basic attacks deal 1.2%% max mana bonus physical damage; spells deal "
-                                + "4%% (melee) / 3%% (ranged) max mana (once per target per 6.5s).");
+                chinese ? "普攻命中英雄时附加 1.2%% 最大法力的物理伤害；技能命中时附加 4%% 近战或 3%% 远程最大法力的物理伤害。"
+                        : "Basic attacks deal 1.2%% max mana bonus physical damage; spells deal 4%% melee or 3%% ranged max mana bonus physical damage.");
         add("passive.lolaccessories.tear_lifeline.title",
                 chinese ? "唯一被动—应急护盾" : "Unique Passive - Lifeline");
         add("passive.lolaccessories.tear_lifeline.desc",
-                chinese ? "受到将使生命值低于 30%% 的伤害时，获得相当于 18%% 最大法力的护盾，"
-                                + "持续 3 秒（90 秒冷却）。"
-                        : "Upon taking damage that would bring you below 30%% health, gain a shield "
-                                + "equal to 18%% max mana for 3s (90s cooldown).");
+                chinese ? "受到将使生命值低于 30%% 的伤害时，获得相当于 18%% 最大法力的护盾，持续 3 秒，冷却 90 秒。"
+                        : "Upon taking damage that would bring you below 30%% health, gain a shield equal to 18%% max mana for 3 seconds. Cooldown: 90 seconds.");
         add("passive.lolaccessories.tear_everlasting.title",
                 chinese ? "唯一被动—永恒" : "Unique Passive - Everlasting");
         add("passive.lolaccessories.tear_everlasting.desc",
-                chinese ? "对敌人施加移动减速效果时，获得 100 + 4.5%% 最大法力的护盾，持续 3 秒"
-                                + "（8 秒冷却；附近有多名敌人时提升 80%%）。"
-                        : "Slowing an enemy grants a shield of 100 + 4.5%% max mana for 3s "
-                                + "(8s cooldown; increased 80%% near multiple enemies).");
+                chinese ? "对敌人施加移动减速效果时，获得 100 + 4.5%% 最大法力的护盾，持续 3 秒，冷却 8 秒；附近有多名敌人时护盾提升 80%%。"
+                        : "Slowing an enemy grants a shield of 100 + 4.5%% max mana for 3 seconds. Cooldown: 8 seconds; increased 80%% near multiple enemies.");
         add("passive.lolaccessories.tear_consonance.title",
                 chinese ? "唯一被动—共鸣" : "Unique Passive - Consonance");
         add("passive.lolaccessories.tear_consonance.desc",
@@ -862,26 +917,25 @@ public class ModLanguageProvider extends LanguageProvider {
         add("passive.lolaccessories.yun_tal_crit.title",
                 chinese ? "唯一被动—熟能生巧" : "Unique Passive - Practice Makes Lethal");
         add("passive.lolaccessories.yun_tal_crit.desc",
-                chinese ? "弹射物命中时永久获得 0.4% 暴击率，至多 25%（绑定玩家，重新佩戴时恢复）。"
-                        : "Projectile hits permanently grant 0.4% crit chance, up to 25% (bound to the player).");
+                chinese ? "弹射物命中时永久获得 0.4% 暴击率，至多 25%。"
+                        : "Projectile hits permanently grant 0.4% crit chance, up to 25% .");
         add("passive.lolaccessories.yun_tal_flurry.title",
                 chinese ? "唯一被动—疾风连射" : "Unique Passive - Flurry");
         add("passive.lolaccessories.yun_tal_flurry.desc",
-                chinese ? "弹射物命中玩家时获得 30% 蓄力速度，持续 6 秒（30 秒冷却；弹射物命中使它缩短 1 秒）。"
-                        : "Projectile-hitting-a-player grants 30% draw speed for 6s (30s cooldown; "
-                                + "projectile hits shorten it by 1s).");
+                chinese ? "弹射物命中玩家时获得 30%% 蓄力速度，持续 6 秒，冷却 30 秒；弹射物命中使其缩短 1 秒。"
+                        : "Hitting a player with a projectile grants 30%% draw speed for 6 seconds. Cooldown: 30 seconds; projectile hits shorten it by 1 second.");
         add("passive.lolaccessories.grievous_wounds_physical.title",
                 chinese ? "唯一被动—重伤" : "Unique Passive - Grievous Wounds");
         add("passive.lolaccessories.grievous_wounds_physical.desc",
-                chinese ? "物理伤害（近战直击与弹射物）命中敌人后，使其受到的治疗降低 %1$s，持续 %2$s 秒。"
-                        : "Physical damage (melee hits and projectiles) applies Grievous Wounds, "
+                chinese ? "物理伤害命中敌人后，使其受到的治疗降低 %1$s，持续 %2$s 秒。"
+                        : "Physical damage  applies Grievous Wounds, "
                                 + "reducing the target's incoming healing by %1$s for %2$s seconds.");
         add("passive.lolaccessories.giant_slayer.title",
                 chinese ? "唯一被动—巨人杀手" : "Unique Passive - Giant Slayer");
         add("passive.lolaccessories.giant_slayer.desc",
-                chinese ? "对非友善目标造成的伤害提升 0%~15%，基于目标额外生命值（15000 额外生命时封顶）。"
+                chinese ? "对非友善目标造成的伤害提升 0%~15%，基于目标额外生命值，至多基于 15000 点。"
                         : "Deal 0%~15% increased damage to non-friendly targets based on their bonus "
-                                + "health (capped at 15,000 bonus health).");
+                                + "health, capped at 15,000.");
         add("legend.lolaccessories.barrage.forced",
                 chinese ? "弹幕强袭！强制触发暴击。" : "Forced barrage crit!");
         add("legend.lolaccessories.shaped_charge.proc",

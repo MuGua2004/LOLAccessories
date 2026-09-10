@@ -288,6 +288,8 @@ public class GearConfig {
         public double power_ratio = 0.0;
         /** 敌对生物不足时，折返主目标的回声每道造成的伤害比例（0.2 = 20%）。 */
         public double bonus_pct = 0.0;
+        /** 反伤类效果的护甲加成比例（荆棘之甲：20 + 10% 额外护甲）。 */
+        public double armor_ratio = 0.0;
 
         // helping_hand（帮助之手：多兰盾/多兰戒/多兰盔/女神之泪共用，只生效一次）
         /** 对「生命值低于 health_threshold」的目标额外造成的物理伤害点数。 */

@@ -229,6 +229,58 @@ public final class ModItems {
             ITEMS.register("protoplasm_harness",
                     () -> new GearItem("protoplasm_harness", gearProperties("protoplasm_harness")));
 
+    // ===================== 第六批 5 件传说（输出/坦克：贪欲 / 荆棘 / 三相 / 狂徒 / 心之钢） =====================
+
+    /**
+     * 贪欲九头蛇（Ravenous Hydra）。槽位：手饰 hands。
+     * +65 攻击力 / +9% 全能吸血。
+     * 被动「顺劈（Cleave）」：普攻对周围目标造成 0.7×攻击力的溅射物理伤害（不区分近战远程）；
+     * 主动「新月（Crescent）」：对周围敌对生物造成一次物理伤害（带斩击特效）。
+     * 数值来自 ravenous_hydra.json。
+     */
+    public static final RegistryObject<GearItem> RAVENOUS_HYDRA =
+            ITEMS.register("ravenous_hydra", () -> new GearItem("ravenous_hydra", gearProperties("ravenous_hydra")));
+
+    /**
+     * 荆棘之甲（Thornmail）。槽位：胸饰 body。
+     * +350 最大生命值 / +70 护甲。
+     * 被动「荆棘（Thorns）」：受到普攻时反弹 26 点自然（nature）学派魔法伤害，
+     * 并施加 60% 重伤 3 秒。数值来自 thornmail.json。
+     */
+    public static final RegistryObject<GearItem> THORNMAIL =
+            ITEMS.register("thornmail", () -> new GearItem("thornmail", gearProperties("thornmail")));
+
+    /**
+     * 三相之力（Trinity Force）。槽位：手饰 hands。
+     * +45 攻击力 / +30% 攻速 / +300 最大生命值 / +15% 冷却缩减。
+     * 被动「咒刃（Spellblade）」：下次普攻附加 2.0×攻击力的额外伤害；多件咒刃装备
+     * 触发时伤害叠加、冷却共享相加（见 LolNewEpicPassiveEvents）。数值来自 trinity_force.json。
+     */
+    public static final RegistryObject<GearItem> TRINITY_FORCE =
+            ITEMS.register("trinity_force", () -> new GearItem("trinity_force", gearProperties("trinity_force")));
+
+    /**
+     * 狂徒铠甲（Warmog's Armor）。槽位：胸饰 body。
+     * +800 最大生命值。
+     * 被动「狂徒之心（Warmog's Heart）」：饰品栏（含其他模组饰品）提供的生命加成总和
+     * ≥ 1500 时激活——脱战 6 秒后每秒回复 5% 最大生命值（附带心形粒子特效）。
+     * 数值来自 warmogs_armor.json。
+     */
+    public static final RegistryObject<GearItem> WARMOGS_ARMOR =
+            ITEMS.register("warmogs_armor", () -> new GearItem("warmogs_armor", gearProperties("warmogs_armor")));
+
+    /**
+     * 心之钢（Heartsteel）。槽位：腰带 belt。
+     * +900 最大生命值。
+     * 被动「歌莉娅巨人（Goliath）」：每次「庞然吞食」涨血时同时获得等额物理伤害减免
+     * （替代原作体型提升）；「庞然吞食（Colossal Consumption）」：与目标进入战斗后，
+     * 在其头顶生成 3 秒成熟印记，成熟后下一次近战/弹射物攻击击碎印记，
+     * 造成 70 + 6% 最大生命的物理伤害并按初始伤害 10% 永久增加最大生命
+     * （每目标仅涨血一次、独立 30 秒冷却、不吃缩减）。数值来自 heartsteel.json。
+     */
+    public static final RegistryObject<GearItem> HEARTSTEEL =
+            ITEMS.register("heartsteel", () -> new GearItem("heartsteel", gearProperties("heartsteel")));
+
     // ===================== 女神泪系列（法力流，8 件传说，4 对蜕变） =====================
 
     /**

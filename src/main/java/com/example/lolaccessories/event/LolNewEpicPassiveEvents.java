@@ -8,6 +8,7 @@ import com.example.lolaccessories.compat.IronsMagicBridge;
 import com.example.lolaccessories.config.GearConfig;
 import com.example.lolaccessories.config.GearConfigManager;
 import com.example.lolaccessories.init.ModAttributes;
+import com.example.lolaccessories.init.ModEntityTypeTags;
 import com.example.lolaccessories.init.ModMobEffects;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -264,6 +265,11 @@ public final class LolNewEpicPassiveEvents {
         }
         Player player = event.player;
         UUID uuid = player.getUUID();
+        // 狂徒之心 + 狂徒之活力：每秒结算一次
+        if (player.tickCount % 20 == 0) {
+            warmogHeart(player);
+            updateWarmogVigor(player);
+        }
         // 疯狂状态的战斗窗口衰减（约每秒一次结算）
         if (player.tickCount % 20 == 0) {
             MadnessState state = MADNESS.get(uuid);
@@ -376,7 +382,12 @@ public final class LolNewEpicPassiveEvents {
         boolean was = secondaryDamageDispatching;
         secondaryDamageDispatching = true;
         try {
-            attacker.hurt(wearer.level().damageSources().thorns(wearer), (float) effect.amount);
+            // 反弹伤害 = 魔法伤害，学派由配置 school 决定（荆棘之甲/棘刺背心：nature 自然学派）。
+            // 荆棘之甲带护甲加成：伤害 = 固定值 + armor_ratio × 佩戴者护甲（原版口径：20 + 10% 额外护甲）
+            double thornAmount = effect.amount
+                    + (effect.armor_ratio > 0 ? effect.armor_ratio * wearer.getAttributeValue(Attributes.ARMOR) : 0.0D);
+            IronsSpellDamage.apply(wearer, attacker, (float) thornAmount,
+                    IronsSpellDamage.resolve(effect.school));
         } finally {
             secondaryDamageDispatching = was;
         }
@@ -459,6 +470,16 @@ public final class LolNewEpicPassiveEvents {
                             }
                         }
                         case "immolate" -> burnNearby(wearer, effect);
+                        // 疾行（三相之力 Quicken）：普攻命中后短暂加速
+                        case "quicken" -> {
+                            if (isBasicPhysical(source) && isEnemyOf(wearer, victim)) {
+                                int dur = (int) Math.round(
+                                        (effect.duration_seconds > 0 ? effect.duration_seconds : 2.0D) * 20.0D);
+                                wearer.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                                        net.minecraft.world.effect.MobEffects.MOVEMENT_SPEED, dur, 0,
+                                        true, false));
+                            }
+                        }
                         case "madness" -> handleMadness(wearer, victim, event, effect);
                         // 永恒·施法命中：仅“造成魔法伤害命中敌方”时视为施法成功并回血
                         case "eternity" -> {
@@ -574,16 +595,153 @@ public final class LolNewEpicPassiveEvents {
         if (!Boolean.TRUE.equals(SPELLBLADE_READY.get(wearer.getUUID()))) {
             return;
         }
+        // 多件咒刃（如耀光 + 三相之力）同时装备：一次触发同时结算全部咒刃伤害（叠加），
+        // 冷却共享且相加——只占用一个冷却窗口，不重复结算。
         SPELLBLADE_READY.put(wearer.getUUID(), Boolean.FALSE);
-        double ad = wearer.getAttributeValue(Attributes.ATTACK_DAMAGE);
-        double extra = effect.base_damage + ad * (effect.power_ratio > 0 ? effect.power_ratio : 1.0D);
-        if (extra > 0.0D) {
-            event.setAmount(event.getAmount() + (float) extra);
+        double[] agg = spellbladeAggregate(wearer);
+        if (agg[0] > 0.0D) {
+            event.setAmount(event.getAmount() + (float) agg[0]);
+        }
+        if (agg[1] > 0.0D) {
+            SPELLBLADE_LOCK_MS.put(wearer.getUUID(),
+                    System.currentTimeMillis() + Math.round(agg[1] * 1000.0D));
         }
     }
 
-    /** 顺劈：物理攻击命中目标后，对其周围敌对生物造成佩戴者攻击力×比例 的物理溅射。 */
+    /** 斩击特效：横扫粒子 + 挥砍音效（提亚马特/贪欲九头蛇的顺劈与新月共用）。 */
+    static void slashFx(Player wearer, LivingEntity victim) {
+        if (wearer.level() instanceof net.minecraft.server.level.ServerLevel level) {
+            level.sendParticles(net.minecraft.core.particles.ParticleTypes.SWEEP_ATTACK,
+                    victim.getX(), victim.getY() + victim.getBbHeight() * 0.8D, victim.getZ(),
+                    1, 0.1D, 0.1D, 0.1D, 0.0D);
+            wearer.level().playSound(null, victim.blockPosition(),
+                    net.minecraft.sounds.SoundEvents.PLAYER_ATTACK_SWEEP,
+                    net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+        }
+    }
+
+    /**
+     * 聚合穿戴的全部咒刃效果：返回 {@code {伤害总和, 冷却总和(秒)}}。
+     * 之后的盈能（Energized）类装备叠加可直接复用同一聚合模式。
+     */
+    private static double[] spellbladeAggregate(Player wearer) {
+        double[] out = {0.0D, 0.0D};
+        double ad = wearer.getAttributeValue(Attributes.ATTACK_DAMAGE);
+        CuriosGearWear.forEachEquippedGear(wearer, gear -> {
+            GearConfig cfg = GearConfigManager.get(gear.getGearId());
+            if (cfg == null) {
+                return;
+            }
+            GearConfig.OnHitEffect e = cfg.findEffect("spellblade").orElse(null);
+            if (e == null || !e.enabled) {
+                return;
+            }
+            out[0] += e.base_damage + ad * (e.power_ratio > 0 ? e.power_ratio : 1.0D);
+            out[1] += e.cooldown_seconds > 0 ? e.cooldown_seconds : 1.5D;
+        });
+        return out;
+    }
+
+    /**
+     * 狂徒之心（狂徒铠甲）：饰品栏（Curios 全槽位，含其他模组饰品）提供的
+     * 「装备生命值」总和 ≥ 阈值（warmog_heart.amount，默认 1500）时激活——
+     * 脱战 6 秒后每秒回复 5% 最大生命值，并冒心形粒子。
+     */
+    private static void warmogHeart(Player player) {
+        CuriosGearWear.forEachEquippedGear(player, gear -> {
+            GearConfig cfg = GearConfigManager.get(gear.getGearId());
+            if (cfg == null) {
+                return;
+            }
+            GearConfig.OnHitEffect effect = cfg.findEffect("warmog_heart").orElse(null);
+            if (effect == null || !effect.enabled) {
+                return;
+            }
+            if (player.getHealth() >= player.getMaxHealth()) {
+                return;
+            }
+            // 脱战判定：duration_seconds 内受到生物伤害则视为战斗中（配置默认 6 秒）
+            double delaySeconds = effect.duration_seconds > 0 ? effect.duration_seconds : 6.0D;
+            if (player.tickCount - player.getLastHurtByMobTimestamp() <= delaySeconds * 20.0D) {
+                return;
+            }
+            double threshold = effect.amount > 0 ? effect.amount : 1500.0D;
+            if (accessoryHealthBonus(player) < threshold) {
+                return;
+            }
+            double pct = effect.base_damage > 0 ? effect.base_damage : 0.05D;
+            player.heal((float) (player.getMaxHealth() * pct));
+            if (player.level() instanceof net.minecraft.server.level.ServerLevel level) {
+                level.sendParticles(net.minecraft.core.particles.ParticleTypes.HEART,
+                        player.getX(), player.getY() + player.getBbHeight() * 0.8D, player.getZ(),
+                        3, 0.3D, 0.4D, 0.3D, 0.0D);
+            }
+        });
+    }
+
+    /** 狂徒之活力 modifier 固定 UUID（transient，每秒重设）。 */
+    private static final UUID WARMOG_VIGOR_UUID = UUID.fromString("3c9a2f47-6b1d-4e88-a5f0-92d4c7e10b36");
+
+    /**
+     * 狂徒之活力（狂徒铠甲）：获得额外生命值 = 12% 装备生命值（饰品栏生命加成总和）。
+     * 实时跟随统计值变化；未佩戴时移除。
+     */
+    private static void updateWarmogVigor(Player player) {
+        net.minecraft.world.entity.ai.attributes.AttributeInstance attr =
+                player.getAttribute(Attributes.MAX_HEALTH);
+        if (attr == null) {
+            return;
+        }
+        boolean[] found = {false};
+        CuriosGearWear.forEachEquippedGear(player, gear -> {
+            if ("warmogs_armor".equals(gear.getGearId())) {
+                found[0] = true;
+            }
+        });
+        double vigor = 0.0D;
+        if (found[0]) {
+            GearConfig cfg = GearConfigManager.get("warmogs_armor");
+            GearConfig.OnHitEffect effect = cfg != null ? cfg.findEffect("warmog_vigor").orElse(null) : null;
+            double ratio = effect != null && effect.amount > 0 ? effect.amount : 0.12D;
+            vigor = ratio * accessoryHealthBonus(player);
+        }
+        if (attr.getModifier(WARMOG_VIGOR_UUID) != null) {
+            attr.removeModifier(WARMOG_VIGOR_UUID);
+        }
+        if (vigor > 0.0D) {
+            attr.addTransientModifier(new net.minecraft.world.entity.ai.attributes.AttributeModifier(
+                    WARMOG_VIGOR_UUID, "warmog_vigor", vigor,
+                    net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION));
+        }
+    }
+
+    /**
+     * 「装备生命值」：饰品栏全部饰品（含其他模组饰品）给玩家 {@code max_health}
+     * 挂上的 ADDITION 修饰符总和（基础生命 20 不计入；药水/心之钢涨血等
+     * 同样挂在 max_health 上，会被一并统计）。
+     */
+    private static double accessoryHealthBonus(Player player) {
+        net.minecraft.world.entity.ai.attributes.AttributeInstance attr =
+                player.getAttribute(Attributes.MAX_HEALTH);
+        if (attr == null) {
+            return 0.0D;
+        }
+        double sum = 0.0D;
+        for (net.minecraft.world.entity.ai.attributes.AttributeModifier m : attr.getModifiers()) {
+            // 排除本模组动态生命来源（狂徒之活力/心之钢涨血），避免正反馈自我叠加
+            if (m.getId().equals(WARMOG_VIGOR_UUID) || m.getId().equals(HeartsteelEvents.HEALTH_BONUS_UUID)) {
+                continue;
+            }
+            if (m.getOperation() == net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADDITION) {
+                sum += m.getAmount();
+            }
+        }
+        return sum;
+    }
+
+    /** 顺劈：物理攻击命中目标后，对其周围敌对生物造成佩戴者攻击力×比例 的物理溅射（带斩击特效）。 */
     private static void cleaveAoe(Player wearer, LivingEntity victim, GearConfig.OnHitEffect effect) {
+        slashFx(wearer, victim);
         double radius = effect.radius_blocks > 0 ? effect.radius_blocks : 2.0D;
         double ratio = effect.amount > 0 ? effect.amount : 0.6D;
         double ad = wearer.getAttributeValue(Attributes.ATTACK_DAMAGE);
@@ -698,7 +856,7 @@ public final class LolNewEpicPassiveEvents {
         return Math.max(0.0D, value);
     }
 
-    private static boolean isMagicDamage(DamageSource source) {
+    static boolean isMagicDamage(DamageSource source) {
         return IronsCompat.isIronSpellDamage(source)
                 || source.is(DamageTypes.MAGIC)
                 || source.is(DamageTypes.INDIRECT_MAGIC);
@@ -735,16 +893,21 @@ public final class LolNewEpicPassiveEvents {
         if (owner == null || target == null || owner == target || target.isDeadOrDying()) {
             return false;
         }
-        if (target instanceof Player other) {
-            if (owner.level().getServer() == null
-                    || !owner.level().getServer().isPvpAllowed()) {
-                return false;
-            }
-            if (owner.isSpectator() || other.isSpectator()) {
-                return false;
+        // 「玩家替身」标签的测试假人按玩家语义判定（队友/盟友规则），但不套用 PvP 开关与观战限制
+        boolean playerLike = target instanceof Player
+                || target.getType().is(ModEntityTypeTags.PLAYER_LIKE);
+        if (playerLike) {
+            if (target instanceof Player other) {
+                if (owner.level().getServer() == null
+                        || !owner.level().getServer().isPvpAllowed()) {
+                    return false;
+                }
+                if (owner.isSpectator() || other.isSpectator()) {
+                    return false;
+                }
             }
             // 同队/盟友（含自己阵营）不算敌人；队伍的“允许误伤”由玩家自行设置
-            return !owner.isAlliedTo(other);
+            return !owner.isAlliedTo(target);
         }
         if (target instanceof Mob mob) {
             if (mob.isDeadOrDying()) {

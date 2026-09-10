@@ -13,6 +13,9 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
+import com.example.lolaccessories.entity.TestBruteEntity;
+import com.example.lolaccessories.client.HeartsteelMarkRenderer;
+import com.example.lolaccessories.entity.TestPlayerDummyEntity;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -103,6 +106,28 @@ public class EchoOrbRenderer extends EntityRenderer<EchoOrbEntity> {
         @SubscribeEvent
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(ModEntityTypes.ECHO_ORB.get(), EchoOrbRenderer::new);
+            event.registerEntityRenderer(ModEntityTypes.HEARTSTEEL_MARK.get(), HeartsteelMarkRenderer::new);
+            // 测试实体复用原版模型：蛮兵用僵尸、假人用猪灵（原版渲染器泛型是原版实体，做受检豁免转换）
+            event.registerEntityRenderer(ModEntityTypes.TEST_BRUTE.get(), context -> {
+                @SuppressWarnings("unchecked")
+                net.minecraft.client.renderer.entity.EntityRenderer<TestBruteEntity> r =
+                        (net.minecraft.client.renderer.entity.EntityRenderer<TestBruteEntity>)
+                                (net.minecraft.client.renderer.entity.EntityRenderer<?>)
+                                        new net.minecraft.client.renderer.entity.ZombieRenderer(context);
+                return r;
+            });
+            event.registerEntityRenderer(ModEntityTypes.TEST_PLAYER_DUMMY.get(), context -> {
+                @SuppressWarnings("unchecked")
+                net.minecraft.client.renderer.entity.EntityRenderer<TestPlayerDummyEntity> r =
+                        (net.minecraft.client.renderer.entity.EntityRenderer<TestPlayerDummyEntity>)
+                                (net.minecraft.client.renderer.entity.EntityRenderer<?>)
+                                        new net.minecraft.client.renderer.entity.PiglinRenderer(context,
+                                                net.minecraft.client.model.geom.ModelLayers.PIGLIN,
+                                                net.minecraft.client.model.geom.ModelLayers.PIGLIN_INNER_ARMOR,
+                                                net.minecraft.client.model.geom.ModelLayers.PIGLIN_OUTER_ARMOR,
+                                                false);
+                return r;
+            });
         }
     }
 }

@@ -22,6 +22,11 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         // 普通物品：仅需一张 textures/item/<注册名>.png
         basicItem(ModItems.BLACK_CLEAVER.get());
+        basicItem(ModItems.RAVENOUS_HYDRA.get());
+        basicItem(ModItems.THORNMAIL.get());
+        basicItem(ModItems.TRINITY_FORCE.get());
+        basicItem(ModItems.WARMOGS_ARMOR.get());
+        basicItem(ModItems.HEARTSTEEL.get());
         basicItem(ModItems.LUDENS_ECHO.get());
         basicItem(ModItems.INFINITY_EDGE.get());
         basicItem(ModItems.BOOTS.get());

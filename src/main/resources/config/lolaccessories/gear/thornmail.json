@@ -1,0 +1,30 @@
+{
+  "template_version": 1,
+  "gear_id": "thornmail",
+  "slot": "body",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 150
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 75
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "thorns",
+      "target": "victim",
+      "enabled": true,
+      "amount": 20.0,
+      "bonus_pct": 0.4,
+      "duration_seconds": 3.0,
+      "school": "nature",
+      "armor_ratio": 0.1
+    }
+  ]
+}

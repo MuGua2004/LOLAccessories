@@ -166,7 +166,13 @@ public class ModGearTierTagsProvider extends TagsProvider<Item> {
                 .add(itemKey(ModItems.GUARDIAN_ANGEL))
                 .add(itemKey(ModItems.YUN_TAL_WILDARROWS))
                 .add(itemKey(ModItems.MORTAL_REMINDER))
-                .add(itemKey(ModItems.LORD_DOMINIKS_REGARDS));
+                .add(itemKey(ModItems.LORD_DOMINIKS_REGARDS))
+                // 第六批 5 件传说（贪欲九头蛇 / 荆棘之甲 / 三相之力 / 狂徒铠甲 / 心之钢）
+                .add(itemKey(ModItems.RAVENOUS_HYDRA))
+                .add(itemKey(ModItems.THORNMAIL))
+                .add(itemKey(ModItems.TRINITY_FORCE))
+                .add(itemKey(ModItems.WARMOGS_ARMOR))
+                .add(itemKey(ModItems.HEARTSTEEL));
 
         // ---------- 4 级（神话） ----------
         // 首件神话装备（澄空之愿）；后续神话装备像其它品阶一样 add 进来即可，

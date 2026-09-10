@@ -1,0 +1,53 @@
+{
+  "template_version": 1,
+  "gear_id": "trinity_force",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 36
+    },
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.3,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.3,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 333
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.15,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "spellblade",
+      "target": "victim",
+      "enabled": true,
+      "base_damage": 0.0,
+      "power_ratio": 2.0,
+      "cooldown_seconds": 1.5
+    },
+    {
+      "id": "quicken",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.2,
+      "duration_seconds": 2.0
+    }
+  ]
+}

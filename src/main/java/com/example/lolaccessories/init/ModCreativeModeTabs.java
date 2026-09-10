@@ -148,6 +148,12 @@ public final class ModCreativeModeTabs {
                         output.accept(ModItems.YUN_TAL_WILDARROWS.get());
                         output.accept(ModItems.MORTAL_REMINDER.get());
                         output.accept(ModItems.LORD_DOMINIKS_REGARDS.get());
+                        // 第六批 5 件传说（贪欲九头蛇 / 荆棘之甲 / 三相之力 / 狂徒铠甲 / 心之钢）
+                        output.accept(ModItems.RAVENOUS_HYDRA.get());
+                        output.accept(ModItems.THORNMAIL.get());
+                        output.accept(ModItems.TRINITY_FORCE.get());
+                        output.accept(ModItems.WARMOGS_ARMOR.get());
+                        output.accept(ModItems.HEARTSTEEL.get());
                         // 金币（货币材料）
                         output.accept(ModItems.GOLD_COIN.get());
                     })

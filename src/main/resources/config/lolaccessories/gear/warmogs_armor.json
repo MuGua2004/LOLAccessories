@@ -1,0 +1,35 @@
+{
+  "template_version": 1,
+  "gear_id": "warmogs_armor",
+  "slot": "body",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 1000
+    },
+    {
+      "id": "lolaccessories:natural_regen",
+      "operation": "ADDITION",
+      "amount": 1.0,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "warmog_heart",
+      "target": "self",
+      "enabled": true,
+      "amount": 2000.0,
+      "base_damage": 0.03,
+      "duration_seconds": 8.0
+    },
+    {
+      "id": "warmog_vigor",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.12
+    }
+  ]
+}

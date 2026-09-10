@@ -1,0 +1,24 @@
+{
+  "template_version": 1,
+  "gear_id": "heartsteel",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 900
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "colossal_consumption",
+      "target": "self",
+      "enabled": true,
+      "base_damage": 70.0,
+      "amount": 0.06,
+      "radius_blocks": 30.0,
+      "cooldown_seconds": 30.0
+    }
+  ]
+}

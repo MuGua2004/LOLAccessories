@@ -42,4 +42,15 @@ public final class CuriosGearWear {
             }
         });
     }
+
+    /** 找到玩家佩戴的 gearId 对应饰品 ItemStack（第一个）；未佩戴返回 EMPTY。 */
+    public static net.minecraft.world.item.ItemStack findEquippedStack(Player player, String gearId) {
+        var equipped = CuriosApi.getCuriosInventory(player)
+                .resolve()
+                .map(handler -> handler.findCurios(
+                        stack -> stack.getItem() instanceof GearItem gear
+                                && gearId.equals(gear.getGearId())))
+                .orElse(List.of());
+        return equipped.isEmpty() ? net.minecraft.world.item.ItemStack.EMPTY : equipped.get(0).stack();
+    }
 }

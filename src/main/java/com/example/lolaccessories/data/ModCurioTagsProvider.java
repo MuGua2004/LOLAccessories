@@ -40,6 +40,8 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         // 手饰栏（hands）
         TagKey<Item> hands = TagKey.create(Registries.ITEM, new ResourceLocation("curios", "hands"));
         this.tag(hands).add(itemKey(ModItems.BLACK_CLEAVER));
+        this.tag(hands).add(itemKey(ModItems.RAVENOUS_HYDRA));
+        this.tag(hands).add(itemKey(ModItems.TRINITY_FORCE));
         this.tag(hands).add(itemKey(ModItems.LUDENS_ECHO));
         // 爆裂魔杖（魔杖，单手）
         this.tag(hands).add(itemKey(ModItems.BLASTING_WAND));
@@ -197,6 +199,8 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         this.tag(body).add(itemKey(ModItems.CLOTH_ARMOR));
         // 锁子甲（胸饰）
         this.tag(body).add(itemKey(ModItems.CHAIN_VEST));
+        this.tag(body).add(itemKey(ModItems.THORNMAIL));
+        this.tag(body).add(itemKey(ModItems.WARMOGS_ARMOR));
         // 棘刺背心（胸饰）
         this.tag(body).add(itemKey(ModItems.BRAMBLE_VEST));
         // 守望者铠甲（胸饰）
@@ -210,6 +214,7 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         TagKey<Item> belt = TagKey.create(Registries.ITEM, new ResourceLocation("curios", "belt"));
         // 抗魔斗篷（腰带）
         this.tag(belt).add(itemKey(ModItems.NULL_MAGIC_MANTLE));
+        this.tag(belt).add(itemKey(ModItems.HEARTSTEEL));
         // 巨人腰带（腰带）
         this.tag(belt).add(itemKey(ModItems.GIANT_BELT));
         // 负极斗篷（腰带）

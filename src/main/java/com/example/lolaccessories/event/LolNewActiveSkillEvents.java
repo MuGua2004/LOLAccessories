@@ -61,6 +61,8 @@ public final class LolNewActiveSkillEvents {
     public static final String SKILL_CRESCENT = "crescent";
     /** 新月对应装备 gear_id。 */
     public static final String GEAR_TIAMAT = "tiamat";
+    /** 新月对应装备 gear_id（贪欲九头蛇，与提亚马特共用新月按键）。 */
+    public static final String GEAR_RAVENOUS_HYDRA = "ravenous_hydra";
     /** 鼓舞（舒瑞娅的战歌）技能标识。 */
     public static final String SKILL_INSPIRING_SPEECH = "inspiring_speech";
     /** 鼓舞对应装备 gear_id。 */
@@ -85,9 +87,16 @@ public final class LolNewActiveSkillEvents {
             case SKILL_QUICKSILVER -> trigger(player, skillId, GEAR_QUICKSILVER,
                     ModItems.QUICKSILVER_SASH.get().getDefaultInstance().getHoverName(),
                     () -> cleanse(player));
-            case SKILL_CRESCENT -> trigger(player, skillId, GEAR_TIAMAT,
-                    ModItems.TIAMAT.get().getDefaultInstance().getHoverName(),
-                    () -> crescent(player));
+            // 新月：提亚马特与贪欲九头蛇共用同一按键与技能 id，按当前佩戴的装备取对应配置
+            case SKILL_CRESCENT -> {
+                String gear = GEAR_RAVENOUS_HYDRA.equals(pickWorn(player, GEAR_TIAMAT, GEAR_RAVENOUS_HYDRA))
+                        ? GEAR_RAVENOUS_HYDRA : GEAR_TIAMAT;
+                trigger(player, skillId, gear,
+                        (GEAR_RAVENOUS_HYDRA.equals(gear)
+                                ? ModItems.RAVENOUS_HYDRA.get() : ModItems.TIAMAT.get())
+                                .getDefaultInstance().getHoverName(),
+                        () -> crescent(player, gear));
+            }
             case SKILL_INSPIRING_SPEECH -> trigger(player, skillId, GEAR_SHURELYAS_BATTLESONG,
                     ModItems.SHURELYAS_BATTLESONG.get().getDefaultInstance().getHoverName(),
                     () -> inspiringSpeech(player));
@@ -187,21 +196,37 @@ public final class LolNewActiveSkillEvents {
         return cleared;
     }
 
-    /** 新月：对周围敌对生物造成一次物理伤害（参数来自 tiamat.json 的 crescent）。返回命中数。 */
-    private static int crescent(ServerPlayer player) {
-        GearConfig config = GearConfigManager.get(GEAR_TIAMAT);
+    /** 新月：对周围敌对生物造成一次物理伤害（参数来自 tiamat/ravenous_hydra.json 的 crescent）。返回命中数。 */
+    private static int crescent(ServerPlayer player, String gearId) {
+        GearConfig config = GearConfigManager.get(gearId);
         GearConfig.OnHitEffect effect = config.findEffect(SKILL_CRESCENT).orElse(null);
         if (effect == null) {
             return 0;
         }
         double radius = effect.radius_blocks > 0 ? effect.radius_blocks : 3.0D;
-        float damage = (float) (effect.base_damage > 0 ? effect.base_damage : 14.0D);
+        // 提亚马特：固定伤害（base_damage）；贪欲九头蛇（血斩）：base + power_ratio × 攻击力
+        float damage = (float) (effect.base_damage
+                + (effect.power_ratio > 0 ? effect.power_ratio
+                        * player.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE) : 0.0D));
         int hits = 0;
         for (LivingEntity enemy : LolNewEpicPassiveEvents.enemiesAround(player, player, radius)) {
             enemy.hurt(player.level().damageSources().playerAttack(player), damage);
+            LolNewEpicPassiveEvents.slashFx(player, enemy);
             hits++;
         }
         return hits;
+    }
+
+    /** 返回 player 实际佩戴的第一个指定 gearId；都没戴返回 null。 */
+    private static String pickWorn(ServerPlayer player, String... gearIds) {
+        java.util.Set<String> wanted = new java.util.HashSet<>(java.util.Arrays.asList(gearIds));
+        String[] found = {null};
+        com.example.lolaccessories.compat.CuriosGearWear.forEachEquippedGear(player, gear -> {
+            if (found[0] == null && wanted.contains(gear.getGearId())) {
+                found[0] = gear.getGearId();
+            }
+        });
+        return found[0];
     }
 
     /**

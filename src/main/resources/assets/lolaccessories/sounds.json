@@ -1,0 +1,11 @@
+{
+  "heartsteel_shatter": {
+    "subtitle": "subtitles.lolaccessories.heartsteel_shatter",
+    "sounds": [
+      {
+        "name": "lolaccessories:heartsteel/shatter",
+        "stream": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "template_version": 1,
+  "gear_id": "ravenous_hydra",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 65
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.15,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:life_steal",
+      "operation": "ADDITION",
+      "amount": 0.12,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "cleave",
+      "target": "victim",
+      "enabled": true,
+      "amount": 0.4,
+      "radius_blocks": 2.5
+    },
+    {
+      "id": "crescent",
+      "target": "self",
+      "enabled": true,
+      "base_damage": 0.0,
+      "radius_blocks": 3.5,
+      "cooldown_seconds": 12.0,
+      "power_ratio": 0.8
+    }
+  ]
+}

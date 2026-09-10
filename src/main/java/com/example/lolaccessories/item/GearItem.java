@@ -253,12 +253,19 @@ public class GearItem extends Item implements ICurioItem {
                 passiveLines.add(activeDesc("quicksilver",
                         formatNumber(effect.cooldown_seconds)));
             } else if ("crescent".equals(effect.id)) {
-                // 主动技「新月」（提亚马特）：对周围敌对生物造成一次物理伤害。
+                // 主动技「新月/血斩」：提亚马特固定伤害；贪欲九头蛇按攻击力比例（原版 80% AD）
                 passiveLines.add(activeTitle("crescent"));
-                passiveLines.add(activeDesc("crescent",
-                        formatNumber(effect.base_damage),
-                        formatNumber(effect.radius_blocks),
-                        formatNumber(effect.cooldown_seconds)));
+                if ("ravenous_hydra".equals(gearId)) {
+                    passiveLines.add(activeDesc("crescent",
+                            formatPercent(effect.power_ratio > 0 ? effect.power_ratio : 0.8D),
+                            formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 3.0D),
+                            formatNumber(effect.cooldown_seconds)));
+                } else {
+                    passiveLines.add(activeDesc("crescent",
+                            formatNumber(effect.base_damage),
+                            formatNumber(effect.radius_blocks),
+                            formatNumber(effect.cooldown_seconds)));
+                }
             } else if ("immolate".equals(effect.id)) {
                 // 灼烧（斑比的熔渣）：受伤/造成伤害时点燃周围敌人
                 passiveLines.add(passiveTitle("immolate"));
@@ -273,12 +280,20 @@ public class GearItem extends Item implements ICurioItem {
                         formatNumber(effect.amount),
                         formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 3.0D)));
             } else if ("thorns".equals(effect.id)) {
-                // 尖刺（棘刺背心）：反弹伤害并施加重伤
+                // 尖刺（棘刺背心）/荆棘（荆棘之甲）：反弹伤害并施加重伤（后者带护甲加成）
                 passiveLines.add(passiveTitle("thorns"));
-                passiveLines.add(passiveDesc("thorns",
-                        formatNumber(effect.amount),
-                        formatPercent(effect.bonus_pct > 0 ? effect.bonus_pct : 0.4D),
-                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 3.0D)));
+                if (effect.armor_ratio > 0) {
+                    passiveLines.add(passiveDesc("thorns",
+                            formatNumber(effect.amount),
+                            formatPercent(effect.armor_ratio),
+                            formatPercent(effect.bonus_pct > 0 ? effect.bonus_pct : 0.4D),
+                            formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 3.0D)));
+                } else {
+                    passiveLines.add(passiveDesc("thorns",
+                            formatNumber(effect.amount),
+                            formatPercent(effect.bonus_pct > 0 ? effect.bonus_pct : 0.4D),
+                            formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 3.0D)));
+                }
             } else if ("eternity".equals(effect.id)) {
                 // 永恒（万世催化石）：受伤回蓝、魔法命中回血
                 passiveLines.add(passiveTitle("eternity"));
@@ -330,11 +345,39 @@ public class GearItem extends Item implements ICurioItem {
                             formatPercent(effect.power_ratio > 0 ? effect.power_ratio : 1.0D)));
                 }
             } else if ("cleave".equals(effect.id)) {
-                // 顺劈（提亚马特被动）：物理攻击溅射周围敌人
+                // 顺劈（提亚马特/贪欲九头蛇被动）：物理攻击溅射周围敌人（文案按装备区分）
                 passiveLines.add(passiveTitle("cleave"));
                 passiveLines.add(passiveDesc("cleave",
                         formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 2.0D),
                         formatPercent(effect.amount > 0 ? effect.amount : 0.6D)));
+            } else if ("warmog_heart".equals(effect.id)) {
+                // 狂徒之心（狂徒铠甲）：饰品栏生命加成达标后脱战回复
+                passiveLines.add(passiveTitle("warmog_heart"));
+                passiveLines.add(passiveDesc("warmog_heart",
+                        formatNumber(effect.amount > 0 ? effect.amount : 1500.0D),
+                        formatPercent(effect.base_damage > 0 ? effect.base_damage : 0.05D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 6.0D)));
+            } else if ("colossal_consumption".equals(effect.id)) {
+                // 心之钢：歌莉娅巨人（属性型被动）+ 庞然吞食（吞食印记）+ 涨血计数器
+                passiveLines.add(passiveTitle("goliath"));
+                passiveLines.add(passiveDesc("goliath"));
+                passiveLines.add(passiveTitle("colossal_consumption"));
+                passiveLines.add(passiveDesc("colossal_consumption"));
+                double fedBonus = stack.getTag() != null
+                        ? stack.getTag().getDouble("lolaccessories_heartsteel_item_bonus") : 0.0D;
+                passiveLines.add(Component.translatable("passive.lolaccessories.heartsteel.progress",
+                        formatNumber(fedBonus)).withStyle(ChatFormatting.GOLD));
+            } else if ("quicken".equals(effect.id)) {
+                // 疾行（三相之力 Quicken）：普攻命中后短暂加速
+                passiveLines.add(passiveTitle("quicken"));
+                passiveLines.add(passiveDesc("quicken",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.2D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 2.0D)));
+            } else if ("warmog_vigor".equals(effect.id)) {
+                // 狂徒之活力（狂徒铠甲）：额外生命 = 12% 装备生命值
+                passiveLines.add(passiveTitle("warmog_vigor"));
+                passiveLines.add(passiveDesc("warmog_vigor",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.12D)));
             } else if ("annul".equals(effect.id)) {
                 // 法盾（翠绿屏障）：格挡一次魔法伤害
                 passiveLines.add(passiveTitle("annul"));
@@ -651,30 +694,43 @@ public class GearItem extends Item implements ICurioItem {
         return true;
     }
 
-    /** 被动标题行：如「唯一被动—切割」，品阶决定颜色与装饰前缀。 */
+    /** 被动标题行：如「唯一被动—切割」，品阶决定颜色与装饰前缀。优先取装备专属词条。 */
     private Component passiveTitle(String effectId) {
         return Component.literal(tierTitlePrefix)
-                .append(Component.translatable("passive.lolaccessories." + effectId + ".title"))
+                .append(Component.translatable(pickKey("passive", effectId, "title")))
                 .withStyle(tierTitleColor);
     }
 
-    /** 被动描述行，数值顺序由对应语言词条的占位符决定，颜色随品阶。 */
+    /** 被动描述行，数值顺序由对应语言词条的占位符决定，颜色随品阶。优先取装备专属词条。 */
     private Component passiveDesc(String effectId, Object... args) {
-        return Component.translatable("passive.lolaccessories." + effectId + ".desc", args)
+        return Component.translatable(pickKey("passive", effectId, "desc"), args)
                 .withStyle(tierDescColor);
     }
 
-    /** 主动技标题行：如「唯一主动—凝滞」，品阶决定颜色与装饰前缀。 */
+    /** 主动技标题行：如「唯一主动—凝滞」，品阶决定颜色与装饰前缀。优先取装备专属词条。 */
     private Component activeTitle(String skillId) {
         return Component.literal(tierTitlePrefix)
-                .append(Component.translatable("active.lolaccessories." + skillId + ".title"))
+                .append(Component.translatable(pickKey("active", skillId, "title")))
                 .withStyle(tierTitleColor);
     }
 
-    /** 主动技描述行，数值顺序由对应语言词条的占位符决定，颜色随品阶。 */
+    /** 主动技描述行，数值顺序由对应语言词条的占位符决定，颜色随品阶。优先取装备专属词条。 */
     private Component activeDesc(String skillId, Object... args) {
-        return Component.translatable("active.lolaccessories." + skillId + ".desc", args)
+        return Component.translatable(pickKey("active", skillId, "desc"), args)
                 .withStyle(tierDescColor);
+    }
+
+    /**
+     * 词条 key 解析：同一 effect id 常被多件装备共用（如提亚马特与贪欲九头蛇的
+     * cleave/crescent、耀光与三相的 spellblade），装备专属词条
+     * {@code <prefix>.lolaccessories.<gearId>.<id>.<suffix>} 存在时优先，否则回退通用词条。
+     */
+    private String pickKey(String prefix, String id, String suffix) {
+        String specific = prefix + ".lolaccessories." + gearId + "." + id + "." + suffix;
+        if (net.minecraft.locale.Language.getInstance().has(specific)) {
+            return specific;
+        }
+        return prefix + ".lolaccessories." + id + "." + suffix;
     }
 
     private static String formatPercent(double value) {

@@ -2,6 +2,9 @@ package com.example.lolaccessories.init;
 
 import com.example.lolaccessories.LOLAccessories;
 import com.example.lolaccessories.entity.EchoOrbEntity;
+import com.example.lolaccessories.entity.HeartsteelMarkEntity;
+import com.example.lolaccessories.entity.TestBruteEntity;
+import com.example.lolaccessories.entity.TestPlayerDummyEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.DeferredRegister;
@@ -27,6 +30,30 @@ public final class ModEntityTypes {
                     .sized(0.3F, 0.3F)
                     .clientTrackingRange(10)
                     .build("echo_orb"));
+
+    /** 测试蛮兵：100 万血敌对假怪（无 AI，模型套用僵尸）。 */
+    public static final RegistryObject<EntityType<TestBruteEntity>> TEST_BRUTE =
+            ENTITY_TYPES.register("test_brute", () -> EntityType.Builder.<TestBruteEntity>of(
+                            TestBruteEntity::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(10)
+                    .build("test_brute"));
+
+    /** 测试假人：玩家标签（player_like）假人（无 AI，模型套用猪灵）。 */
+    public static final RegistryObject<EntityType<TestPlayerDummyEntity>> TEST_PLAYER_DUMMY =
+            ENTITY_TYPES.register("test_player_dummy", () -> EntityType.Builder.<TestPlayerDummyEntity>of(
+                            TestPlayerDummyEntity::new, MobCategory.CREATURE)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(10)
+                    .build("test_player_dummy"));
+
+    /** 心之钢吞食印记：三圈法阵视觉实体（悬浮目标头顶，仅触发者可见）。 */
+    public static final RegistryObject<EntityType<HeartsteelMarkEntity>> HEARTSTEEL_MARK =
+            ENTITY_TYPES.register("heartsteel_mark", () -> EntityType.Builder.<HeartsteelMarkEntity>of(
+                            HeartsteelMarkEntity::new, MobCategory.MISC)
+                    .sized(0.1F, 0.1F)
+                    .clientTrackingRange(10)
+                    .build("heartsteel_mark"));
 
     private ModEntityTypes() {
     }
