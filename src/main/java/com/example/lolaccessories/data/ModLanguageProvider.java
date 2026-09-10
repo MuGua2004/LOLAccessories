@@ -873,8 +873,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("passive.lolaccessories.grievous_wounds_physical.title",
                 chinese ? "唯一被动—重伤" : "Unique Passive - Grievous Wounds");
         add("passive.lolaccessories.grievous_wounds_physical.desc",
-                chinese ? "物理伤害（含弹射物与铁魔法法术）命中敌人后，使其受到的治疗降低 %1$s，持续 %2$s 秒。"
-                        : "Physical damage (incl. projectiles and Iron's Spells) applies Grievous Wounds, "
+                chinese ? "物理伤害（近战直击与弹射物）命中敌人后，使其受到的治疗降低 %1$s，持续 %2$s 秒。"
+                        : "Physical damage (melee hits and projectiles) applies Grievous Wounds, "
                                 + "reducing the target's incoming healing by %1$s for %2$s seconds.");
         add("passive.lolaccessories.giant_slayer.title",
                 chinese ? "唯一被动—巨人杀手" : "Unique Passive - Giant Slayer");

@@ -268,7 +268,7 @@
   "passive.lolaccessories.grievous_wounds_magic.title": "唯一被动—重伤",
   "passive.lolaccessories.grievous_wounds_phys.desc": "物理伤害命中敌人后，使其受到的治疗降低 %1$s，持续 %2$s 秒。",
   "passive.lolaccessories.grievous_wounds_phys.title": "唯一被动—重伤",
-  "passive.lolaccessories.grievous_wounds_physical.desc": "物理伤害（含弹射物与铁魔法法术）命中敌人后，使其受到的治疗降低 %1$s，持续 %2$s 秒。",
+  "passive.lolaccessories.grievous_wounds_physical.desc": "物理伤害（近战直击与弹射物）命中敌人后，使其受到的治疗降低 %1$s，持续 %2$s 秒。",
   "passive.lolaccessories.grievous_wounds_physical.title": "唯一被动—重伤",
   "passive.lolaccessories.guardian_angel.desc": "受到致命伤害时，像不死图腾一样免死一次，回复 50% 基础生命值并恢复 100% 最大法力值；冷却 60 秒。",
   "passive.lolaccessories.guardian_angel.title": "唯一被动—重生",

@@ -268,7 +268,7 @@
   "passive.lolaccessories.grievous_wounds_magic.title": "Unique Passive - Grievous Wounds",
   "passive.lolaccessories.grievous_wounds_phys.desc": "Physical damage applies Grievous Wounds, reducing the target's incoming healing by %1$s for %2$s seconds.",
   "passive.lolaccessories.grievous_wounds_phys.title": "Unique Passive - Grievous Wounds",
-  "passive.lolaccessories.grievous_wounds_physical.desc": "Physical damage (incl. projectiles and Iron's Spells) applies Grievous Wounds, reducing the target's incoming healing by %1$s for %2$s seconds.",
+  "passive.lolaccessories.grievous_wounds_physical.desc": "Physical damage (melee hits and projectiles) applies Grievous Wounds, reducing the target's incoming healing by %1$s for %2$s seconds.",
   "passive.lolaccessories.grievous_wounds_physical.title": "Unique Passive - Grievous Wounds",
   "passive.lolaccessories.guardian_angel.desc": "Upon taking lethal damage, cheat death like a Totem of Undying, restoring 50% base health and 100% max mana; 60s cooldown.",
   "passive.lolaccessories.guardian_angel.title": "Unique Passive - Rebirth",
