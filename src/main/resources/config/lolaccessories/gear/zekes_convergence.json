@@ -1,0 +1,41 @@
+{
+  "template_version": 1,
+  "gear_id": "zekes_convergence",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 300.0
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 25.0
+    },
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 30.0
+    },
+    {
+      "id": "lolaccessories:ultimate_cdr",
+      "operation": "ADDITION",
+      "amount": 0.15,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "zeal",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.0,
+      "base_damage": 30.0,
+      "radius_blocks": 4.0,
+      "duration_seconds": 5.0,
+      "cooldown_seconds": 45.0
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "LPL",
+    "GPG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_block"
+    },
+    "L": {
+      "tag": "minecraft:logs"
+    },
+    "P": {
+      "item": "irons_spellbooks:divine_pearl"
+    }
+  },
+  "result": {
+    "item": "lolaccessories:blasting_wand"
+  }
+}

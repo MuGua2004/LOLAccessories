@@ -1,0 +1,47 @@
+{
+  "template_version": 1,
+  "gear_id": "whispering_circlet",
+  "slot": "ring",
+  "max_stack_size": 1,
+  "family_group": "tear_family",
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 200,
+      "percent": false
+    },
+    {
+      "id": "irons_spellbooks:max_mana",
+      "operation": "ADDITION",
+      "amount": 300,
+      "percent": false
+    },
+    {
+      "id": "irons_spellbooks:mana_regen",
+      "operation": "ADDITION",
+      "amount": 0.75,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:heal_power",
+      "operation": "ADDITION",
+      "amount": 0.08,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "tear_awe",
+      "enabled": true,
+      "amount": 0.005
+    },
+    {
+      "id": "tear_stack",
+      "enabled": true,
+      "amount": 4,
+      "max_stacks": 5
+    }
+  ],
+  "transform_to": "diadem_of_songs"
+}

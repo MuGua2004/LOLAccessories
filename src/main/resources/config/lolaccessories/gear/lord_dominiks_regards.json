@@ -1,0 +1,34 @@
+{
+  "template_version": 1,
+  "gear_id": "lord_dominiks_regards",
+  "slot": "back",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 35,
+      "percent": false
+    },
+    {
+      "id": "attributeslib:armor_shred",
+      "operation": "ADDITION",
+      "amount": 0.35,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:crit_chance",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "giant_slayer",
+      "enabled": true,
+      "amount": 0.15,
+      "max_total": 15000
+    }
+  ]
+}

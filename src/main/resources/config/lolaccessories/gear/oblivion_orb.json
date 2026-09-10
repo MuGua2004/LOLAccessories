@@ -1,0 +1,23 @@
+{
+  "template_version": 1,
+  "gear_id": "oblivion_orb",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "grievous_wounds_magic",
+      "target": "victim",
+      "enabled": true,
+      "amount": 0.4,
+      "duration_seconds": 3.0
+    }
+  ]
+}

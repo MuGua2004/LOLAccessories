@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:tear_of_goddess"
+    },
+    {
+      "item": "lolaccessories:forbidden_idol"
+    },
+    {
+      "item": "lolaccessories:ruby_crystal"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:whispering_circlet"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 660
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

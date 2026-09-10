@@ -1,0 +1,25 @@
+{
+  "template_version": 1,
+  "gear_id": "glacial_buckler",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 25
+    },
+    {
+      "id": "irons_spellbooks:max_mana",
+      "operation": "ADDITION",
+      "amount": 300
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

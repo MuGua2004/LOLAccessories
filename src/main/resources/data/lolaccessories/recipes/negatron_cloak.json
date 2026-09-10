@@ -1,0 +1,21 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:null_magic_mantle"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:negatron_cloak"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 153
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

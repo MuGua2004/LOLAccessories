@@ -1,0 +1,29 @@
+{
+  "template_version": 1,
+  "gear_id": "hexoptics_c44",
+  "slot": "back",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "attributeslib:arrow_damage",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.55,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:crit_chance",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "long_shot",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.1,
+      "distance_blocks": 50.0
+    }
+  ]
+}

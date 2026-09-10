@@ -1,0 +1,25 @@
+{
+  "template_version": 1,
+  "gear_id": "brutalizer",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 25.0
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:armor_pierce",
+      "operation": "ADDITION",
+      "amount": 5.0
+    }
+  ],
+  "on_hit_effects": []
+}

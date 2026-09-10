@@ -1,0 +1,38 @@
+{
+  "template_version": 1,
+  "gear_id": "doran_ring",
+  "slot": "ring",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.18,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 90.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "mana_restore",
+      "target": "self",
+      "enabled": true,
+      "per_stack": 0.0,
+      "max_stacks": 1,
+      "max_total": 0.0,
+      "amount": 1.0,
+      "duration_seconds": 8.0
+    },
+    {
+      "id": "helping_hand",
+      "target": "victim",
+      "enabled": true,
+      "bonus_damage": 5.0,
+      "health_threshold": 100.0
+    }
+  ]
+}

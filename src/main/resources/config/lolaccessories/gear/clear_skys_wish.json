@@ -1,0 +1,27 @@
+{
+  "template_version": 1,
+  "gear_id": "clear_skys_wish",
+  "slot": "back",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "attributeslib:arrow_damage",
+      "operation": "ADDITION",
+      "amount": 1.0,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "ADDITION",
+      "amount": 1.0,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "clear_sky",
+      "enabled": true,
+      "chance": 0.5
+    }
+  ]
+}

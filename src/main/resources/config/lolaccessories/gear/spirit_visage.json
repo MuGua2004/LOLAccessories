@@ -1,0 +1,38 @@
+{
+  "template_version": 1,
+  "gear_id": "spirit_visage",
+  "slot": "head",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 350.0
+    },
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 30.0
+    },
+    {
+      "id": "lolaccessories:natural_regen",
+      "operation": "ADDITION",
+      "amount": 1.0
+    },
+    {
+      "id": "attributeslib:healing_received",
+      "operation": "ADDITION",
+      "amount": 0.30,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "vigor",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.30,
+      "duration_seconds": 0.0
+    }
+  ]
+}

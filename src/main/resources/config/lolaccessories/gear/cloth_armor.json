@@ -1,0 +1,14 @@
+{
+  "template_version": 1,
+  "gear_id": "cloth_armor",
+  "slot": "body",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 15.0
+    }
+  ],
+  "on_hit_effects": []
+}

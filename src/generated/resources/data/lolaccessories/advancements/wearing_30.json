@@ -1,0 +1,25 @@
+{
+  "parent": "lolaccessories:wearing_20",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#b3a6c4",
+      "translate": "advancements.lolaccessories.wearing_30.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "lolaccessories:kaenic_rookern"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "#c48bff",
+      "translate": "advancements.lolaccessories.wearing_30.title"
+    }
+  }
+}

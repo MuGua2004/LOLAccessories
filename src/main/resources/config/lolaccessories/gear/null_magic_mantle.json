@@ -1,0 +1,14 @@
+{
+  "template_version": 1,
+  "gear_id": "null_magic_mantle",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 20.0
+    }
+  ],
+  "on_hit_effects": []
+}

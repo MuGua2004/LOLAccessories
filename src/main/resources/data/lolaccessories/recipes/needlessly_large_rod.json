@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "ADA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "irons_spellbooks:arcane_ingot"
+    },
+    "D": {
+      "item": "irons_spellbooks:dragonskin"
+    }
+  },
+  "result": {
+    "item": "lolaccessories:needlessly_large_rod"
+  }
+}

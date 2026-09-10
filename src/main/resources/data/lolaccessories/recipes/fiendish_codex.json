@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:amplifying_tome"
+    },
+    {
+      "item": "lolaccessories:glowing_mote"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:fiendish_codex"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 131
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "template_version": 1,
+  "gear_id": "needlessly_large_rod",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.65,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

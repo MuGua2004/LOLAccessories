@@ -1,0 +1,15 @@
+{
+  "template_version": 1,
+  "gear_id": "glowing_mote",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.05,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

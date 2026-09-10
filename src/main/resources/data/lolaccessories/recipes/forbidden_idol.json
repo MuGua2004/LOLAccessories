@@ -1,0 +1,21 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:faerie_charm"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:forbidden_idol"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 112
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

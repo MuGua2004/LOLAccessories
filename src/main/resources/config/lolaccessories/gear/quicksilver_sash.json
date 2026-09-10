@@ -1,0 +1,21 @@
+{
+  "template_version": 1,
+  "gear_id": "quicksilver_sash",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 30
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "quicksilver",
+      "target": "self",
+      "enabled": true,
+      "cooldown_seconds": 90.0
+    }
+  ]
+}

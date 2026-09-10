@@ -1,0 +1,25 @@
+{
+  "parent": "lolaccessories:wearing_5",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#b3a6c4",
+      "translate": "advancements.lolaccessories.wearing_10.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "lolaccessories:chain_vest"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "#c48bff",
+      "translate": "advancements.lolaccessories.wearing_10.title"
+    }
+  }
+}

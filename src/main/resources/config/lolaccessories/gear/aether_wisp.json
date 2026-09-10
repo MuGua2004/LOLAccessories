@@ -1,0 +1,21 @@
+{
+  "template_version": 1,
+  "gear_id": "aether_wisp",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.3,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.04,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

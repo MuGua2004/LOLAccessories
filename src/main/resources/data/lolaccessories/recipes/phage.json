@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:ruby_crystal"
+    },
+    {
+      "item": "lolaccessories:long_sword"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:phage"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 121
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

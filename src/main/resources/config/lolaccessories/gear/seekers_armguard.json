@@ -1,0 +1,28 @@
+{
+  "template_version": 1,
+  "gear_id": "seekers_armguard",
+  "slot": "bracelet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.4,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 25.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "time_stop",
+      "target": "self",
+      "enabled": true,
+      "cooldown_seconds": 300.0,
+      "duration_seconds": 2.5
+    }
+  ]
+}

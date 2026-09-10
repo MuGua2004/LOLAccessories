@@ -1,0 +1,44 @@
+{
+  "template_version": 1,
+  "gear_id": "dusk_and_dawn",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 300.0
+    },
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.6,
+      "percent": true
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.2,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.2,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "spellblade",
+      "target": "self",
+      "enabled": true,
+      "ad_ratio": 0.75,
+      "ap_ratio": 0.1,
+      "heal_ap_ratio": 0.1,
+      "heal_hp_ratio": 0.03,
+      "duration_seconds": 10.0,
+      "cooldown_seconds": 1.5
+    }
+  ]
+}

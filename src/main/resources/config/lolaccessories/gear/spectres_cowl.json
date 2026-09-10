@@ -1,0 +1,25 @@
+{
+  "template_version": 1,
+  "gear_id": "spectres_cowl",
+  "slot": "head",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 200
+    },
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 35
+    },
+    {
+      "id": "lolaccessories:natural_regen",
+      "operation": "ADDITION",
+      "amount": 1.0,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

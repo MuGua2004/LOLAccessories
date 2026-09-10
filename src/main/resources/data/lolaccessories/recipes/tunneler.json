@@ -1,0 +1,27 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:ruby_crystal"
+    },
+    {
+      "item": "lolaccessories:long_sword"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:tunneler"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 137
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

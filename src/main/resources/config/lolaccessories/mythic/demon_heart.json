@@ -1,0 +1,12 @@
+{
+  "template_version": 1,
+  "gear_id": "demon_heart",
+  "enabled": true,
+  "advancement_id": "unimaginable_horror",
+  "challenge": {
+    "type": "max_health_and_collection",
+    "health_threshold": 100000.0,
+    "collection_tag": "tier3",
+    "collection_count": 50
+  }
+}

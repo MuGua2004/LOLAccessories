@@ -1,0 +1,20 @@
+{
+  "template_version": 1,
+  "gear_id": "rectrix",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 15
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.04,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

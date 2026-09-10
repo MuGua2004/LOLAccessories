@@ -1,0 +1,27 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:amplifying_tome"
+    },
+    {
+      "item": "lolaccessories:null_magic_mantle"
+    },
+    {
+      "item": "lolaccessories:amplifying_tome"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:verdant_barrier"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 191
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

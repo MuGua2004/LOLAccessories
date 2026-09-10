@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:kindlegem"
+    },
+    {
+      "item": "lolaccessories:giant_belt"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:protoplasm_harness"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 640
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

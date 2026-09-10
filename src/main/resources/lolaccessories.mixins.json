@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.example.lolaccessories.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "lolaccessories.refmap.json",
+  "mixins": [
+    "SmithingMenuMixin",
+    "LivingEntityMagicPenMixin",
+    "LivingEntityTenacityMixin",
+    "MobEffectInstanceAccessor",
+    "PhantomDancerCollisionMixin"
+  ],
+  "client": [
+    "GuiTooltipBorderMixin",
+    "MythicSigilMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "template_version": 1,
+  "gear_id": "noonquiver",
+  "slot": "back",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 15
+    },
+    {
+      "id": "lolaccessories:crit_chance",
+      "operation": "ADDITION",
+      "amount": 0.2,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

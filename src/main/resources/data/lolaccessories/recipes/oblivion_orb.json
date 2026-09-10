@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:amplifying_tome"
+    },
+    {
+      "item": "minecraft:nether_wart"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:oblivion_orb"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 109
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

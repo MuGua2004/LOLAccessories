@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:executioners_calling"
+    },
+    {
+      "item": "lolaccessories:last_whisper"
+    },
+    {
+      "item": "lolaccessories:cloth_armor"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:mortal_reminder"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 690
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

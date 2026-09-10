@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CGC",
+    "GDG",
+    "CGC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:chain"
+    },
+    "G": {
+      "item": "minecraft:gold_block"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "lolaccessories:faerie_charm"
+  }
+}

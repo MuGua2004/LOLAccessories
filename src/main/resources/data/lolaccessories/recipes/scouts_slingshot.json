@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:dagger"
+    },
+    {
+      "item": "lolaccessories:dagger"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:scouts_slingshot"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 98
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

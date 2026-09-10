@@ -1,0 +1,25 @@
+{
+  "parent": "lolaccessories:root",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#b3a6c4",
+      "translate": "advancements.lolaccessories.heroes_journey.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "lolaccessories:doran_blade"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "#c48bff",
+      "translate": "advancements.lolaccessories.heroes_journey.title"
+    }
+  }
+}

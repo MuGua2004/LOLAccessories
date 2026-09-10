@@ -1,0 +1,46 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+run-data
+
+# dev 运行时前置依赖 jar（自 Modrinth 下载，仅本地 dev 使用，勿提交）
+libs/
+
+# datagen 的哈希缓存，无需提交
+src/generated/resources/.cache
+
+# 参考用第三方源码/反编译产物，禁止提交
+reference/
+_apidump/
+
+# Files from Forge MDK
+forge*changelog.txt
+
+# 反编译的第三方模组源码 / 本地调试残留（版权风险 + 体积大，一律禁止提交）
+_goety_decomp/
+_goety_revelation/
+_rfx_decomp/
+_tmp_decomp/
+_icon_raw/
+_iss_dmg.jar
+goety_revelation.jar
+_*.txt

@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:amplifying_tome"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:fated_ashes"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 122
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

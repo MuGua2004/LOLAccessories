@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:ruby_crystal"
+    },
+    {
+      "item": "lolaccessories:glowing_mote"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:bamis_cinder"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 128
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

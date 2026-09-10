@@ -1,0 +1,21 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:long_sword"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:executioners_calling"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 106
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

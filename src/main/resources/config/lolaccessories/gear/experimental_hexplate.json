@@ -1,0 +1,47 @@
+{
+  "template_version": 1,
+  "gear_id": "experimental_hexplate",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 40.0
+    },
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.20,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "ADDITION",
+      "amount": 0.20,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 300.0
+    },
+    {
+      "id": "lolaccessories:ultimate_cdr",
+      "operation": "ADDITION",
+      "amount": 0.30,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "overdrive",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.50,
+      "move_speed_ratio": 0.20,
+      "duration_seconds": 8.0,
+      "cooldown_seconds": 30.0
+    }
+  ]
+}

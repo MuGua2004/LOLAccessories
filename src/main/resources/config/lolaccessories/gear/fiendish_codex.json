@@ -1,0 +1,21 @@
+{
+  "template_version": 1,
+  "gear_id": "fiendish_codex",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

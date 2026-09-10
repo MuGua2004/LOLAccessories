@@ -1,0 +1,35 @@
+{
+  "template_version": 1,
+  "gear_id": "actualizer",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.9,
+      "percent": true
+    },
+    {
+      "id": "irons_spellbooks:max_mana",
+      "operation": "ADDITION",
+      "amount": 300.0
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "realize",
+      "target": "self",
+      "enabled": true,
+      "duration_seconds": 5.0,
+      "cooldown_seconds": 180.0,
+      "mana_cost_multiplier": 2.0
+    }
+  ]
+}

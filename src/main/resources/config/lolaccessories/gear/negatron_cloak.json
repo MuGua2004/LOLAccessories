@@ -1,0 +1,14 @@
+{
+  "template_version": 1,
+  "gear_id": "negatron_cloak",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 45.0
+    }
+  ],
+  "on_hit_effects": []
+}

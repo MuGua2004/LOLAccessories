@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:bf_sword"
+    },
+    {
+      "item": "lolaccessories:pickaxe"
+    },
+    {
+      "item": "lolaccessories:cloak_of_agility"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:infinity_edge"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 950
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

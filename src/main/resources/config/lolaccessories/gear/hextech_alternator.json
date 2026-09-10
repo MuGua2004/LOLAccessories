@@ -1,0 +1,23 @@
+{
+  "template_version": 1,
+  "gear_id": "hextech_alternator",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.45,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "revved",
+      "target": "victim",
+      "enabled": true,
+      "base_damage": 12.0,
+      "cooldown_seconds": 12.0
+    }
+  ]
+}

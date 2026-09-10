@@ -1,0 +1,25 @@
+{
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "lolaccessories:textures/gui/advancements/backgrounds/achievements.png",
+    "description": {
+      "color": "#b3a6c4",
+      "translate": "advancements.lolaccessories.root.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "lolaccessories:long_sword"
+    },
+    "show_toast": false,
+    "title": {
+      "color": "#c48bff",
+      "translate": "advancements.lolaccessories.root.title"
+    }
+  }
+}

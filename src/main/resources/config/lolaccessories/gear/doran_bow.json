@@ -1,0 +1,33 @@
+{
+  "template_version": 1,
+  "gear_id": "doran_bow",
+  "slot": "back",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "attributeslib:arrow_damage",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.08,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:omnivamp",
+      "operation": "ADDITION",
+      "amount": 0.015,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.15,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "ADDITION",
+      "amount": 0.15,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

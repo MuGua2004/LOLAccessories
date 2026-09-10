@@ -1,0 +1,23 @@
+{
+  "template_version": 1,
+  "gear_id": "fated_ashes",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.3,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "inflame",
+      "target": "victim",
+      "enabled": true,
+      "amount": 5.0,
+      "duration_seconds": 3.0
+    }
+  ]
+}

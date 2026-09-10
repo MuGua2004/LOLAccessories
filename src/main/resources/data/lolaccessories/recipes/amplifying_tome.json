@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CKC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "irons_spellbooks:magic_cloth"
+    },
+    "K": {
+      "item": "irons_spellbooks:ancient_knowledge_fragment"
+    }
+  },
+  "result": {
+    "item": "lolaccessories:amplifying_tome"
+  }
+}

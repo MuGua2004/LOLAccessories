@@ -1,0 +1,40 @@
+{
+  "template_version": 1,
+  "gear_id": "seraphs_embrace",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "family_group": "tear_family",
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.7,
+      "percent": true
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true
+    },
+    {
+      "id": "irons_spellbooks:max_mana",
+      "operation": "ADDITION",
+      "amount": 1000,
+      "percent": false
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "tear_awe",
+      "enabled": true,
+      "amount": 0.02
+    },
+    {
+      "id": "tear_lifeline",
+      "enabled": true,
+      "amount": 0.18
+    }
+  ],
+  "transform_from": "archangels_staff"
+}

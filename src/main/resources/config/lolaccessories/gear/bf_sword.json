@@ -1,0 +1,14 @@
+{
+  "template_version": 1,
+  "gear_id": "bf_sword",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 40.0
+    }
+  ],
+  "on_hit_effects": []
+}

@@ -1,0 +1,19 @@
+{
+  "template_version": 1,
+  "gear_id": "serrated_dirk",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 20
+    },
+    {
+      "id": "attributeslib:armor_pierce",
+      "operation": "ADDITION",
+      "amount": 10
+    }
+  ],
+  "on_hit_effects": []
+}

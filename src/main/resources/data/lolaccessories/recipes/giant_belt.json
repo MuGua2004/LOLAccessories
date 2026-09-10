@@ -1,0 +1,21 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:ruby_crystal"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:giant_belt"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 195
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

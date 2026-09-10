@@ -1,0 +1,29 @@
+{
+  "template_version": 1,
+  "gear_id": "haunting_guise",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.3,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 200
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "madness",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.02,
+      "max_stacks": 3,
+      "duration_seconds": 3.0
+    }
+  ]
+}

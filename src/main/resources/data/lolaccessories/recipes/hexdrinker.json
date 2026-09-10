@@ -1,0 +1,27 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:long_sword"
+    },
+    {
+      "item": "lolaccessories:null_magic_mantle"
+    },
+    {
+      "item": "lolaccessories:long_sword"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:hexdrinker"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 188
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

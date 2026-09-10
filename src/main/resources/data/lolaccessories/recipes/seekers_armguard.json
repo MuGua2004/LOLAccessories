@@ -1,0 +1,27 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:cloth_armor"
+    },
+    {
+      "item": "lolaccessories:amplifying_tome"
+    },
+    {
+      "item": "lolaccessories:amplifying_tome"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:seekers_armguard"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 118
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "template_version": 1,
+  "gear_id": "phage",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 15
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 200
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "rage",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.2,
+      "duration_seconds": 2.0
+    }
+  ]
+}

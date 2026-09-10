@@ -1,0 +1,27 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:amplifying_tome"
+    },
+    {
+      "item": "lolaccessories:sapphire_crystal"
+    },
+    {
+      "item": "lolaccessories:glowing_mote"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:lost_chapter"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 176
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

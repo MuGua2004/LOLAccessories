@@ -1,0 +1,66 @@
+{
+  "template_version": 1,
+  "gear_id": "demon_heart",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 666.0
+    },
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 666.0
+    },
+    {
+      "id": "attributeslib:arrow_damage",
+      "operation": "MULTIPLY_BASE",
+      "amount": 6.66,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 666.0
+    },
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 666.0
+    },
+    {
+      "id": "irons_spellbooks:max_mana",
+      "operation": "ADDITION",
+      "amount": 666.0
+    },
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "MULTIPLY_BASE",
+      "amount": 6.66,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:armor_pierce",
+      "operation": "ADDITION",
+      "amount": 666.0
+    },
+    {
+      "id": "lolaccessories:magic_pen",
+      "operation": "ADDITION",
+      "amount": 666.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "demon_king",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.0,
+      "curse_ratio": 0.10,
+      "buff_ratio": 0.15,
+      "duration_seconds": 0.0
+    }
+  ]
+}

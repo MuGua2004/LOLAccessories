@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:aether_wisp"
+    },
+    {
+      "item": "lolaccessories:bandleglass_mirror"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:shurelyas_battlesong"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 820
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

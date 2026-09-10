@@ -1,0 +1,20 @@
+{
+  "template_version": 1,
+  "gear_id": "kindlegem",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 200
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

@@ -1,0 +1,23 @@
+{
+  "template_version": 1,
+  "gear_id": "bramble_vest",
+  "slot": "body",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 30
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "thorns",
+      "target": "victim",
+      "enabled": true,
+      "amount": 3.0,
+      "bonus_pct": 0.4,
+      "duration_seconds": 3.0
+    }
+  ]
+}

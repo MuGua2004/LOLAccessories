@@ -1,0 +1,19 @@
+{
+  "template_version": 1,
+  "gear_id": "steel_sigil",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 15.0
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 30.0
+    }
+  ],
+  "on_hit_effects": []
+}

@@ -1,0 +1,27 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:long_sword"
+    },
+    {
+      "item": "lolaccessories:long_sword"
+    },
+    {
+      "item": "lolaccessories:glowing_mote"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:caulfields_warhammer"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 158
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

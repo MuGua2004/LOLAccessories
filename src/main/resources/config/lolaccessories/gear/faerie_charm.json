@@ -1,0 +1,15 @@
+{
+  "template_version": 1,
+  "gear_id": "faerie_charm",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:mana_regen",
+      "operation": "ADDITION",
+      "amount": 0.5,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

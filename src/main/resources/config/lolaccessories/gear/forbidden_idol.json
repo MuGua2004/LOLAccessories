@@ -1,0 +1,21 @@
+{
+  "template_version": 1,
+  "gear_id": "forbidden_idol",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:mana_regen",
+      "operation": "ADDITION",
+      "amount": 0.5,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:heal_power",
+      "operation": "ADDITION",
+      "amount": 0.08,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

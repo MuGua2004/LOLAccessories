@@ -1,0 +1,42 @@
+{
+  "template_version": 1,
+  "gear_id": "endless_hunger",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 65.0
+    },
+    {
+      "id": "lolaccessories:omnivamp",
+      "operation": "ADDITION",
+      "amount": 0.05,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:tenacity",
+      "operation": "ADDITION",
+      "amount": 0.2,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "famine",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.05,
+      "melee_ratio": 0.13
+    },
+    {
+      "id": "feast",
+      "target": "self",
+      "enabled": true,
+      "duration_seconds": 8.0,
+      "damage_window_seconds": 3.0,
+      "omnivamp_ratio": 0.15
+    }
+  ]
+}

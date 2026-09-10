@@ -1,0 +1,27 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:faerie_charm"
+    },
+    {
+      "item": "lolaccessories:amplifying_tome"
+    },
+    {
+      "item": "lolaccessories:glowing_mote"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:bandleglass_mirror"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 143
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

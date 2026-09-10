@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:cloak_of_agility"
+    },
+    {
+      "item": "lolaccessories:dagger"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:zeal"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 133
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

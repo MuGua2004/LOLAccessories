@@ -1,0 +1,27 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:ruby_crystal"
+    },
+    {
+      "item": "lolaccessories:ruby_crystal"
+    },
+    {
+      "item": "lolaccessories:sapphire_crystal"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:catalyst_of_aeons"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 197
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

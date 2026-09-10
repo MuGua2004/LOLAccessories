@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:blasting_wand"
+    },
+    {
+      "item": "lolaccessories:kindlegem"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:dusk_and_dawn"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 760
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

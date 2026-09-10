@@ -1,0 +1,41 @@
+{
+  "template_version": 1,
+  "gear_id": "archangels_staff",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "family_group": "tear_family",
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.7,
+      "percent": true
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true
+    },
+    {
+      "id": "irons_spellbooks:max_mana",
+      "operation": "ADDITION",
+      "amount": 600,
+      "percent": false
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "tear_awe",
+      "enabled": true,
+      "amount": 0.01
+    },
+    {
+      "id": "tear_stack",
+      "enabled": true,
+      "amount": 5,
+      "max_stacks": 5
+    }
+  ],
+  "transform_to": "seraphs_embrace"
+}

@@ -1,0 +1,43 @@
+{
+  "template_version": 1,
+  "gear_id": "shurelyas_battlesong",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.5,
+      "percent": true
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.15,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.04,
+      "percent": true
+    },
+    {
+      "id": "irons_spellbooks:mana_regen",
+      "operation": "ADDITION",
+      "amount": 1.25,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "inspiring_speech",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.3,
+      "duration_seconds": 4.0,
+      "cooldown_seconds": 75.0,
+      "radius_blocks": 100.0
+    }
+  ]
+}

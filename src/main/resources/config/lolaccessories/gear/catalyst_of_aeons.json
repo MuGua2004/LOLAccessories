@@ -1,0 +1,28 @@
+{
+  "template_version": 1,
+  "gear_id": "catalyst_of_aeons",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 300
+    },
+    {
+      "id": "irons_spellbooks:max_mana",
+      "operation": "ADDITION",
+      "amount": 375
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "eternity",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.1,
+      "bonus_pct": 0.25,
+      "base_damage": 100.0
+    }
+  ]
+}

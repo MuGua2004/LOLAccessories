@@ -1,0 +1,27 @@
+{
+  "template_version": 1,
+  "gear_id": "verdant_barrier",
+  "slot": "bracelet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.4,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 25
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "annul",
+      "target": "self",
+      "enabled": true,
+      "cooldown_seconds": 60.0
+    }
+  ]
+}

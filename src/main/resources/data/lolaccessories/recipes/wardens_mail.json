@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:cloth_armor"
+    },
+    {
+      "item": "lolaccessories:cloth_armor"
+    },
+    {
+      "item": "minecraft:iron_block"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:wardens_mail"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 161
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    },
+    {
+      "item": "irons_spellbooks:divine_soulshard",
+      "count": 1
+    }
+  ]
+}

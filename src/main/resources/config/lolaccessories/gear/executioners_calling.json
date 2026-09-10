@@ -1,0 +1,22 @@
+{
+  "template_version": 1,
+  "gear_id": "executioners_calling",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 15
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "grievous_wounds_phys",
+      "target": "victim",
+      "enabled": true,
+      "amount": 0.4,
+      "duration_seconds": 3.0
+    }
+  ]
+}

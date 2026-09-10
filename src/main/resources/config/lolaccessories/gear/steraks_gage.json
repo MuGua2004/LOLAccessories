@@ -1,0 +1,37 @@
+{
+  "template_version": 1,
+  "gear_id": "steraks_gage",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 300.0
+    },
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 50.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "grasping_claws",
+      "target": "self",
+      "enabled": true,
+      "amount": 50.0,
+      "duration_seconds": 0.0
+    },
+    {
+      "id": "lifeline",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.0,
+      "trigger_health_percent": 0.30,
+      "shield_amount": 0.60,
+      "duration_seconds": 4.5,
+      "cooldown_seconds": 0.0
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "template_version": 1,
+  "gear_id": "bastionbreaker",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 55.0
+    },
+    {
+      "id": "attributeslib:armor_pierce",
+      "operation": "ADDITION",
+      "amount": 22.0
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.15,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "shaped_charge",
+      "target": "self",
+      "enabled": true,
+      "base_damage": 50.0,
+      "armor_pierce_scale": 1.5,
+      "cooldown_seconds": 20.0
+    }
+  ]
+}

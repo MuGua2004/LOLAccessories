@@ -1,0 +1,14 @@
+{
+  "template_version": 1,
+  "gear_id": "ruby_crystal",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 150.0
+    }
+  ],
+  "on_hit_effects": []
+}

@@ -1,0 +1,20 @@
+{
+  "template_version": 1,
+  "gear_id": "vampiric_scepter",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 15.0
+    },
+    {
+      "id": "attributeslib:life_steal",
+      "operation": "ADDITION",
+      "amount": 0.07,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

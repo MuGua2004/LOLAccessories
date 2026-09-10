@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " M ",
+    "MAM",
+    " M "
+  ],
+  "key": {
+    "M": {
+      "item": "irons_spellbooks:mithril_scrap"
+    },
+    "A": {
+      "item": "irons_spellbooks:arcane_ingot"
+    }
+  },
+  "result": {
+    "item": "lolaccessories:doran_ring"
+  }
+}

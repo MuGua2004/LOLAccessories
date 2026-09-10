@@ -1,0 +1,21 @@
+{
+  "template_version": 1,
+  "gear_id": "blighting_jewel",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:magic_pen_percent",
+      "operation": "ADDITION",
+      "amount": 0.13,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

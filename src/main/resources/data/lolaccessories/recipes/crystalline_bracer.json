@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:ruby_crystal"
+    },
+    {
+      "item": "lolaccessories:rejuvenation_bead"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:crystalline_bracer"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 119
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:tunneler"
+    },
+    {
+      "item": "lolaccessories:tunneler"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:overlords_bloodmail"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 690
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

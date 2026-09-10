@@ -1,0 +1,27 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:cloth_armor"
+    },
+    {
+      "item": "lolaccessories:cloth_armor"
+    },
+    {
+      "item": "lolaccessories:long_sword"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:steel_sigil"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 179
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

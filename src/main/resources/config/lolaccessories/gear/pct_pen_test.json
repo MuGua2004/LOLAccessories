@@ -1,0 +1,15 @@
+{
+  "template_version": 1,
+  "gear_id": "pct_pen_test",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "lolaccessories:magic_pen_percent",
+      "operation": "ADDITION",
+      "amount": 0.9,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

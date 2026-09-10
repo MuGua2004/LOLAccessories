@@ -1,0 +1,35 @@
+{
+  "template_version": 1,
+  "gear_id": "protoplasm_harness",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 600.0
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.2,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "protoplasm",
+      "target": "self",
+      "enabled": true,
+      "trigger_health_percent": 0.3,
+      "duration_seconds": 5.0,
+      "cooldown_seconds": 90.0,
+      "health_min": 100.0,
+      "health_max": 300.0,
+      "heal_min": 100.0,
+      "heal_max": 400.0,
+      "move_speed_ratio": 0.1,
+      "tenacity_ratio": 0.25
+    }
+  ]
+}

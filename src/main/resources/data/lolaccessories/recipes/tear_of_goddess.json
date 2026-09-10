@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MSM",
+    "MPM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "irons_spellbooks:mithril_ingot"
+    },
+    "S": {
+      "item": "irons_spellbooks:divine_soulshard"
+    },
+    "P": {
+      "item": "irons_spellbooks:permafrost_shard"
+    }
+  },
+  "result": {
+    "item": "lolaccessories:tear_of_goddess"
+  }
+}

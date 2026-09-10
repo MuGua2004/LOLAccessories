@@ -1,0 +1,36 @@
+{
+  "template_version": 1,
+  "gear_id": "unending_despair",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 400.0
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 50.0
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.15,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "anguish",
+      "target": "self",
+      "enabled": true,
+      "max_health_pct": 0.03,
+      "interval_seconds": 4.0,
+      "heal_pct": 2.5,
+      "combat_window_seconds": 12.0,
+      "radius_blocks": 8.0
+    }
+  ]
+}

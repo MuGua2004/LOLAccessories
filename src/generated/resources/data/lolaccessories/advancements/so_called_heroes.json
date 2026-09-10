@@ -1,0 +1,25 @@
+{
+  "parent": "lolaccessories:epic_ballad",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#b3a6c4",
+      "translate": "advancements.lolaccessories.so_called_heroes.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "lolaccessories:wardens_mail"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "#c48bff",
+      "translate": "advancements.lolaccessories.so_called_heroes.title"
+    }
+  }
+}

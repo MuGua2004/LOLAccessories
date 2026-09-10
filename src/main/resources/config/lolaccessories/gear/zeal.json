@@ -1,0 +1,33 @@
+{
+  "template_version": 1,
+  "gear_id": "zeal",
+  "slot": "back",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.15,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "ADDITION",
+      "amount": 0.15,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:crit_chance",
+      "operation": "ADDITION",
+      "amount": 0.15,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.04,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

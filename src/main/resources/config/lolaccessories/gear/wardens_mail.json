@@ -1,0 +1,22 @@
+{
+  "template_version": 1,
+  "gear_id": "wardens_mail",
+  "slot": "body",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 40
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "rock_solid",
+      "target": "self",
+      "enabled": true,
+      "reduction_flat": 15.0,
+      "reduction_cap_pct": 0.2
+    }
+  ]
+}

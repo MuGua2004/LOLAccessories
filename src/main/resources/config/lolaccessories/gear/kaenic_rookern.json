@@ -1,0 +1,33 @@
+{
+  "template_version": 1,
+  "gear_id": "kaenic_rookern",
+  "slot": "head",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 400.0
+    },
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 80.0
+    },
+    {
+      "id": "lolaccessories:natural_regen",
+      "operation": "ADDITION",
+      "amount": 1.0,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "magebane",
+      "target": "self",
+      "enabled": true,
+      "max_health_pct": 0.15,
+      "interval_seconds": 15.0
+    }
+  ]
+}

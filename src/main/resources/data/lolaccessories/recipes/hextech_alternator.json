@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:amplifying_tome"
+    },
+    {
+      "item": "lolaccessories:amplifying_tome"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:hextech_alternator"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 146
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

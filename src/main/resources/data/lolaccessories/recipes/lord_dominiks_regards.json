@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:last_whisper"
+    },
+    {
+      "item": "lolaccessories:noonquiver"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:lord_dominiks_regards"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 700
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

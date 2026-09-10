@@ -1,0 +1,32 @@
+{
+  "template_version": 1,
+  "gear_id": "tear_of_goddess",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:max_mana",
+      "operation": "ADDITION",
+      "amount": 240.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "mana_flow",
+      "target": "self",
+      "enabled": true,
+      "per_stack": 0.0,
+      "max_stacks": 120,
+      "max_total": 360.0,
+      "amount": 3.0,
+      "duration_seconds": 0.0
+    },
+    {
+      "id": "helping_hand",
+      "target": "victim",
+      "enabled": true,
+      "bonus_damage": 5.0,
+      "health_threshold": 100.0
+    }
+  ]
+}

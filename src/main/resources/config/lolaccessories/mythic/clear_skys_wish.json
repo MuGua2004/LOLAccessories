@@ -1,0 +1,10 @@
+{
+  "template_version": 1,
+  "gear_id": "clear_skys_wish",
+  "enabled": true,
+  "advancement_id": "heaven_fall",
+  "challenge": {
+    "type": "projectile_single_damage",
+    "threshold": 1000000.0
+  }
+}

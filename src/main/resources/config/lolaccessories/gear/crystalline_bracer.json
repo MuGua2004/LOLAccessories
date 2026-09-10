@@ -1,0 +1,20 @@
+{
+  "template_version": 1,
+  "gear_id": "crystalline_bracer",
+  "slot": "bracelet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 200
+    },
+    {
+      "id": "lolaccessories:natural_regen",
+      "operation": "ADDITION",
+      "amount": 1.0,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

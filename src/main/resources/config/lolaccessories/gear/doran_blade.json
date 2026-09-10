@@ -1,0 +1,25 @@
+{
+  "template_version": 1,
+  "gear_id": "doran_blade",
+  "slot": "back",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 10.0
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 80.0
+    },
+    {
+      "id": "lolaccessories:omnivamp",
+      "operation": "ADDITION",
+      "amount": 0.025,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

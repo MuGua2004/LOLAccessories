@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:tear_of_goddess"
+    },
+    {
+      "item": "lolaccessories:long_sword"
+    },
+    {
+      "item": "lolaccessories:caulfields_warhammer"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:manamune"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 690
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

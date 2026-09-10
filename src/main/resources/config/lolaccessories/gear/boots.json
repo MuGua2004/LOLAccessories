@@ -1,0 +1,15 @@
+{
+  "template_version": 1,
+  "gear_id": "boots",
+  "slot": "feet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.25,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

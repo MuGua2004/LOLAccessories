@@ -1,0 +1,21 @@
+{
+  "template_version": 1,
+  "gear_id": "dagger",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.1,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

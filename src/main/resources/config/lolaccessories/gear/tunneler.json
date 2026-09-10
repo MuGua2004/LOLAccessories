@@ -1,0 +1,19 @@
+{
+  "template_version": 1,
+  "gear_id": "tunneler",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 15.0
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 250.0
+    }
+  ],
+  "on_hit_effects": []
+}

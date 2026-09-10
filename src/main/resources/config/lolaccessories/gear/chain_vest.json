@@ -1,0 +1,14 @@
+{
+  "template_version": 1,
+  "gear_id": "chain_vest",
+  "slot": "body",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 40.0
+    }
+  ],
+  "on_hit_effects": []
+}

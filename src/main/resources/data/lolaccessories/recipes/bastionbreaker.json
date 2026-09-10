@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:brutalizer"
+    },
+    {
+      "item": "lolaccessories:serrated_dirk"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:bastionbreaker"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 740
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

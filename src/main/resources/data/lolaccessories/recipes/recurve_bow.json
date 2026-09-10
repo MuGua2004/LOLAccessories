@@ -1,0 +1,21 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:dagger"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:recurve_bow"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 176
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

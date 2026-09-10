@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:long_sword"
+    },
+    {
+      "item": "lolaccessories:cloak_of_agility"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:noonquiver"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 142
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

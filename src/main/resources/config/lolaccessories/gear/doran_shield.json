@@ -1,0 +1,38 @@
+{
+  "template_version": 1,
+  "gear_id": "doran_shield",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 110.0
+    },
+    {
+      "id": "lolaccessories:natural_regen",
+      "operation": "ADDITION",
+      "amount": 0.8,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "perseverance",
+      "target": "self",
+      "enabled": true,
+      "per_stack": 0.0,
+      "max_stacks": 1,
+      "max_total": 0.0,
+      "amount": 0.8,
+      "duration_seconds": 8.0
+    },
+    {
+      "id": "helping_hand",
+      "target": "victim",
+      "enabled": true,
+      "bonus_damage": 5.0,
+      "health_threshold": 100.0
+    }
+  ]
+}

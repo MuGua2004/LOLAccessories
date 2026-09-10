@@ -1,0 +1,33 @@
+{
+  "template_version": 1,
+  "gear_id": "dark_seal",
+  "slot": "ring",
+  "max_stack_size": 1,
+  "family_group": "seal_family",
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.15,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 50.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "glory",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.04,
+      "max_stacks": 10,
+      "kill_stacks": 2,
+      "death_loss": 5,
+      "kill_health_ratio": 2.0,
+      "duration_seconds": 0.0
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "template_version": 1,
+  "gear_id": "pickaxe",
+  "slot": "back",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 25.0
+    }
+  ],
+  "on_hit_effects": []
+}

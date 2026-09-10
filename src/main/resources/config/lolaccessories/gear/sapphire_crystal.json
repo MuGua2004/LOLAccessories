@@ -1,0 +1,14 @@
+{
+  "template_version": 1,
+  "gear_id": "sapphire_crystal",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:max_mana",
+      "operation": "ADDITION",
+      "amount": 300.0
+    }
+  ],
+  "on_hit_effects": []
+}

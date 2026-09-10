@@ -1,0 +1,25 @@
+{
+  "parent": "lolaccessories:legend_journey",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#b3a6c4",
+      "translate": "advancements.lolaccessories.endless_night.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "lolaccessories:infinity_edge"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "#c48bff",
+      "translate": "advancements.lolaccessories.endless_night.title"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "template_version": 1,
+  "gear_id": "yun_tal_wildarrows",
+  "slot": "back",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "attributeslib:arrow_damage",
+      "operation": "ADDITION",
+      "amount": 0.5,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "ADDITION",
+      "amount": 0.45,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "yun_tal_crit",
+      "enabled": true,
+      "amount": 0.004,
+      "max_stacks": 63
+    },
+    {
+      "id": "yun_tal_flurry",
+      "enabled": true,
+      "amount": 0.3,
+      "duration_seconds": 6,
+      "cooldown_seconds": 30
+    }
+  ]
+}

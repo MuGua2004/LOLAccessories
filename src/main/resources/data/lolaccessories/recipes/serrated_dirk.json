@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:long_sword"
+    },
+    {
+      "item": "lolaccessories:long_sword"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:serrated_dirk"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 118
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

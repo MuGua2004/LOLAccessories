@@ -1,0 +1,29 @@
+{
+  "template_version": 1,
+  "gear_id": "bloodthirster",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 80.0
+    },
+    {
+      "id": "attributeslib:life_steal",
+      "operation": "ADDITION",
+      "amount": 0.15,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "remnant",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.0,
+      "shield_amount": 200.0,
+      "duration_seconds": 25.0
+    }
+  ]
+}

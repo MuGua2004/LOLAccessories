@@ -1,0 +1,14 @@
+{
+  "template_version": 1,
+  "gear_id": "long_sword",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 10.0
+    }
+  ],
+  "on_hit_effects": []
+}

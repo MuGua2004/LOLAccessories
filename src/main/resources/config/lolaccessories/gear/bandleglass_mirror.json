@@ -1,0 +1,27 @@
+{
+  "template_version": 1,
+  "gear_id": "bandleglass_mirror",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.2,
+      "percent": true
+    },
+    {
+      "id": "irons_spellbooks:mana_regen",
+      "operation": "ADDITION",
+      "amount": 1.0,
+      "percent": true
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

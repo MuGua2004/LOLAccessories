@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:cloth_armor"
+    },
+    {
+      "item": "lolaccessories:cloth_armor"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:bramble_vest"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 149
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

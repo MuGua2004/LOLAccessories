@@ -1,0 +1,29 @@
+{
+  "template_version": 1,
+  "gear_id": "hexdrinker",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 25
+    },
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 25
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "lifeline",
+      "target": "self",
+      "enabled": true,
+      "shield_amount": 150.0,
+      "trigger_health_percent": 0.3,
+      "duration_seconds": 2.5,
+      "cooldown_seconds": 60.0
+    }
+  ]
+}

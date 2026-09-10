@@ -1,0 +1,41 @@
+{
+  "template_version": 1,
+  "gear_id": "bandlepipes",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 200.0
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.15,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 20.0
+    },
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 20.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "fanfare",
+      "target": "self",
+      "enabled": true,
+      "move_speed_ratio": 0.2,
+      "attack_speed_ratio": 0.3,
+      "duration_seconds": 8.0,
+      "cooldown_seconds": 30.0,
+      "radius_blocks": 10.0
+    }
+  ]
+}

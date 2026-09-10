@@ -1,0 +1,25 @@
+{
+  "parent": "lolaccessories:wearing_30",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#b3a6c4",
+      "translate": "advancements.lolaccessories.wearing_50.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "lolaccessories:dusk_and_dawn"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "#c48bff",
+      "translate": "advancements.lolaccessories.wearing_50.title"
+    }
+  }
+}

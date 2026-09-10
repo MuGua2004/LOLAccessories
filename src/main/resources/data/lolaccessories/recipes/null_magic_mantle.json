@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MCM",
+    "CSC",
+    "CMC"
+  ],
+  "key": {
+    "M": {
+      "item": "irons_spellbooks:mithril_weave"
+    },
+    "C": {
+      "item": "irons_spellbooks:magic_cloth"
+    },
+    "S": {
+      "item": "irons_spellbooks:mithril_scrap"
+    }
+  },
+  "result": {
+    "item": "lolaccessories:null_magic_mantle"
+  }
+}

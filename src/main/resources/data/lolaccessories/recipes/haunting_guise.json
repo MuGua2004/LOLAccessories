@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:amplifying_tome"
+    },
+    {
+      "item": "lolaccessories:ruby_crystal"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:haunting_guise"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 173
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

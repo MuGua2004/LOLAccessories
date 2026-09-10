@@ -1,0 +1,27 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:ruby_crystal"
+    },
+    {
+      "item": "lolaccessories:null_magic_mantle"
+    },
+    {
+      "item": "lolaccessories:rejuvenation_bead"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:spectres_cowl"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 168
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

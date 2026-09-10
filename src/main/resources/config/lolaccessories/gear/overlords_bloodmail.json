@@ -1,0 +1,32 @@
+{
+  "template_version": 1,
+  "gear_id": "overlords_bloodmail",
+  "slot": "body",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 30.0
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 550.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "tyranny",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.025
+    },
+    {
+      "id": "retribution",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.12
+    }
+  ]
+}

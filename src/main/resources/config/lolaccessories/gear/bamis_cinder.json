@@ -1,0 +1,29 @@
+{
+  "template_version": 1,
+  "gear_id": "bamis_cinder",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 150
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "immolate",
+      "target": "self",
+      "enabled": true,
+      "amount": 3.0,
+      "radius_blocks": 4.0,
+      "duration_seconds": 3.0
+    }
+  ]
+}

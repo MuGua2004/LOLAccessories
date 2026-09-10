@@ -1,0 +1,25 @@
+{
+  "parent": "lolaccessories:root",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#b3a6c4",
+      "translate": "advancements.lolaccessories.wearing_5.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "lolaccessories:boots"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "#c48bff",
+      "translate": "advancements.lolaccessories.wearing_5.title"
+    }
+  }
+}

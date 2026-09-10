@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:lost_chapter"
+    },
+    {
+      "item": "lolaccessories:blasting_wand"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:ludens_echo"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 880
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

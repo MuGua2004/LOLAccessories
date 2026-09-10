@@ -1,0 +1,15 @@
+{
+  "template_version": 1,
+  "gear_id": "rejuvenation_bead",
+  "slot": "bracelet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "lolaccessories:natural_regen",
+      "operation": "ADDITION",
+      "amount": 1.0,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": []
+}

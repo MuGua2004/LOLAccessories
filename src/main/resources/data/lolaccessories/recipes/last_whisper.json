@@ -1,0 +1,24 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:long_sword"
+    },
+    {
+      "item": "lolaccessories:pickaxe"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:last_whisper"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 193
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

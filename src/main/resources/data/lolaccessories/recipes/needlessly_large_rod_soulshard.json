@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "irons_spellbooks:divine_soulshard"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:needlessly_large_rod",
+    "count": 4
+  }
+}
