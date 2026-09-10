@@ -1,6 +1,45 @@
-# LOLAccessories 1.0 — Initial Release / 首发版本
+# LOLAccessories 更新日志 / Changelog
 
-## English
+## 1.1
+
+### English
+
+- **Recipes** — 15 legendary items now use their official League of Legends build paths:
+  Sterak's Gage, Phantom Dancer, Bloodthirster, Guardian Angel, Mejai's Soulstealer,
+  Actualizer, Sunfire Aegis, Zeke's Convergence, Bandlepipes, Dusk and Dawn,
+  Endless Hunger, Hexoptics C44, Spirit Visage, Experimental Hexplate, Mortal Reminder
+- **Resolved two component conflicts** — Actualizer adds a gold ingot to differ from
+  Luden's Echo; Bandlepipes uses a different slot order than Zeke's Convergence
+  (both share identical official components)
+- **Legendary smithing costs** — restored the Nether Star x3 + Dragon Egg x1 requirement
+  for 16 items that were missing it
+- **Mythic sigil FX** — fixed rotation not rendering (angle reached ~2e9 radians, far
+  beyond float precision, so it was effectively frozen) and the skewed / black rendering
+  (blit coordinates are transformed by the pose matrix; the UV now samples the full
+  texture instead of only the top-left 31%)
+- **Combat rules** — Iron's Spellbooks spell damage no longer triggers effects marked
+  "triggered by physical damage"
+- **Mortal Reminder** — attack damage replaced with an equal amount of projectile damage
+  (+35% arrow damage, using the mod's 10 AD = 10% projectile conversion)
+
+### 中文
+
+- **配方** —— 15 件传说装备改为官方合成路径：斯特拉克的挑战护手、幻影之舞、饮血剑、
+  守护天使、梅贾的窃魂卷、Actualizer、日炎圣盾、基克的聚合、班德尔风笛、日月轮回、
+  无尽饥渴、法术镜片 C44、振奋盔甲、海克斯注力刚壁、凡性的提醒
+- **解决两处材料冲突** —— Actualizer 加金锭以区别于卢登的回声；班德尔风笛与基克的聚合
+  采用不同槽位顺序（两件官方配方本就完全相同）
+- **传说锻造花费** —— 为 16 件缺失的装备补回「下界之星 ×3 + 龙蛋 ×1」
+- **神话法阵特效** —— 修复旋转不生效（角度达 ~2e9 弧度，远超 float 精度而实际冻结）
+  以及菱形 / 发黑渲染（blit 坐标会受 pose 矩阵变换；UV 改为采样完整贴图，不再只取左上 31%）
+- **战斗规则** —— 铁魔法法术伤害不再触发「由物理伤害触发」的效果
+- **凡性的提醒** —— 攻击力改为等额弹射物伤害（+35% 弹射物伤害，按 10 攻击力 = 10% 换算）
+
+---
+
+## 1.0 — Initial Release / 首发版本
+
+### English
 
 First public release.
 
@@ -16,7 +55,7 @@ First public release.
 - **Localization** — English (en_us) and Simplified Chinese (zh_cn)
 - **Requires** — Minecraft 1.20.1, Forge, Curios API, Iron's Spells 'n Spellbooks, Apothic Attributes
 
-## 中文
+### 中文
 
 首次公开发布。
 
@@ -37,7 +76,7 @@ First public release.
 ## 后续更新日志格式建议（供参考）
 
 ```
-## 1.0.1
+## 1.2
 ### Added / 新增
 - ...
 
