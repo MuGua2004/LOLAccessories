@@ -30,7 +30,8 @@
       "burn_tick_damage": 10.0,
       "duration_seconds": 3.0,
       "burn_ap_ratio": 0.01,
-      "ap_pct_per_target": 0.04
+      "ap_pct_per_target": 0.04,
+      "school": "fire"
     }
   ]
 }

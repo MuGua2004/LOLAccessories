@@ -18,7 +18,8 @@
       "enabled": true,
       "base_damage": 0.0,
       "power_ratio": 1.0,
-      "cooldown_seconds": 1.5
+      "cooldown_seconds": 1.5,
+      "school": "holy"
     }
   ]
 }

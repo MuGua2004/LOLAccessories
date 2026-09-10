@@ -23,7 +23,8 @@
       "enabled": true,
       "amount": 3.0,
       "radius_blocks": 4.0,
-      "duration_seconds": 3.0
+      "duration_seconds": 3.0,
+      "school": "fire"
     }
   ]
 }

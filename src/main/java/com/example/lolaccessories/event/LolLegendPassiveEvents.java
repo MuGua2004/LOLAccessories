@@ -1,5 +1,6 @@
 package com.example.lolaccessories.event;
 
+import com.example.lolaccessories.compat.IronsSpellDamage;
 import com.example.lolaccessories.LOLAccessories;
 import com.example.lolaccessories.compat.CuriosGearWear;
 import com.example.lolaccessories.compat.IronsCompat;
@@ -407,7 +408,8 @@ public final class LolLegendPassiveEvents {
         }
         int hits = 0;
         for (LivingEntity target : targets) {
-            if (target.hurt(target.level().damageSources().magic(), damage)) {
+            // 魔法伤害 = 铁魔法学派伤害
+            if (IronsSpellDamage.apply(player, target, damage, IronsSpellDamage.resolve(effect.school))) {
                 hits++;
             }
         }
@@ -485,7 +487,8 @@ public final class LolLegendPassiveEvents {
                 continue;
             }
             if (total > 0.0D) {
-                target.hurt(target.level().damageSources().magic(), (float) total);
+                // 黑焰火炬灼烧：火焰学派的铁魔法伤害
+                IronsSpellDamage.apply(null, target, (float) total, IronsSpellDamage.FIRE);
             }
         }
     }

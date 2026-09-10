@@ -38,7 +38,8 @@
       "heal_ap_ratio": 0.1,
       "heal_hp_ratio": 0.03,
       "duration_seconds": 10.0,
-      "cooldown_seconds": 1.5
+      "cooldown_seconds": 1.5,
+      "school": "holy"
     }
   ]
 }

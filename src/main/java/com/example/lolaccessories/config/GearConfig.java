@@ -253,6 +253,15 @@ public class GearConfig {
         public String target = "victim";
         public boolean enabled = true;
 
+        /**
+         * 该效果造成的<b>魔法伤害</b>所属的铁魔法学派（如 {@code fire} / {@code ice} /
+         * {@code ender}），用于 {@code IronsSpellDamage} 按学派构造伤害源。
+         *
+         * <p>本模组的「魔法伤害」一律指铁魔法伤害，且每件装备各配一个学派。留空时按装备
+         * 默认学派（{@code ender}）处理，保证老配置无需改动也能工作。</p>
+         */
+        public String school = "";
+
         // cleaver_shred
         public double per_stack = 0.0;
         public int max_stacks = 1;

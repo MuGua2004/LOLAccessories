@@ -5,7 +5,7 @@
   "max_stack_size": 1,
   "attributes": [
     {
-      "id": "irons_spellbooks:ender_spell_power",
+      "id": "irons_spellbooks:spell_power",
       "operation": "ADDITION",
       "amount": 1.0,
       "percent": true
@@ -37,7 +37,8 @@
       "radius_blocks": 10.0,
       "base_damage": 75.0,
       "power_ratio": 0.05,
-      "bonus_pct": 0.2
+      "bonus_pct": 0.2,
+      "school": "ender"
     }
   ]
 }

@@ -25,7 +25,8 @@
       "max_health_pct": 0.015,
       "radius_blocks": 3.0,
       "interval_seconds": 1.0,
-      "duration_seconds": 0.0
+      "duration_seconds": 0.0,
+      "school": "fire"
     }
   ]
 }

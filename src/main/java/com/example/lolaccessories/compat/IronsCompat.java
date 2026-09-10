@@ -1,6 +1,8 @@
 package com.example.lolaccessories.compat;
 
 import com.example.lolaccessories.LOLAccessories;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraftforge.fml.ModList;
 
@@ -41,11 +43,24 @@ public final class IronsCompat {
         return ModList.get().isLoaded(MOD_ID);
     }
 
-    /** 该伤害源是否来自铁魔法的法术伤害（通过类名识别，避免对铁魔法产生编译期依赖）。 */
+    /**
+     * 该伤害源是否来自铁魔法的法术伤害（通过类名识别，避免对铁魔法产生编译期依赖）。
+     *
+     * <p>除铁魔法自身的 {@code SpellDamageSource} 外，本模组用<b>学派 DamageType</b>造成的伤害
+     * （见 {@link IronsSpellDamage}）同样算铁魔法伤害——它们是同一套语义：本模组的「魔法伤害」
+     * 就是铁魔法伤害。判定方式是看 DamageType 是否属于 {@code irons_spellbooks} 命名空间
+     * （如 {@code irons_spellbooks:fire_magic}）。</p>
+     */
     public static boolean isIronSpellDamage(DamageSource source) {
-        return source != null
-                && isLoaded()
-                && SPELL_DAMAGE_SOURCE_CLASS.equals(source.getClass().getName());
+        if (source == null || !isLoaded()) {
+            return false;
+        }
+        if (SPELL_DAMAGE_SOURCE_CLASS.equals(source.getClass().getName())) {
+            return true;
+        }
+        ResourceLocation typeId = source.typeHolder().unwrapKey()
+                .map(ResourceKey::location).orElse(null);
+        return typeId != null && MOD_ID.equals(typeId.getNamespace());
     }
 
     /**

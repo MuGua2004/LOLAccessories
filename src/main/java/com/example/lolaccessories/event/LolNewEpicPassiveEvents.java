@@ -1,5 +1,6 @@
 package com.example.lolaccessories.event;
 
+import com.example.lolaccessories.compat.IronsSpellDamage;
 import com.example.lolaccessories.LOLAccessories;
 import com.example.lolaccessories.compat.CuriosGearWear;
 import com.example.lolaccessories.compat.IronsCompat;
@@ -122,7 +123,9 @@ public final class LolNewEpicPassiveEvents {
                     BURNS.remove(target);
                     continue;
                 }
-                target.hurt(target.level().damageSources().magic(), (float) (burn.dps / 2.0D));
+                // 灼烧是魔法伤害 = 铁魔法学派伤害，学派沿用施加时记录的 school
+                IronsSpellDamage.apply(null, target, (float) (burn.dps / 2.0D),
+                        IronsSpellDamage.resolve(burn.school));
                 burn.remainingTicks -= 10;
                 if (burn.remainingTicks <= 0) {
                     BURNS.remove(target);
@@ -440,7 +443,8 @@ public final class LolNewEpicPassiveEvents {
                         }
                         case "inflame" -> {
                             if (isMagicDamage(source) && isEnemyOf(wearer, victim)) {
-                                startBurn(victim, effect.amount, Math.max(1.0D, effect.duration_seconds));
+                                startBurn(victim, effect.amount,
+                                        Math.max(1.0D, effect.duration_seconds), effect.school);
                             }
                         }
                         case "revved", "bullseye" -> {
@@ -486,16 +490,28 @@ public final class LolNewEpicPassiveEvents {
 
     /** 点燃目标（供同包装备复用：斑比熔渣/命定灰烬/日炎圣盾）。 */
     static void startBurn(LivingEntity target, double dps, double seconds) {
+        startBurn(target, dps, seconds, "");
+    }
+
+    /**
+     * 施加灼烧。{@code school} 为该灼烧的魔法学派（本模组魔法伤害一律是铁魔法学派伤害），
+     * 留空时由 {@link IronsSpellDamage#resolve} 退回默认学派。
+     */
+    static void startBurn(LivingEntity target, double dps, double seconds, String school) {
         if (target == null || target.isDeadOrDying() || dps <= 0.0D) {
             return;
         }
+        int ticks = Math.max(5, Math.round((float) seconds * 20.0F));
         BurnState state = BURNS.get(target);
         if (state == null) {
-            BURNS.put(target, new BurnState(dps, Math.max(5, Math.round((float) seconds * 20.0F))));
+            BURNS.put(target, new BurnState(dps, ticks, school));
         } else {
+            if (dps >= state.dps) {
+                // 伤害更高的一层灼烧接管学派
+                state.school = school;
+            }
             state.dps = Math.max(state.dps, dps);
-            state.remainingTicks = Math.max(state.remainingTicks,
-                    Math.max(5, Math.round((float) seconds * 20.0F)));
+            state.remainingTicks = Math.max(state.remainingTicks, ticks);
         }
         if (BURNS.size() > 256) {
             BURNS.entrySet().removeIf(e -> e.getKey().isRemoved() || !e.getKey().isAlive());
@@ -519,7 +535,7 @@ public final class LolNewEpicPassiveEvents {
         }
         double radius = effect.radius_blocks > 0 ? effect.radius_blocks : 3.0D;
         for (LivingEntity e : enemiesAround(wearer, wearer, radius)) {
-            startBurn(e, effect.amount, Math.max(1.0D, effect.duration_seconds));
+            startBurn(e, effect.amount, Math.max(1.0D, effect.duration_seconds), effect.school);
         }
     }
 
@@ -535,7 +551,8 @@ public final class LolNewEpicPassiveEvents {
         }
         double base = effect.base_damage > 0 ? effect.base_damage : 8.0D;
         cds.put(effect.id, now + cdMs);
-        victim.hurt(wearer.level().damageSources().magic(), (float) base);
+        // 魔法伤害 = 铁魔法学派伤害，学派由该效果的 school 字段决定（见 IronsSpellDamage）
+        IronsSpellDamage.apply(wearer, victim, (float) base, IronsSpellDamage.resolve(effect.school));
     }
 
     private static void handleSpellblade(Player wearer, LivingEntity victim, DamageSource source,
@@ -766,10 +783,13 @@ public final class LolNewEpicPassiveEvents {
     private static final class BurnState {
         private double dps;
         private int remainingTicks;
+        /** 该灼烧的魔法学派（本模组魔法伤害 = 铁魔法学派伤害）。 */
+        private String school;
 
-        private BurnState(double dps, int remainingTicks) {
+        private BurnState(double dps, int remainingTicks, String school) {
             this.dps = dps;
             this.remainingTicks = remainingTicks;
+            this.school = school;
         }
     }
 

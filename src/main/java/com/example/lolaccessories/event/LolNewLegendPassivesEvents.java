@@ -1,5 +1,6 @@
 package com.example.lolaccessories.event;
 
+import com.example.lolaccessories.compat.IronsSpellDamage;
 import com.example.lolaccessories.LOLAccessories;
 import com.example.lolaccessories.compat.CuriosGearWear;
 import com.example.lolaccessories.compat.IronsCompat;
@@ -264,7 +265,8 @@ public final class LolNewLegendPassivesEvents {
         int slowTicks = 40; // 2 秒 30% 档减速
         List<LivingEntity> enemies = LolNewEpicPassiveEvents.enemiesAround(player, player, radius);
         for (LivingEntity enemy : enemies) {
-            enemy.hurt(player.level().damageSources().indirectMagic(player, player), damage);
+            // 魔法伤害 = 铁魔法学派伤害
+            IronsSpellDamage.apply(player, enemy, damage, IronsSpellDamage.resolve(effect.school));
             enemy.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, slowTicks, 1, false, true));
         }
     }
@@ -335,7 +337,8 @@ public final class LolNewLegendPassivesEvents {
                 double bonusHealth = Math.max(0.0D, player.getMaxHealth() - 20.0D);
                 double dps = effect.base_damage + bonusHealth * Math.max(0.0D, effect.max_health_pct);
                 for (LivingEntity enemy : LolNewEpicPassiveEvents.enemiesAround(player, player, radius)) {
-                    LolNewEpicPassiveEvents.startBurn(enemy, dps, 1.2D);
+                    // 日炎圣盾：火焰学派灼烧
+                    LolNewEpicPassiveEvents.startBurn(enemy, dps, 1.2D, "fire");
                 }
                 // 战斗中火焰特效：窗口滚动续期
                 GearFxBroadcast.window(player, FxKind.SUNFIRE_AEGIS, 40);

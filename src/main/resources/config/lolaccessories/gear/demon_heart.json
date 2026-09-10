@@ -58,7 +58,7 @@
       "target": "self",
       "enabled": true,
       "amount": 0.0,
-      "curse_ratio": 0.10,
+      "curse_ratio": 0.1,
       "buff_ratio": 0.15,
       "duration_seconds": 0.0
     }

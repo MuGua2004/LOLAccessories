@@ -1,5 +1,40 @@
 # LOLAccessories 更新日志 / Changelog
 
+## 1.2.1
+
+### English
+
+- **Luden's Echo**: spell power is now the general `irons_spellbooks:spell_power`
+  instead of the school-specific `ender_spell_power`, matching the other 24 items.
+  Its Echo skill keeps the Ender school for the damage it deals
+- **Magic damage from gear skills is now Iron's Spellbooks damage, per-school**:
+  - Added a `school` field to gear effect configs; each item's magic damage uses
+    its own school (Fire for burn effects, Ice for Zeke's storm, Holy for
+    Spellblade, Ender for Echo, Lightning for Hextech procs, Eldritch for Anguish)
+  - Burn effects now carry the school of the item that applied them
+  - `isIronSpellDamage()` also recognises `irons_spellbooks` damage types, so
+    school damage is treated as this mod's magic damage
+- Only effects that actually **deal** magic damage have a school — pure buffs and
+  control effects (Hexplate Overdrive, Time Stop, Demon King, Clear Sky,
+  Actualizer's Realize) correctly have none
+- Sigil FX textures and renderer unchanged
+
+### 中文
+
+- **卢登的回声**：法强由学派专属的 `ender_spell_power` 改为通用 `irons_spellbooks:spell_power`，
+  与其余 24 件装备一致；「回声」技能造成的伤害仍保持末影学派
+- **装备技能的魔法伤害改为铁魔法学派伤害，且每件各配学派**：
+  - 装备效果配置新增 `school` 字段，各装备按语义对应学派（灼烧类用火焰、基克风暴用冰霜、
+    咒刃用神圣、回声称末影、海克斯触发用闪电、苦楚用邪术）
+  - 灼烧会记录施加它的装备所属学派
+  - `isIronSpellDamage()` 现在也识别 `irons_spellbooks` 命名空间下的伤害类型，
+    使学派伤害被判定为本模组的魔法伤害
+- **只有真正造成魔法伤害的效果才有学派**——纯增益与控制类（刚壁超速驱动、时间停止、
+  魔王之心、澄澈天空、实现器法力成真）不设学派
+- 法阵贴图与渲染逻辑未改动
+
+---
+
 ## 1.2
 
 ### English

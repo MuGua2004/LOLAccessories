@@ -17,7 +17,8 @@
       "target": "victim",
       "enabled": true,
       "amount": 5.0,
-      "duration_seconds": 3.0
+      "duration_seconds": 3.0,
+      "school": "fire"
     }
   ]
 }

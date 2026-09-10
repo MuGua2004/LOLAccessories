@@ -7,6 +7,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
+import com.example.lolaccessories.compat.IronsSpellDamage;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -174,8 +175,12 @@ public class EchoOrbEntity extends Entity implements IEntityAdditionalSpawnData 
         // 原版目标受伤后会进入 20 tick 的无敌帧，若不清掉，第二道起的回声会被直接吞掉，
         // 表现为“主目标只吃到一道全额伤害”。命中结算前清空该计时器，保证每道回声如实入账。
         target.invulnerableTime = 0;
-        DamageSource source = target.damageSources().indirectMagic(this, ownerEntity);
-        target.hurt(source, damage);
+        // 卢登的回声：魔法伤害走铁魔法「末影」学派（保持原末影口径：原装备给的是末影法强，
+        // 技能学派不变）。见 IronsSpellDamage——本模组所有装备技能的魔法伤害都是铁魔法伤害。
+        if (!IronsSpellDamage.apply(ownerEntity, target, damage, IronsSpellDamage.ENDER)) {
+            // 学派伤害未结算（如铁魔法缺席时的回退已被 apply 内部处理，此处仅在被完全取消时兜底）
+            target.hurt(target.damageSources().indirectMagic(this, ownerEntity), damage);
+        }
     }
 
     /** 命中/消散特效：紫色能量迸发。 */

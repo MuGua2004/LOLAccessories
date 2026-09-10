@@ -30,7 +30,8 @@
       "interval_seconds": 4.0,
       "heal_pct": 2.5,
       "combat_window_seconds": 12.0,
-      "radius_blocks": 8.0
+      "radius_blocks": 8.0,
+      "school": "eldritch"
     }
   ]
 }

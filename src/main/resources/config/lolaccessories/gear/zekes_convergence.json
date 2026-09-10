@@ -35,7 +35,8 @@
       "base_damage": 30.0,
       "radius_blocks": 4.0,
       "duration_seconds": 5.0,
-      "cooldown_seconds": 45.0
+      "cooldown_seconds": 45.0,
+      "school": "ice"
     }
   ]
 }

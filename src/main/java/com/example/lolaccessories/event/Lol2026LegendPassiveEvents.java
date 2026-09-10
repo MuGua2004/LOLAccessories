@@ -1,5 +1,6 @@
 package com.example.lolaccessories.event;
 
+import com.example.lolaccessories.compat.IronsSpellDamage;
 import com.example.lolaccessories.LOLAccessories;
 import com.example.lolaccessories.compat.CuriosGearWear;
 import com.example.lolaccessories.compat.IronsCompat;
@@ -584,7 +585,9 @@ public final class Lol2026LegendPassiveEvents {
         double ad = attacker.getAttributeValue(Attributes.ATTACK_DAMAGE);
         double magicDamage = ad * effect.ad_ratio + ap * effect.ap_ratio;
         if (magicDamage > 0.0D) {
-            victim.hurt(victim.level().damageSources().magic(), (float) magicDamage);
+            // 咒刃等技能的魔法伤害 = 铁魔法学派伤害
+            IronsSpellDamage.apply(attacker, victim, (float) magicDamage,
+                    IronsSpellDamage.resolve(effect.school));
             recordRecentHurt(attacker, victim);
         }
         double maxHp = attacker.getMaxHealth();
