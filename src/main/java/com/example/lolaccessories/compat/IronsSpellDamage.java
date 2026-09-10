@@ -61,6 +61,9 @@ public final class IronsSpellDamage {
             return ENDER;
         }
         String s = school.trim().toLowerCase(java.util.Locale.ROOT);
+        if (s.contains(":")) {
+            return s; // 已是完整资源名（如 irons_spellbooks:fire_magic），直接使用
+        }
         return switch (s) {
             case "fire" -> FIRE;
             case "ice" -> ICE;
@@ -76,6 +79,30 @@ public final class IronsSpellDamage {
     }
 
     private static final String MOD_ID_SPELL = "irons_spellbooks:";
+
+    /**
+     * 装备默认学派映射（{@code gear_id/效果id -> 学派短名}）。
+     *
+     * <p>配置里写明 {@code school} 时配置优先；旧配置合并后可能没有该字段，
+     * 此时用这张表兜底，保证每件装备的魔法伤害仍有自己的学派。</p>
+     */
+    private static final java.util.Map<String, String> DEFAULT_SCHOOLS = java.util.Map.ofEntries(
+            java.util.Map.entry("ludens_echo/echo", "ender"),
+            java.util.Map.entry("fated_ashes/inflame", "fire"),
+            java.util.Map.entry("bamis_cinder/immolate", "fire"),
+            java.util.Map.entry("sunfire_aegis/sunfire", "fire"),
+            java.util.Map.entry("blackfire_torch/baleful_blaze", "fire"),
+            java.util.Map.entry("dusk_and_dawn/spellblade", "holy"),
+            java.util.Map.entry("sheen/spellblade", "holy"),
+            java.util.Map.entry("zekes_convergence/zeal", "ice"),
+            java.util.Map.entry("hextech_alternator/revved", "lightning"),
+            java.util.Map.entry("scouts_slingshot/bullseye", "lightning"),
+            java.util.Map.entry("unending_despair/anguish", "eldritch"));
+
+    /** 配置未写 school 时的默认学派（无匹配返回 null，由调用方退回 ENDER）。 */
+    public static String defaultSchoolFor(String gearId, String effectId) {
+        return DEFAULT_SCHOOLS.get(gearId + '/' + effectId);
+    }
 
     /**
      * 以指定学派造成魔法伤害。

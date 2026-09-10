@@ -1,5 +1,6 @@
 package com.example.lolaccessories.config;
 
+import com.example.lolaccessories.compat.IronsSpellDamage;
 import com.example.lolaccessories.LOLAccessories;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -98,6 +99,16 @@ public final class GearConfigManager {
             JsonObject merged = syncWithTemplate(gearId, file, JsonParser.parseReader(reader));
             GearConfig config = GSON.fromJson(merged, GearConfig.class);
             config.resolve();
+            // 旧配置（合并时按 id 保留玩家条目）可能没有 school 字段；
+            // 用代码内的默认学派映射兜底，保证每件装备的魔法伤害仍有自己的学派。
+            for (GearConfig.OnHitEffect effect : config.on_hit_effects) {
+                if (effect.school == null || effect.school.isEmpty()) {
+                    String fallback = IronsSpellDamage.defaultSchoolFor(config.gear_id, effect.id);
+                    if (fallback != null) {
+                        effect.school = fallback;
+                    }
+                }
+            }
             LOGGER.info("[GearConfig] 已加载配置 {}", file);
             return config;
         } catch (JsonSyntaxException | IOException e) {
