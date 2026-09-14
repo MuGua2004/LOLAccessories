@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "last_whisper",
   "slot": "back",
   "max_stack_size": 1,
@@ -7,13 +7,15 @@
     {
       "id": "minecraft:generic.attack_damage",
       "operation": "ADDITION",
-      "amount": 20
+      "amount": 20,
+      "overwrite": true
     },
     {
       "id": "attributeslib:armor_shred",
       "operation": "ADDITION",
       "amount": 0.18,
-      "percent": true
+      "percent": true,
+      "overwrite": true
     }
   ],
   "on_hit_effects": []

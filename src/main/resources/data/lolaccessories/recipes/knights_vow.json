@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:kindlegem"
+    },
+    {
+      "item": "lolaccessories:chain_vest"
+    },
+    {
+      "item": "lolaccessories:rejuvenation_bead"
+    }
+  ],
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 700
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:knights_vow"
+  }
+}

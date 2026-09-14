@@ -1,0 +1,13 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    { "item": "lolaccessories:oblivion_orb" },
+    { "item": "lolaccessories:blasting_wand" }
+  ],
+  "result": { "item": "lolaccessories:morellonomicon" },
+  "cost": [
+    { "item": "lolaccessories:gold_coin", "count": 850 },
+    { "item": "minecraft:nether_star", "count": 3 },
+    { "item": "minecraft:dragon_egg", "count": 1 }
+  ]
+}

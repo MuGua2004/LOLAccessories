@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:serrated_dirk"
+    },
+    {
+      "item": "lolaccessories:rectrix"
+    },
+    {
+      "item": "lolaccessories:long_sword"
+    }
+  ],
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 750
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:youmuus_ghostblade"
+  }
+}

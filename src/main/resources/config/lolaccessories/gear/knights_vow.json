@@ -1,0 +1,39 @@
+{
+  "template_version": 2,
+  "gear_id": "knights_vow",
+  "slot": "body",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 10,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 40.0
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 200.0
+    },
+    {
+      "id": "lolaccessories:natural_regen",
+      "operation": "ADDITION",
+      "amount": 1.0,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "pledge",
+      "target": "self",
+      "enabled": true,
+      "duration_seconds": 60.0,
+      "radius_blocks": 6.0
+    }
+  ]
+}

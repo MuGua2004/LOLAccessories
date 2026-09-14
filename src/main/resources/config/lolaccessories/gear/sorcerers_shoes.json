@@ -1,0 +1,22 @@
+{
+  "template_version": 1,
+  "gear_id": "sorcerers_shoes",
+  "slot": "feet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "lolaccessories:magic_pen",
+      "operation": "ADDITION",
+      "amount": 12,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "percent": true,
+      "overwrite": true,
+      "amount": 0.45
+    }
+  ],
+  "on_hit_effects": []
+}

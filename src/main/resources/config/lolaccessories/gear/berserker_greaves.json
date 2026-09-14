@@ -1,0 +1,30 @@
+{
+  "template_version": 1,
+  "gear_id": "berserker_greaves",
+  "slot": "feet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "percent": true,
+      "overwrite": true,
+      "amount": 0.3
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "MULTIPLY_BASE",
+      "percent": true,
+      "overwrite": true,
+      "amount": 0.3
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "percent": true,
+      "overwrite": true,
+      "amount": 0.45
+    }
+  ],
+  "on_hit_effects": []
+}

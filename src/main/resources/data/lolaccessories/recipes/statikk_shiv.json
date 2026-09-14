@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:scouts_slingshot"
+    },
+    {
+      "item": "lolaccessories:pickaxe"
+    },
+    {
+      "item": "lolaccessories:aether_wisp"
+    }
+  ],
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 800
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:statikk_shiv"
+  }
+}

@@ -45,3 +45,18 @@ _iss_dmg.jar
 goety_revelation.jar
 _*.txt
 _lang_backup/
+
+# ---- 本地工作区杂物（禁止提交）----
+# 反编译/临时产物
+_gr_dec/
+# 本地临时脚本与日志
+_*.py
+_*.ps1
+_*.log
+__pycache__/
+_report_figs/
+generated-images/
+cov_p1.png
+xh1.jpg
+xh2.jpg
+*.docx

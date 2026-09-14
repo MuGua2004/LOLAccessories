@@ -1,0 +1,32 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:hextech_alternator"
+    },
+    {
+      "item": "lolaccessories:oblivion_orb"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:shadowflame"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 800
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    },
+    {
+      "item": "minecraft:echo_shard",
+      "count": 2
+    }
+  ]
+}

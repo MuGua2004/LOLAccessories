@@ -1,0 +1,9 @@
+{
+  "template_version": 1,
+  "gear_id": "poem_for_tomorrow",
+  "enabled": true,
+  "advancement_id": "truth_envoy",
+  "challenge": {
+    "type": "after_champions"
+  }
+}

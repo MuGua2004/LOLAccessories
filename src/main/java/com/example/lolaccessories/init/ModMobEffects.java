@@ -7,6 +7,7 @@ import com.example.lolaccessories.effect.InspiringSpeechEffect;
 import com.example.lolaccessories.effect.RageEffect;
 import com.example.lolaccessories.effect.RegenBoostEffect;
 import com.example.lolaccessories.effect.SpeedBurstEffect;
+import com.example.lolaccessories.effect.WraithStepEffect;
 import com.example.lolaccessories.effect.WoundsEffect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.registries.DeferredRegister;
@@ -57,6 +58,10 @@ public final class ModMobEffects {
     public static final RegistryObject<MobEffect> FANFARE =
             MOB_EFFECTS.register("fanfare",
                     () -> new FanfareEffect("bandlepipes", "fanfare"));
+
+    /** 鬼步（幽梦之灵·主动）：6 秒内 +20% 移动速度，并作为「无视单位碰撞」标记（见 PhantomDancerCollisionMixin）。 */
+    public static final RegistryObject<MobEffect> WRAITH_STEP =
+            MOB_EFFECTS.register("wraith_step", WraithStepEffect::new);
 
     private ModMobEffects() {
     }

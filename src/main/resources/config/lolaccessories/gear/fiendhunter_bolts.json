@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 4,
   "gear_id": "fiendhunter_bolts",
   "slot": "back",
   "max_stack_size": 1,
@@ -26,11 +26,11 @@
       "percent": true
     },
     {
-      "_comment": "唯一被动「终极迅捷」（终极技能冷却缩减，非基础属性；tooltip 按 LoL 被动样式展示，词条 passive.lolaccessories.ultimate_cdr.*）。可调字段：amount=终极技能冷却缩减倍率（0.3 即 -30%，对应原作 30 终极技能急速，独立于普通冷却缩减结算）；percent=true 按百分比显示。",
-      "id": "lolaccessories:ultimate_cdr",
+      "_comment": "唯一被动「终极迅捷」（终极技能急速 30，LoL 公式 CDR=30/130≈23.1%，独立乘区；仅缩短铁魔法终极技能冷却）。可调字段：amount=急速点数。",
+      "id": "lolaccessories:ultimate_haste",
       "operation": "ADDITION",
-      "amount": 0.3,
-      "percent": true
+      "amount": 30,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [

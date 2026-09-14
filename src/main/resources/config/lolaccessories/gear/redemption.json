@@ -1,0 +1,51 @@
+{
+  "template_version": 3,
+  "gear_id": "redemption",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.3,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 15,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:heal_power",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true
+    },
+    {
+      "id": "irons_spellbooks:mana_regen",
+      "operation": "ADDITION",
+      "amount": 1.0,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "redemption",
+      "target": "self",
+      "enabled": true,
+      "cooldown_seconds": 90.0
+    },
+    {
+      "id": "intervention",
+      "target": "area",
+      "enabled": true,
+      "base_damage": 0.1,
+      "amount": 0.25,
+      "radius_blocks": 3.5,
+      "duration_seconds": 2.5,
+      "cooldown_seconds": 120.0,
+      "school": "radiant"
+    }
+  ]
+}

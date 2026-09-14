@@ -42,6 +42,17 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         this.tag(hands).add(itemKey(ModItems.BLACK_CLEAVER));
         this.tag(hands).add(itemKey(ModItems.RAVENOUS_HYDRA));
         this.tag(hands).add(itemKey(ModItems.TRINITY_FORCE));
+        this.tag(hands).add(itemKey(ModItems.RUNAAN_HURRICANE));
+        this.tag(hands).add(itemKey(ModItems.STATIKK_SHIV));
+        this.tag(hands).add(itemKey(ModItems.WITS_END));
+        this.tag(hands).add(itemKey(ModItems.RAPID_FIRECANNON));
+        this.tag(hands).add(itemKey(ModItems.STORMRAZOR));
+        this.tag(hands).add(itemKey(ModItems.NASHORS_TOOTH));
+        this.tag(hands).add(itemKey(ModItems.GUINSOOS_RAGEBLADE));
+        this.tag(hands).add(itemKey(ModItems.MERCURIAL_SCIMITAR));
+        this.tag(hands).add(itemKey(ModItems.YOUMUUS_GHOSTBLADE));
+        // 灵恸（神话，手饰）
+        this.tag(hands).add(itemKey(ModItems.SOULS_LAMENT));
         this.tag(hands).add(itemKey(ModItems.LUDENS_ECHO));
         // 爆裂魔杖（魔杖，单手）
         this.tag(hands).add(itemKey(ModItems.BLASTING_WAND));
@@ -81,6 +92,13 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         this.tag(hands).add(itemKey(ModItems.STERAKS_GAGE));
         this.tag(hands).add(itemKey(ModItems.BLOODTHIRSTER));
         this.tag(hands).add(itemKey(ModItems.EXPERIMENTAL_HEXPLATE));
+        // 第十一批：手饰栏（海克斯科技枪刃 / 破败王者之刃 / 玛莫提乌斯之噬）
+        this.tag(hands).add(itemKey(ModItems.HEXTECH_GUNBLADE));
+        this.tag(hands).add(itemKey(ModItems.RUINED_KING));
+        this.tag(hands).add(itemKey(ModItems.MAW_OF_MALMORTIUS));
+        this.tag(hands).add(itemKey(ModItems.SPEAR_OF_SHOJIN));
+        this.tag(hands).add(itemKey(ModItems.UMBRAL_GLAIVE));
+        this.tag(hands).add(itemKey(ModItems.HULLBREAKER));
 
         // 护符栏（charm）
         TagKey<Item> charm = TagKey.create(Registries.ITEM, new ResourceLocation("curios", "charm"));
@@ -91,6 +109,11 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         this.tag(charm).add(itemKey(ModItems.SAPPHIRE_CRYSTAL));
         // 红水晶
         this.tag(charm).add(itemKey(ModItems.RUBY_CRYSTAL));
+        this.tag(charm).add(itemKey(ModItems.FATE_DIE));
+        this.tag(charm).add(itemKey(ModItems.RABADONS_DEATHCAP));
+        this.tag(charm).add(itemKey(ModItems.LICH_BANE));
+        this.tag(charm).add(itemKey(ModItems.BANSHEES_VEIL));
+        this.tag(charm).add(itemKey(ModItems.REDEMPTION));
         // 短剑
         this.tag(charm).add(itemKey(ModItems.DAGGER));
         // 增幅典籍
@@ -130,6 +153,11 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         // 2026 传说第 2 批：护符栏（幻影之舞 / 基克的聚合）
         this.tag(charm).add(itemKey(ModItems.PHANTOM_DANCER));
         this.tag(charm).add(itemKey(ModItems.ZEKES_CONVERGENCE));
+        this.tag(charm).add(itemKey(ModItems.MORELLONOMICON));
+        // 第十四批法系传说：护符栏
+        this.tag(charm).add(itemKey(ModItems.HORIZON_FOCUS));
+        this.tag(charm).add(itemKey(ModItems.SHADOWFLAME));
+        this.tag(charm).add(itemKey(ModItems.STORMSURGE));
 
         // 戒指栏（ring）
         TagKey<Item> ring = TagKey.create(Registries.ITEM, new ResourceLocation("curios", "ring"));
@@ -144,6 +172,22 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         this.tag(feet).add(itemKey(ModItems.BOOTS));
         // 带翼的月板甲（足部）
         this.tag(feet).add(itemKey(ModItems.WINGED_MOONPLATE));
+        // 第十六批 7 双 2 级（史诗）鞋
+        this.tag(feet).add(itemKey(ModItems.BERSERKER_GREAVES));
+        this.tag(feet).add(itemKey(ModItems.SYMBIOTE_SOLES));
+        this.tag(feet).add(itemKey(ModItems.SWIFT_BOOTS));
+        this.tag(feet).add(itemKey(ModItems.SORCERERS_SHOES));
+        this.tag(feet).add(itemKey(ModItems.PLATED_STEELCAPS));
+        this.tag(feet).add(itemKey(ModItems.MERCURYS_TREADS));
+        this.tag(feet).add(itemKey(ModItems.IONIAN_BOOTS));
+        // 第十六批 7 双 3 级（传说）鞋
+        this.tag(feet).add(itemKey(ModItems.IMMORTAL_PATH));
+        this.tag(feet).add(itemKey(ModItems.SWIFTMARCH));
+        this.tag(feet).add(itemKey(ModItems.GUNMETAL_GREAVES));
+        this.tag(feet).add(itemKey(ModItems.CRIMSON_LUCIDITY));
+        this.tag(feet).add(itemKey(ModItems.CHAINLACED_CRUSHERS));
+        this.tag(feet).add(itemKey(ModItems.ARMORED_ADVANCE));
+        this.tag(feet).add(itemKey(ModItems.SPELLSLINGERS_SHOES));
 
         // 手镯栏（bracelet）
         TagKey<Item> bracelet = TagKey.create(Registries.ITEM, new ResourceLocation("curios", "bracelet"));
@@ -154,6 +198,8 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         this.tag(bracelet).add(itemKey(ModItems.CRYSTALLINE_BRACER));
         // 翠绿屏障（手镯）
         this.tag(bracelet).add(itemKey(ModItems.VERDANT_BARRIER));
+        // 中娅沙漏（手镯）
+        this.tag(bracelet).add(itemKey(ModItems.ZHONYAS_HOURGLASS));
 
         // 背饰栏（back）
         TagKey<Item> back = TagKey.create(Registries.ITEM, new ResourceLocation("curios", "back"));
@@ -183,6 +229,8 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         this.tag(back).add(itemKey(ModItems.CLEAR_SKYS_WISH));
         // 魔王之心（神话，护符）
         this.tag(charm).add(itemKey(ModItems.DEMON_HEART));
+        // 翡翠城（神话，护符）
+        this.tag(charm).add(itemKey(ModItems.EMERALD_CITY));
 
         // 头饰栏（head）
         TagKey<Item> head = TagKey.create(Registries.ITEM, new ResourceLocation("curios", "head"));
@@ -193,6 +241,8 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         this.tag(head).add(itemKey(ModItems.KAENIC_ROOKERN));
         // 振奋盔甲（头饰，3 级传说）
         this.tag(head).add(itemKey(ModItems.SPIRIT_VISAGE));
+        // 自然之力（头饰，3 级传说）
+        this.tag(head).add(itemKey(ModItems.FORCE_OF_NATURE));
 
         // 胸饰栏（body）
         TagKey<Item> body = TagKey.create(Registries.ITEM, new ResourceLocation("curios", "body"));
@@ -201,6 +251,8 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         this.tag(body).add(itemKey(ModItems.CHAIN_VEST));
         this.tag(body).add(itemKey(ModItems.THORNMAIL));
         this.tag(body).add(itemKey(ModItems.WARMOGS_ARMOR));
+        this.tag(body).add(itemKey(ModItems.KNIGHTS_VOW));
+        this.tag(body).add(itemKey(ModItems.FROZEN_HEART));
         // 棘刺背心（胸饰）
         this.tag(body).add(itemKey(ModItems.BRAMBLE_VEST));
         // 守望者铠甲（胸饰）
@@ -209,6 +261,10 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         this.tag(body).add(itemKey(ModItems.OVERLORDS_BLOODMAIL));
         // 日炎圣盾（胸饰，3 级传说）
         this.tag(body).add(itemKey(ModItems.SUNFIRE_AEGIS));
+        // 千变者贾修（胸饰，3 级传说）
+        this.tag(body).add(itemKey(ModItems.JAKSHO));
+        // 第十一批：胸饰栏（兰顿之兆）
+        this.tag(body).add(itemKey(ModItems.RANDUINS_OMEN));
 
         // 腰带栏（belt）
         TagKey<Item> belt = TagKey.create(Registries.ITEM, new ResourceLocation("curios", "belt"));
@@ -236,24 +292,64 @@ public class ModCurioTagsProvider extends TagsProvider<Item> {
         // 2026 海克斯赛季传说：腰带栏（班德尔风笛 / 原生质护带）
         this.tag(belt).add(itemKey(ModItems.BANDLEPIPES));
         this.tag(belt).add(itemKey(ModItems.PROTOPLASM_HARNESS));
+        // 第十一批：腰带栏（海克斯科技火箭腰带）
+        this.tag(belt).add(itemKey(ModItems.HEXTECH_ROCKETBELT));
+        // 裂隙制造者（腰带，3 级传说）
+        this.tag(belt).add(itemKey(ModItems.RIFTMAKER));
+        // 第十五批：手饰栏（公理圆弧 狂妄 亵渎九头蛇 电震涡流剑 放血者的诅咒）
+        this.tag(hands).add(itemKey(ModItems.AXIOM_ARC));
+        this.tag(hands).add(itemKey(ModItems.HUBRIS));
+        this.tag(hands).add(itemKey(ModItems.PROFANE_HYDRA));
+        this.tag(hands).add(itemKey(ModItems.VOLTAIC_CYCLOSWORD));
+        this.tag(hands).add(itemKey(ModItems.BLOODLETTERS_CURSE));
+        // 第十五批：头饰栏（深渊面具）
+        this.tag(head).add(itemKey(ModItems.ABYSSAL_MASK));
+        // 挺进破坏者（腰带，3 级传说）
+        this.tag(belt).add(itemKey(ModItems.STRIDEBREAKER));
+        // 第十五批：手部（死亡之舞 / 炼金朋克链锯剑 / 焚天）
+        this.tag(hands).add(itemKey(ModItems.DEATHS_DANCE));
+        this.tag(hands).add(itemKey(ModItems.CHEMPUNK_CHAINSWORD));
+        this.tag(hands).add(itemKey(ModItems.SUNDERED_SKY));
+        // 第十五批：护符（兰德里的折磨）
+        this.tag(charm).add(itemKey(ModItems.LIANDRYS_TORMENT));
+        // 第六批：护符（时光之杖）
+        this.tag(charm).add(itemKey(ModItems.ROD_OF_AGES));
+        // 第六批：腰带（冰脉护手）
+        this.tag(belt).add(itemKey(ModItems.ICEBORN_GAUNTLET));
+        // 第六批：手部（海妖杀手 / 不朽盾弓）
+        this.tag(hands).add(itemKey(ModItems.KRAKEN_SLAYER));
+        this.tag(hands).add(itemKey(ModItems.IMMORTAL_SHIELDBOW));
+        // 第七批：手部（纳沃利烁刃 / 收集者 / 星蚀 / 赛瑞尔达的怨恨 / 巨蛇之牙）
+        this.tag(hands).add(itemKey(ModItems.NAAVORI_FLICKERBLADE));
+        this.tag(hands).add(itemKey(ModItems.THE_COLLECTOR));
+        this.tag(hands).add(itemKey(ModItems.ECLIPSE));
+        this.tag(hands).add(itemKey(ModItems.SERYLDAS));
+        this.tag(hands).add(itemKey(ModItems.SERPENTS_FANG));
 
         // 女神泪系列（法力流传说，4 对蜕变）
         this.tag(hands).add(itemKey(ModItems.MANAMUNE));
         this.tag(hands).add(itemKey(ModItems.MURAMANA));
         this.tag(charm).add(itemKey(ModItems.ARCHANGELS_STAFF));
         this.tag(charm).add(itemKey(ModItems.SERAPHS_EMBRACE));
+        this.tag(charm).add(itemKey(ModItems.RYLAIS_CRYSTAL_SCEPTER));
+        this.tag(charm).add(itemKey(ModItems.MALIGNANCE));
+        this.tag(charm).add(itemKey(ModItems.VOID_STAFF));
+        this.tag(charm).add(itemKey(ModItems.CRYPTBLOOM));
         this.tag(body).add(itemKey(ModItems.WINTERS_APPROACH));
         this.tag(body).add(itemKey(ModItems.FIMBULWINTER));
         this.tag(ring).add(itemKey(ModItems.WHISPERING_CIRCLET));
         this.tag(ring).add(itemKey(ModItems.DIADEM_OF_SONGS));
+        // 致明日之诗（神话，戒指）
+        this.tag(ring).add(itemKey(ModItems.POEM_FOR_TOMORROW));
         this.tag(body).add(itemKey(ModItems.GUARDIAN_ANGEL));
         this.tag(back).add(itemKey(ModItems.YUN_TAL_WILDARROWS));
         this.tag(back).add(itemKey(ModItems.MORTAL_REMINDER));
         this.tag(back).add(itemKey(ModItems.LORD_DOMINIKS_REGARDS));
-        // 测试饰品（调试用）
-        this.tag(belt).add(itemKey(ModItems.DRAW_SPEED_TEST));
-        this.tag(belt).add(itemKey(ModItems.FLAT_PEN_TEST));
-        this.tag(belt).add(itemKey(ModItems.PCT_PEN_TEST));
+        this.tag(hands).add(itemKey(ModItems.TERMINUS));
+        this.tag(charm).add(itemKey(ModItems.ESSENCE_REAVER));
+        this.tag(body).add(itemKey(ModItems.DEAD_MANS_PLATE));
+        this.tag(hands).add(itemKey(ModItems.TITANIC_HYDRA));
+        this.tag(charm).add(itemKey(ModItems.EDGE_OF_NIGHT));
     }
 
     /** RegistryObject.getKey() 泛型为 ResourceKey<GearItem>，此处向上转型为 ResourceKey<Item> 以满足标签追加 API。 */

@@ -1,6 +1,7 @@
 package com.example.lolaccessories.entity;
 
 import com.example.lolaccessories.init.ModEntityTypes;
+import com.example.lolaccessories.event.LolNewEpicPassiveEvents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -58,8 +59,12 @@ public class EchoOrbEntity extends Entity implements IEntityAdditionalSpawnData 
     /** 施法者 UUID。 */
     @Nullable
     private UUID ownerId;
-    /** 命中目标后造成的纯魔法伤害。 */
+    /** 命中目标后造成的魔法伤害。 */
     private float damage;
+    /** 本次法球采用的铁魔法学派伤害类型。 */
+    private String damageSchool = IronsSpellDamage.ENDER;
+    /** 是否为火箭腰带使用的固定方向直线射弹。 */
+    private boolean straightFlight;
     /** 当前飞行速度向量（格/刻）。 */
     private Vec3 motion = Vec3.ZERO;
     /** 最近一次有效的目标中心点：目标死亡/消失后仍飞向该点，避免弹体原地发愣。 */
@@ -74,19 +79,34 @@ public class EchoOrbEntity extends Entity implements IEntityAdditionalSpawnData 
     }
 
     /**
-     * 在服务端发射一道回声：从 {@code start} 出发，先沿 {@code outward} 方向向外上方弹出，
+     * 在服务端发射一道追踪回声：从 {@code start} 出发，先沿 {@code outward} 方向向外上方弹出，
      * 之后平滑转向 {@code target}，命中后造成 {@code damage} 点纯魔法伤害。
      */
-    public static void launch(ServerLevel level, LivingEntity owner, LivingEntity target,
+    public static void launch(ServerLevel level, LivingEntity owner, @Nullable LivingEntity target,
                               float damage, Vec3 start, Vec3 outward) {
+        launch(level, owner, target, damage, IronsSpellDamage.ENDER, start, outward);
+    }
+
+    /** 以指定铁魔法学派发射法球。 */
+    public static void launch(ServerLevel level, LivingEntity owner, @Nullable LivingEntity target,
+                              float damage, String school, Vec3 start, Vec3 outward) {
         EchoOrbEntity orb = new EchoOrbEntity(ModEntityTypes.ECHO_ORB.get(), level);
         orb.setPos(start.x, start.y, start.z);
-        orb.target = target;
-        orb.targetId = target.getUUID();
+        if (target != null) {
+            orb.target = target;
+            orb.targetId = target.getUUID();
+            orb.lastAim = target.position().add(0.0D, target.getBbHeight() * 0.5D, 0.0D);
+        } else {
+            // 无目标（火箭腰带向前突进时）沿视线方向飞出一段射程，命中阶段不结算伤害
+            Vec3 dir = outward.lengthSqr() < 1.0E-4D
+                    ? new Vec3(1.0D, 0.0D, 0.0D)
+                    : outward.normalize();
+            orb.lastAim = start.add(dir.scale(18.0D));
+        }
         orb.owner = owner;
         orb.ownerId = owner.getUUID();
         orb.damage = Math.max(0.0F, damage);
-        orb.lastAim = target.position().add(0.0D, target.getBbHeight() * 0.5D, 0.0D);
+        orb.damageSchool = IronsSpellDamage.resolve(school);
 
         Vec3 dir = outward.lengthSqr() < 1.0E-4D
                 ? new Vec3(1.0D, 0.0D, 0.0D)
@@ -94,6 +114,22 @@ public class EchoOrbEntity extends Entity implements IEntityAdditionalSpawnData 
         // 先向外上方低速弹出，随追踪逐刻加速——弧线“先炸开、再收拢”的来源
         orb.motion = new Vec3(dir.x, 0.32D, dir.z).normalize().scale(SPEED * 0.4D);
 
+        level.addFreshEntity(orb);
+    }
+
+    /** 发射不索敌、不转向的火箭腰带直线法球，接触敌对单位时结算伤害。 */
+    public static void launchStraight(ServerLevel level, LivingEntity owner, float damage,
+                                      String school, Vec3 start, Vec3 direction) {
+        EchoOrbEntity orb = new EchoOrbEntity(ModEntityTypes.ECHO_ORB.get(), level);
+        orb.setPos(start.x, start.y, start.z);
+        orb.owner = owner;
+        orb.ownerId = owner.getUUID();
+        orb.damage = Math.max(0.0F, damage);
+        orb.damageSchool = IronsSpellDamage.resolve(school);
+        orb.straightFlight = true;
+        Vec3 dir = direction.lengthSqr() < 1.0E-4D
+                ? new Vec3(1.0D, 0.0D, 0.0D) : direction.normalize();
+        orb.motion = dir.scale(SPEED);
         level.addFreshEntity(orb);
     }
 
@@ -112,6 +148,11 @@ public class EchoOrbEntity extends Entity implements IEntityAdditionalSpawnData 
             // 寿命耗尽：原地绽放后无害消散（不结算伤害）
             burstFx();
             discard();
+            return;
+        }
+
+        if (straightFlight) {
+            tickStraightFlight();
             return;
         }
 
@@ -150,6 +191,32 @@ public class EchoOrbEntity extends Entity implements IEntityAdditionalSpawnData 
         }
     }
 
+    /** 火箭腰带法球：保持固定方向飞行，并在接触首个敌对单位时爆炸。 */
+    private void tickStraightFlight() {
+        Vec3 next = position().add(motion);
+        setPos(next);
+        if (!level().isClientSide) {
+            if (owner == null && ownerId != null) {
+                owner = findEntity(ownerId);
+            }
+            LivingEntity hit = level().getEntitiesOfClass(LivingEntity.class,
+                    getBoundingBox().inflate(0.35D), entity -> entity.isAlive()
+                            && entity != owner
+                            && (owner == null || LolNewEpicPassiveEvents.isEnemyOf(owner, entity)))
+                    .stream().findFirst().orElse(null);
+            if (hit != null) {
+                target = hit;
+                targetId = hit.getUUID();
+                impact();
+                return;
+            }
+        }
+        if (!level().isClientSide && age % 3 == 0) {
+            ((ServerLevel) level()).sendParticles(ParticleTypes.FLAME,
+                    next.x, next.y, next.z, 2, 0.08D, 0.08D, 0.08D, 0.01D);
+        }
+    }
+
     /** 命中：服务端结算伤害，双端播放命中特效，随后移除弹体。 */
     private void impact() {
         if (!level().isClientSide) {
@@ -177,7 +244,7 @@ public class EchoOrbEntity extends Entity implements IEntityAdditionalSpawnData 
         target.invulnerableTime = 0;
         // 卢登的回声：魔法伤害走铁魔法「末影」学派（保持原末影口径：原装备给的是末影法强，
         // 技能学派不变）。见 IronsSpellDamage——本模组所有装备技能的魔法伤害都是铁魔法伤害。
-        if (!IronsSpellDamage.apply(ownerEntity, target, damage, IronsSpellDamage.ENDER)) {
+        if (!IronsSpellDamage.apply(ownerEntity, target, damage, damageSchool)) {
             // 学派伤害未结算（如铁魔法缺席时的回退已被 apply 内部处理，此处仅在被完全取消时兜底）
             target.hurt(target.damageSources().indirectMagic(this, ownerEntity), damage);
         }
@@ -241,6 +308,7 @@ public class EchoOrbEntity extends Entity implements IEntityAdditionalSpawnData 
 
     @Override
     public void writeSpawnData(FriendlyByteBuf buffer) {
+        buffer.writeBoolean(straightFlight);
         buffer.writeBoolean(targetId != null);
         if (targetId != null) {
             buffer.writeUUID(targetId);
@@ -249,6 +317,7 @@ public class EchoOrbEntity extends Entity implements IEntityAdditionalSpawnData 
         buffer.writeDouble(motion.x);
         buffer.writeDouble(motion.y);
         buffer.writeDouble(motion.z);
+        buffer.writeUtf(damageSchool);
         Vec3 aim = lastAim != null ? lastAim : position();
         buffer.writeDouble(aim.x);
         buffer.writeDouble(aim.y);
@@ -257,10 +326,12 @@ public class EchoOrbEntity extends Entity implements IEntityAdditionalSpawnData 
 
     @Override
     public void readSpawnData(FriendlyByteBuf buffer) {
+        straightFlight = buffer.readBoolean();
         if (buffer.readBoolean()) {
             targetId = buffer.readUUID();
         }
         motion = new Vec3(buffer.readDouble(), buffer.readDouble(), buffer.readDouble());
+        damageSchool = buffer.readUtf();
         lastAim = new Vec3(buffer.readDouble(), buffer.readDouble(), buffer.readDouble());
     }
 
@@ -273,6 +344,8 @@ public class EchoOrbEntity extends Entity implements IEntityAdditionalSpawnData 
             tag.putUUID("Target", targetId);
         }
         tag.putFloat("Damage", damage);
+        tag.putString("DamageSchool", damageSchool);
+        tag.putBoolean("StraightFlight", straightFlight);
         tag.putInt("Age", age);
         tag.putDouble("MotionX", motion.x);
         tag.putDouble("MotionY", motion.y);
@@ -289,6 +362,8 @@ public class EchoOrbEntity extends Entity implements IEntityAdditionalSpawnData 
         ownerId = tag.hasUUID("Owner") ? tag.getUUID("Owner") : null;
         targetId = tag.hasUUID("Target") ? tag.getUUID("Target") : null;
         damage = tag.getFloat("Damage");
+        damageSchool = tag.contains("DamageSchool") ? tag.getString("DamageSchool") : IronsSpellDamage.ENDER;
+        straightFlight = tag.getBoolean("StraightFlight");
         age = tag.getInt("Age");
         motion = new Vec3(tag.getDouble("MotionX"), tag.getDouble("MotionY"), tag.getDouble("MotionZ"));
         if (tag.contains("AimX") && tag.contains("AimY") && tag.contains("AimZ")) {

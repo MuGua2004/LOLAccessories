@@ -1,20 +1,21 @@
 {
-  "template_version": 1,
+  "template_version": 4,
   "gear_id": "guardian_angel",
   "slot": "body",
   "max_stack_size": 1,
   "attributes": [
     {
-      "id": "minecraft:generic.attack_damage",
-      "operation": "ADDITION",
-      "amount": 55,
-      "percent": false
-    },
-    {
       "id": "minecraft:generic.armor",
       "operation": "ADDITION",
       "amount": 45,
-      "percent": false
+      "percent": false,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 55,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [

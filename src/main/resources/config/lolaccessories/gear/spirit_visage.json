@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 5,
   "gear_id": "spirit_visage",
   "slot": "head",
   "max_stack_size": 1,
@@ -7,23 +7,33 @@
     {
       "id": "minecraft:generic.max_health",
       "operation": "ADDITION",
-      "amount": 350.0
+      "amount": 400
     },
     {
       "id": "lolaccessories:magic_resist",
       "operation": "ADDITION",
-      "amount": 30.0
-    },
-    {
-      "id": "lolaccessories:natural_regen",
-      "operation": "ADDITION",
-      "amount": 1.0
+      "amount": 50,
+      "overwrite": true
     },
     {
       "id": "attributeslib:healing_received",
       "operation": "ADDITION",
-      "amount": 0.30,
-      "percent": true
+      "amount": 0.3,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.2,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:natural_regen",
+      "operation": "ADDITION",
+      "amount": 1.0,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [
@@ -31,7 +41,7 @@
       "id": "vigor",
       "target": "self",
       "enabled": true,
-      "amount": 0.30,
+      "amount": 0.3,
       "duration_seconds": 0.0
     }
   ]

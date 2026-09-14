@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 5,
   "gear_id": "fiendish_codex",
   "slot": "charm",
   "max_stack_size": 1,
@@ -8,13 +8,15 @@
       "id": "irons_spellbooks:spell_power",
       "operation": "ADDITION",
       "amount": 0.25,
-      "percent": true
+      "percent": true,
+      "overwrite": true
     },
     {
       "id": "irons_spellbooks:cooldown_reduction",
       "operation": "ADDITION",
       "amount": 0.1,
-      "percent": true
+      "percent": true,
+      "overwrite": true
     }
   ],
   "on_hit_effects": []

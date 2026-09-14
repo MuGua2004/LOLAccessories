@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:boots"
+    },
+    {
+      "item": "lolaccessories:null_magic_mantle"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:mercurys_treads"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 320
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

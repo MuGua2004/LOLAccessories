@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "doran_ring",
   "slot": "ring",
   "max_stack_size": 1,
@@ -8,12 +8,14 @@
       "id": "irons_spellbooks:spell_power",
       "operation": "ADDITION",
       "amount": 0.18,
-      "percent": true
+      "percent": true,
+      "overwrite": true
     },
     {
       "id": "minecraft:generic.max_health",
       "operation": "ADDITION",
-      "amount": 90.0
+      "amount": 90,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [

@@ -226,7 +226,7 @@ public final class LolTearFamilyEvents {
         if (nearby >= 2) {
             amount *= 1.8F;
         }
-        ShieldHpService.apply(applier, "fimbulwinter", amount, 3000L);
+        ShieldHpService.apply(applier, "fimbulwinter", amount, 3000L, ShieldType.WHITE);
         // 冰蓝寒霜球罩特效（与护盾同窗口 3 秒）+ 冷却条 HUD
         GearFxBroadcast.window(applier, FxKind.SHIELD_FIMBULWINTER, 60);
         com.example.lolaccessories.networking.LOLNetworking.sendSkillCooldown(applier,
@@ -256,7 +256,8 @@ public final class LolTearFamilyEvents {
         }
         SERAPH_CD.put(victim.getUUID(), now + SERAPH_CD_MS);
         double maxMana = maxMana(victim);
-        ShieldHpService.apply(victim, "seraphs_embrace", (float) (maxMana * 0.18D), 3000L);
+        ShieldHpService.apply(victim, "seraphs_embrace", (float) (maxMana * 0.18D), 3000L,
+                ShieldType.WHITE);
         // 金白圣光球罩特效（与护盾同窗口 3 秒）+ 冷却条 HUD
         GearFxBroadcast.window(victim, FxKind.SHIELD_SERAPH, 60);
         com.example.lolaccessories.networking.LOLNetworking.sendSkillCooldown(victim,

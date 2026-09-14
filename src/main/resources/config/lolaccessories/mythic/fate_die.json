@@ -1,0 +1,10 @@
+{
+  "template_version": 1,
+  "gear_id": "fate_die",
+  "enabled": true,
+  "advancement_id": "fate_dance",
+  "challenge": {
+    "type": "endermite_streak",
+    "threshold": 3.0
+  }
+}

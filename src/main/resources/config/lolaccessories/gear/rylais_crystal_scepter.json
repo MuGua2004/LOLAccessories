@@ -1,0 +1,30 @@
+{
+  "template_version": 3,
+  "gear_id": "rylais_crystal_scepter",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.65,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 400,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "rimefrost",
+      "target": "victim",
+      "enabled": true,
+      "amount": 0.3,
+      "duration_seconds": 1
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lolaccessories:item/maw_of_malmortius"
+  }
+}

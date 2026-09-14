@@ -281,6 +281,383 @@ public final class ModItems {
     public static final RegistryObject<GearItem> HEARTSTEEL =
             ITEMS.register("heartsteel", () -> new GearItem("heartsteel", gearProperties("heartsteel")));
 
+    /**
+     * 命运十面骰（Fate's Die）。第 3 件神话装备（tier4）。槽位：护符 charm。
+     * +6% 传说暴击率 / +6% 传说暴击伤害 / +6% 移速。
+     * 主动「嘲弄命运（Mock Fate）」：投掷一颗 10 面骰，获得持续 30 秒的随机效果
+     * （10 种概率均等，结果在聊天栏通知），冷却 180 秒。数值来自 fate_die.json。
+     */
+    public static final RegistryObject<GearItem> FATE_DIE =
+            ITEMS.register("fate_die", () -> new GearItem("fate_die", gearProperties("fate_die")));
+
+    /**
+     * 翡翠城（Emerald City）。第 4 件神话装备（tier4）。槽位：护符 charm。原创装备。
+     * +100% 法术强度 / +100% 冷却缩减 / +100% 法术吟唱缩减 / +100 最大法力 / +100 固定法穿。
+     * 唯一被动「梦之乌托邦（Dream Utopia）」：法术对敌人造成伤害后为其施加一层琼华，
+     * 使其受到的伤害提高 20%，至多 10 层（见 LolEmeraldCityEvents）。
+     * 主动「再见桃花源（Farewell Paradise）」：抹杀 10 格内叠满 10 层琼华的生物
+     * （kill 结算 + 翡翠法阵特效），并使其掉落的战利品翻倍，冷却 30 秒。
+     */
+    public static final RegistryObject<GearItem> EMERALD_CITY =
+            ITEMS.register("emerald_city", () -> new GearItem("emerald_city", gearProperties("emerald_city")));
+
+    /**
+     * 隐身衣（Emperor's New Clothes）。第 5 件神话装备（tier4）。槽位：胸饰 body。
+     * +10 攻击力 / +10% 法术强度 / 99% 物理伤害减免 / 99% 魔法伤害减免（全静态，无动态被动）。
+     * 获取（成就「欺诈死神」）：在主副手、盔甲槽、背包、快捷栏和末影箱均没有任何物品的
+     * 状态下击杀幽匿守卫者（Warden）——"看不见"的衣服只属于什么都不带的人
+     * （naked_warden_kill 挑战，见 LolMythicChallengeEvents）。
+     */
+    public static final RegistryObject<GearItem> EMPERORS_NEW_CLOTHES =
+            ITEMS.register("emperors_new_clothes",
+                    () -> new GearItem("emperors_new_clothes", gearProperties("emperors_new_clothes")));
+
+    /**
+     * 天帝（Heavenly Emperor）。第 6 件神话装备（tier4）。槽位：护符 charm。
+     * +9999 最大法力 / +50 技能急速 / +50% 法术吟唱缩减。
+     * 唯一被动「我什么都不缺了（I Want For Nothing）」：三段成长，累计值随玩家永久保存、
+     * 佩戴时激活（见 LolEmperorPassiveEvents）——
+     * 每释放一次法术获得相当于消耗法力 1% 的法术强度；法术每次命中获得相当于
+     * 0.1% 最大生命值的最大法力值；每击杀一个敌对生物获得相当于 1% 法强的最大生命值。
+     * 获取（成就「瑞天帝」）：生命值上限大于一万时累计消耗 100,000 点法力
+     * （mana_spent_total 挑战）。
+     */
+    public static final RegistryObject<GearItem> HEAVENLY_EMPEROR =
+            ITEMS.register("heavenly_emperor",
+                    () -> new GearItem("heavenly_emperor", gearProperties("heavenly_emperor")));
+
+    /**
+     * 灵恸（Souls' Lament）。第 7 件神话装备（tier4）。槽位：手饰 hands。
+     * +20% 暴击率 / +10% 暴击伤害。
+     * 主动「此恨无绝（Endless Grief）」：30 秒内近战攻击有概率（暴击率 × 50%）整段转化为
+     * 虚空伤害（out_of_world，无视护甲/魔抗/减免），并按暴击伤害 × 80% 追加额外增伤；
+     * 冷却 300 秒，每击杀一个敌对生物减少 5 秒冷却（见 LolSorrowPoemEvents）。
+     * 获取（成就「告别」）：在与恶魂相距 20 格时用近战攻击将其击杀。
+     */
+    public static final RegistryObject<GearItem> SOULS_LAMENT =
+            ITEMS.register("souls_lament",
+                    () -> new GearItem("souls_lament", gearProperties("souls_lament")));
+
+    /**
+     * 致明日之诗（Poem for Tomorrow）。第 8 件神话装备（tier4）。槽位：戒指 ring。
+     * +1% 移动速度。唯一被动「代行真理（Poem of Truth）」：攻击附带 1000 点真理伤害；
+     * 装备在饰品栏后将玩家模式切换为创造模式（摘下不清除创造，仅佩戴瞬间切换）。
+     * 获取（成就「真理的使者」）：完成成就【我们是冠军】后自动授予。
+     * 注意：本件不计入「集齐全部装备」类统计（自身依赖 champions，参与统计会死锁），
+     * 见 LolAdvancementService 的排除集合。
+     */
+    public static final RegistryObject<GearItem> POEM_FOR_TOMORROW =
+            ITEMS.register("poem_for_tomorrow",
+                    () -> new GearItem("poem_for_tomorrow", gearProperties("poem_for_tomorrow")));
+
+    // ===================== 第七批 5 件传说（远程输出：飓风 / 电刃 / 帽子 / 智慧末刃 / 火炮） =====================
+
+    /**
+     * 卢安娜的飓风（Runaan's Hurricane）。槽位：手饰 hands。
+     * +45 攻击力 / +40% 攻速与等额蓄力速度。
+     * 被动「风怒（Wind's Fury）」：普攻命中后向附近其他敌人射出 2 支箭，
+     * 每支造成 65% 攻击伤害。数值来自 runaan_hurricane.json。
+     */
+    public static final RegistryObject<GearItem> RUNAAN_HURRICANE =
+            ITEMS.register("runaan_hurricane", () -> new GearItem("runaan_hurricane", gearProperties("runaan_hurricane")));
+
+    /**
+     * 斯塔缇克电刃（Statikk Shiv）。槽位：手饰 hands。
+     * +35% 攻速与等额蓄力速度 / +6% 移速。
+     * 被动「盈能：电刃闪电（Statikk Charge）」：盈能攻击对目标及附近至多 6 名敌人
+     * 施放闪电链（闪电学派魔法伤害）。数值来自 statikk_shiv.json。
+     */
+    public static final RegistryObject<GearItem> STATIKK_SHIV =
+            ITEMS.register("statikk_shiv", () -> new GearItem("statikk_shiv", gearProperties("statikk_shiv")));
+
+    /**
+     * 灭世者的死亡之帽（Rabadon's Deathcap）。槽位：护符 charm。
+     * +130% 法术强度。被动「法术放大器（Amplifier）」：法术强度提高 30%（乘区）。
+     * 数值来自 rabadons_deathcap.json。
+     */
+    public static final RegistryObject<GearItem> RABADONS_DEATHCAP =
+            ITEMS.register("rabadons_deathcap", () -> new GearItem("rabadons_deathcap", gearProperties("rabadons_deathcap")));
+
+    /**
+     * 智慧末刃（Wit's End）。槽位：手饰 hands。
+     * +40 攻击力 / +45 传说魔法抗性 / +30% 攻速与等额蓄力速度。
+     * 被动「智慧末刃（Wit's End）」：命中附加 45 点邪术魔法伤害并偷取目标 5 点
+     * 传说魔法抗性（至多叠加 5 层，6 秒未命中则失效）。数值来自 wits_end.json。
+     */
+    public static final RegistryObject<GearItem> WITS_END =
+            ITEMS.register("wits_end", () -> new GearItem("wits_end", gearProperties("wits_end")));
+
+    /**
+     * 疾射火炮（Rapid Firecannon）。槽位：手饰 hands。
+     * +35% 攻速与等额蓄力速度 / +6% 移速。
+     * 被动「盈能：火炮（Energized）」：盈能攻击附加 120 点火焰魔法伤害。
+     * 数值来自 rapid_firecannon.json。
+     */
+    public static final RegistryObject<GearItem> RAPID_FIRECANNON =
+            ITEMS.register("rapid_firecannon", () -> new GearItem("rapid_firecannon", gearProperties("rapid_firecannon")));
+
+    // ===================== 第八批 5 件传说（岚切 / 巫妖之祸 / 女妖面纱 / 救赎 / 骑士之誓） =====================
+
+    /**
+     * 岚切（Stormrazor）。槽位：手饰 hands。
+     * +50 攻击力 / +25% 攻速 / +25% 暴击率；弹射物伤害与攻击力等额（动态挂载）。
+     * 被动「盈能：电弧（Bolt）」：盈能攻击造成 100 点闪电魔法伤害并获得 45% 移速 1.5 秒。
+     * 数值来自 stormrazor.json。
+     */
+    public static final RegistryObject<GearItem> STORMRAZOR =
+            ITEMS.register("stormrazor", () -> new GearItem("stormrazor", gearProperties("stormrazor")));
+
+    // ---- 第十一批：兰顿之兆 / 海克斯科技枪刃 / 海克斯科技火箭腰带 / 破败王者之刃 / 玛莫提乌斯之噬 ----
+    /** 兰顿之兆（Randuin's Omen）。槽位：胸饰 body。史诗级。 */
+    public static final RegistryObject<GearItem> RANDUINS_OMEN =
+            ITEMS.register("randuins_omen", () -> new GearItem("randuins_omen", gearProperties("randuins_omen")));
+
+    /** 海克斯科技枪刃（Hextech Gunblade）。槽位：手饰 hands。传说级。 */
+    public static final RegistryObject<GearItem> HEXTECH_GUNBLADE =
+            ITEMS.register("hextech_gunblade", () -> new GearItem("hextech_gunblade", gearProperties("hextech_gunblade")));
+
+    /** 海克斯科技火箭腰带（Hextech Rocketbelt）。槽位：腰带 belt。传说级。 */
+    public static final RegistryObject<GearItem> HEXTECH_ROCKETBELT =
+            ITEMS.register("hextech_rocketbelt", () -> new GearItem("hextech_rocketbelt", gearProperties("hextech_rocketbelt")));
+
+    /** 破败王者之刃（Blade of the Ruined King）。槽位：手饰 hands。传说级。 */
+    public static final RegistryObject<GearItem> RUINED_KING =
+            ITEMS.register("ruined_king", () -> new GearItem("ruined_king", gearProperties("ruined_king")));
+
+    /** 玛莫提乌斯之噬（Maw of Malmortius）。槽位：手饰 hands。传说级。 */
+    public static final RegistryObject<GearItem> MAW_OF_MALMORTIUS =
+            ITEMS.register("maw_of_malmortius", () -> new GearItem("maw_of_malmortius", gearProperties("maw_of_malmortius")));
+
+    /**
+     * 巫妖之祸（Lich Bane）。槽位：护符 charm。
+     * +100% 法术强度 / +10% 冷却缩减 / +6% 移速。
+     * 被动「咒刃（Spellblade）」：法术命中后，下次普攻附加 45% 法术强度的魔法伤害
+     * （与物理咒刃共享触发与冷却叠加规则）。数值来自 lich_bane.json。
+     */
+    public static final RegistryObject<GearItem> LICH_BANE =
+            ITEMS.register("lich_bane", () -> new GearItem("lich_bane", gearProperties("lich_bane")));
+
+    /**
+     * 女妖面纱（Banshee's Veil）。槽位：护符 charm。
+     * +105% 法术强度 / +40 传说魔法抗性。
+     * 被动「消隐（Annul）」：获得法术护盾，格挡下一次铁魔法法术（40 秒冷却）。
+     * 数值来自 banshees_veil.json。
+     */
+    public static final RegistryObject<GearItem> BANSHEES_VEIL =
+            ITEMS.register("banshees_veil", () -> new GearItem("banshees_veil", gearProperties("banshees_veil")));
+
+    /**
+     * 救赎（Redemption）。槽位：护符 charm。
+     * +30% 法术强度 / +15% 冷却缩减 / +10% 治疗与护盾强度。
+     * 主动「降临（Intervention）」：暂未实装（tooltip 先行）。数值来自 redemption.json。
+     */
+    public static final RegistryObject<GearItem> REDEMPTION =
+            ITEMS.register("redemption", () -> new GearItem("redemption", gearProperties("redemption")));
+
+    /**
+     * 骑士之誓（Knight's Vow）。槽位：胸饰 body。
+     * +200 生命 / +40 护甲 / +10% 冷却缩减 / +100% 基础生命回复。
+     * 主动「誓约（Pledge）」：与 6 格内一名友方生物（含玩家）缔结系链。
+     * 被动「牺牲（Sacrifice）」：系链目标受到的伤害 14% 转移给佩戴者；
+     * 系链目标造成伤害时佩戴者回复其 12%。数值来自 knights_vow.json。
+     */
+    public static final RegistryObject<GearItem> KNIGHTS_VOW =
+            ITEMS.register("knights_vow", () -> new GearItem("knights_vow", gearProperties("knights_vow")));
+
+    // ===================== 第十三批 5 件传说（界弓 / 夺萃 / 亡板 / 巨九 / 夜刃） =====================
+
+    /** 界弓（Terminus）。槽位：手饰 hands。 */
+    public static final RegistryObject<GearItem> TERMINUS =
+            ITEMS.register("terminus", () -> new GearItem("terminus", gearProperties("terminus")));
+
+    /** 夺萃之镰（Essence Reaver）。槽位：护符 charm。 */
+    public static final RegistryObject<GearItem> ESSENCE_REAVER =
+            ITEMS.register("essence_reaver", () -> new GearItem("essence_reaver", gearProperties("essence_reaver")));
+
+    /** 亡者的板甲（Dead Man's Plate）。槽位：胸饰 body。 */
+    public static final RegistryObject<GearItem> DEAD_MANS_PLATE =
+            ITEMS.register("dead_mans_plate", () -> new GearItem("dead_mans_plate", gearProperties("dead_mans_plate")));
+
+    /** 巨型九头蛇（Titanic Hydra）。槽位：手饰 hands。 */
+    public static final RegistryObject<GearItem> TITANIC_HYDRA =
+            ITEMS.register("titanic_hydra", () -> new GearItem("titanic_hydra", gearProperties("titanic_hydra")));
+
+    /** 夜之锋刃（Edge of Night）。槽位：护符 charm。 */
+    public static final RegistryObject<GearItem> EDGE_OF_NIGHT =
+            ITEMS.register("edge_of_night", () -> new GearItem("edge_of_night", gearProperties("edge_of_night")));
+
+    // ===================== 第九批 4 件传说（坦克/法系：冰霜之心 / 纳什之牙 / 瑞莱 / 残疫） =====================
+
+    /**
+     * 冰霜之心（Frozen Heart）。槽位：胸饰 body。
+     * +75 护甲 / +20% 冷却缩减（对应官方 20 技能急速）/ +400 法力。
+     * 被动「冬之抚慰（Winter's Caress）」：光环——3.5 格内敌对生物攻击速度降低 20%（无特效）。
+     * 数值来自 frozen_heart.json。
+     */
+    public static final RegistryObject<GearItem> FROZEN_HEART =
+            ITEMS.register("frozen_heart", () -> new GearItem("frozen_heart", gearProperties("frozen_heart")));
+
+    /**
+     * 纳什之牙（Nashor's Tooth）。槽位：手饰 hands。
+     * +80 法术强度（铁魔法口径 80%）/ +50% 攻速与等额蓄力速度（attributeslib:draw_speed）/
+     * +15% 冷却缩减（对应官方 15 技能急速）。
+     * 被动「艾卡西亚之咬（Icathian Bite）」：普攻额外造成 15 + 15% 法强的魔法伤害（攻击特效）。
+     * 数值来自 nashors_tooth.json。
+     */
+    public static final RegistryObject<GearItem> NASHORS_TOOTH =
+            ITEMS.register("nashors_tooth", () -> new GearItem("nashors_tooth", gearProperties("nashors_tooth")));
+
+    /**
+     * 瑞莱的冰晶节杖（Rylai's Crystal Scepter）。槽位：护符 charm。
+     * +65 法术强度 / +400 生命。
+     * 被动「凝霜（Rimefrost）」：造成魔法伤害时使目标减速 30%，持续 1 秒（每目标 0.5 秒内置间隔，无特效）。
+     * 数值来自 rylais_crystal_scepter.json。
+     */
+    public static final RegistryObject<GearItem> RYLAIS_CRYSTAL_SCEPTER =
+            ITEMS.register("rylais_crystal_scepter",
+                    () -> new GearItem("rylais_crystal_scepter", gearProperties("rylais_crystal_scepter")));
+
+    /**
+     * 残疫（Malignance）。槽位：护符 charm。
+     * +90 法术强度 / +600 法力 / +15% 冷却缩减 / +20% 终极技能冷却缩减（蔑视 Scorn）。
+     * 被动「憎恨之雾（Hatefog）」：终极技能（基础法力消耗 &gt; 200）命中敌人后，在其脚下生成
+     * 紫色恨雾圈（4.5 格，持续 3 秒）：雾内敌人每 0.5 秒受到 15 + 1.25% 法强的魔法伤害，
+     * 首次进入额外降低 10 点魔法抗性（每目标独立 3 秒冷却）。地上有紫色法阵圈界定范围。
+     * 数值来自 malignance.json。
+     */
+    public static final RegistryObject<GearItem> MALIGNANCE =
+            ITEMS.register("malignance", () -> new GearItem("malignance", gearProperties("malignance")));
+
+    /**
+     * 鬼索的狂暴之刃（Guinsoo's Rageblade）。槽位：手饰 hands。
+     * +30 攻击力 / +30% 法术强度 / +25% 攻速与等额蓄力速度 / +30% 弹射物伤害。
+     * 被动「愤怒（Wrath）」：普攻额外造成 30 点魔法伤害（攻击特效）。
+     * 被动「汹涌打击（Seething Strike）」：普攻叠 +8% 攻速（最多 4 层，4 秒），
+     * 满层后每第 3 次攻击额外再触发一次攻击特效。数值来自 guinsoos_rageblade.json。
+     */
+    public static final RegistryObject<GearItem> GUINSOOS_RAGEBLADE =
+            ITEMS.register("guinsoos_rageblade",
+                    () -> new GearItem("guinsoos_rageblade", gearProperties("guinsoos_rageblade")));
+
+    /**
+     * 虚空之杖（Void Staff）。槽位：护符 charm。
+     * +95% 法术强度 / +40% 百分比法术穿透（先于固定法穿结算）。数值来自 void_staff.json。
+     */
+    public static final RegistryObject<GearItem> VOID_STAFF =
+            ITEMS.register("void_staff", () -> new GearItem("void_staff", gearProperties("void_staff")));
+
+    /**
+     * 蜕生（Cryptbloom）。槽位：护符 charm。
+     * +75% 法术强度 / +30% 百分比法术穿透 / +20% 冷却缩减。
+     * 被动「死中新生（Life from Death）」：击杀敌人后于其死亡位置爆发治疗新星
+     * （绿色大光球 + 回血法阵），治疗自身与 4 格内友方玩家 100 + 20% 法强，冷却 60 秒。
+     * 数值来自 cryptbloom.json。
+     */
+    public static final RegistryObject<GearItem> CRYPTBLOOM =
+            ITEMS.register("cryptbloom", () -> new GearItem("cryptbloom", gearProperties("cryptbloom")));
+
+    /**
+     * 水银弯刀（Mercurial Scimitar）。槽位：手饰 hands。
+     * +50 攻击力 / +35 魔法抗性 / +10% 生命偷取。
+     * 主动「水银（Quicksilver）」：解除自身全部有害状态（复用饰带净化）并获 +50% 移速 2 秒，
+     * 冷却 90 秒，独立按键。数值来自 mercurial_scimitar.json。
+     */
+    public static final RegistryObject<GearItem> MERCURIAL_SCIMITAR =
+            ITEMS.register("mercurial_scimitar",
+                    () -> new GearItem("mercurial_scimitar", gearProperties("mercurial_scimitar")));
+
+    /**
+     * 幽梦之灵（Youmuu's Ghostblade）。槽位：手饰 hands。
+     * +55 攻击力 / +18 穿甲 / +4% 移速。
+     * 被动「萦绕（Haunt）」：脱战 3 秒后获得 +6% 移速（战斗状态即失效）。
+     * 主动「鬼步（Wraith Step）」：+20% 移速 6 秒且无视单位碰撞，冷却 45 秒，独立按键。
+     * 数值来自 youmuus_ghostblade.json。
+     */
+    public static final RegistryObject<GearItem> YOUMUUS_GHOSTBLADE =
+            ITEMS.register("youmuus_ghostblade",
+                    () -> new GearItem("youmuus_ghostblade", gearProperties("youmuus_ghostblade")));
+
+    // ===================== 第十四批 5 件传说（自然之力 / 视界专注 / 裂隙制造者 / 影焰 / 风暴狂涌） =====================
+    /** 自然之力（Force of Nature）。槽位：头饰 head。 */
+    public static final RegistryObject<GearItem> FORCE_OF_NATURE =
+            ITEMS.register("force_of_nature", () -> new GearItem("force_of_nature", gearProperties("force_of_nature")));
+
+    /** 视界专注（Horizon Focus）。槽位：护符 charm。 */
+    public static final RegistryObject<GearItem> HORIZON_FOCUS =
+            ITEMS.register("horizon_focus", () -> new GearItem("horizon_focus", gearProperties("horizon_focus")));
+
+    /** 裂隙制造者（Riftmaker）。槽位：腰带 belt。 */
+    public static final RegistryObject<GearItem> RIFTMAKER =
+            ITEMS.register("riftmaker", () -> new GearItem("riftmaker", gearProperties("riftmaker")));
+
+    /** 影焰（Shadowflame）。槽位：护符 charm。 */
+    public static final RegistryObject<GearItem> SHADOWFLAME =
+            ITEMS.register("shadowflame", () -> new GearItem("shadowflame", gearProperties("shadowflame")));
+
+    /** 风暴狂涌（Stormsurge）。槽位：护符 charm。 */
+    public static final RegistryObject<GearItem> STORMSURGE =
+            ITEMS.register("stormsurge", () -> new GearItem("stormsurge", gearProperties("stormsurge")));
+
+    /** 死亡之舞（Death's Dance）。槽位：手部 hands。 */
+    public static final RegistryObject<GearItem> DEATHS_DANCE =
+            ITEMS.register("deathsdance", () -> new GearItem("deathsdance", gearProperties("deathsdance")));
+
+    /** 炼金朋克链锯剑（Chempunk Chainsword）。槽位：手部 hands。 */
+    public static final RegistryObject<GearItem> CHEMPUNK_CHAINSWORD =
+            ITEMS.register("chempunk_chainsword", () -> new GearItem("chempunk_chainsword", gearProperties("chempunk_chainsword")));
+
+    /** 焚天（Sundered Sky）。槽位：手部 hands。 */
+    public static final RegistryObject<GearItem> SUNDERED_SKY =
+            ITEMS.register("sundered_sky", () -> new GearItem("sundered_sky", gearProperties("sundered_sky")));
+
+    /** 挺进破坏者（Stridebreaker）。槽位：腰带 belt。 */
+    public static final RegistryObject<GearItem> STRIDEBREAKER =
+            ITEMS.register("stridebreaker", () -> new GearItem("stridebreaker", gearProperties("stridebreaker")));
+
+    /** 兰德里的折磨（Liandry's Torment）。槽位：护符 charm。 */
+    public static final RegistryObject<GearItem> LIANDRYS_TORMENT =
+            ITEMS.register("liandrys_torment", () -> new GearItem("liandrys_torment", gearProperties("liandrys_torment")));
+
+    /** 时光之杖（Rod of Ages）。槽位：护符 charm。 */
+    public static final RegistryObject<GearItem> ROD_OF_AGES =
+            ITEMS.register("rod_of_ages", () -> new GearItem("rod_of_ages", gearProperties("rod_of_ages")));
+
+    /** 冰脉护手（Iceborn Gauntlet）。槽位：腰带 belt。 */
+    public static final RegistryObject<GearItem> ICEBORN_GAUNTLET =
+            ITEMS.register("iceborn_gauntlet", () -> new GearItem("iceborn_gauntlet", gearProperties("iceborn_gauntlet")));
+
+    /** 千变者贾修（Jak'Sho, the Protean）。槽位：胸饰 body。 */
+    public static final RegistryObject<GearItem> JAKSHO =
+            ITEMS.register("jaksho", () -> new GearItem("jaksho", gearProperties("jaksho")));
+
+    /** 海妖杀手（Kraken Slayer）。槽位：手部 hands。 */
+    public static final RegistryObject<GearItem> KRAKEN_SLAYER =
+            ITEMS.register("kraken_slayer", () -> new GearItem("kraken_slayer", gearProperties("kraken_slayer")));
+
+    /** 不朽盾弓（Immortal Shieldbow）。槽位：手部 hands。 */
+    public static final RegistryObject<GearItem> IMMORTAL_SHIELDBOW =
+            ITEMS.register("immortal_shieldbow", () -> new GearItem("immortal_shieldbow", gearProperties("immortal_shieldbow")));
+
+    /** 纳沃利烁刃（Naavori Flickerblade）。槽位：手部 hands。 */
+    public static final RegistryObject<GearItem> NAAVORI_FLICKERBLADE =
+            ITEMS.register("naavori_flickerblade", () -> new GearItem("naavori_flickerblade", gearProperties("naavori_flickerblade")));
+
+    /** 收集者（The Collector）。槽位：手部 hands。 */
+    public static final RegistryObject<GearItem> THE_COLLECTOR =
+            ITEMS.register("the_collector", () -> new GearItem("the_collector", gearProperties("the_collector")));
+
+    /** 星蚀（Eclipse）。槽位：手部 hands。 */
+    public static final RegistryObject<GearItem> ECLIPSE =
+            ITEMS.register("eclipse", () -> new GearItem("eclipse", gearProperties("eclipse")));
+
+    /** 赛瑞尔达的怨恨（Serylda's Grudge）。槽位：手部 hands。 */
+    public static final RegistryObject<GearItem> SERYLDAS =
+            ITEMS.register("seryldas", () -> new GearItem("seryldas", gearProperties("seryldas")));
+
+    /** 巨蛇之牙（Serpent's Fang）。槽位：手部 hands。 */
+    public static final RegistryObject<GearItem> SERPENTS_FANG =
+            ITEMS.register("serpents_fang", () -> new GearItem("serpents_fang", gearProperties("serpents_fang")));
+
     // ===================== 女神泪系列（法力流，8 件传说，4 对蜕变） =====================
 
     /**
@@ -718,44 +1095,44 @@ public final class ModItems {
             ITEMS.register("vampiric_scepter", () -> new GearItem("vampiric_scepter", gearProperties("vampiric_scepter")));
 
     /**
-     * 【测试用】拉弓速度测试器（Draw Speed Test）。槽位：腰带 belt。
-     * 蓄力速度 +100%（attributeslib:draw_speed 默认 1.0，加成后倍率 = 2.0），用于在装有
-     * Apothic Attributes 的环境里直观验证远程武器蓄力速度是否生效：佩戴后弓只需蓄力约 10 tick
-     * （半秒）即可达到满力。属性自带原生效应（弓/弩/三叉戟每 tick 消耗双倍蓄力进度），无需本模组
-     * 事件层。仅调试用途，后续版本会移除。数值来自 draw_speed_test.json。
-     */
-    public static final RegistryObject<GearItem> DRAW_SPEED_TEST =
-            ITEMS.register("draw_speed_test",
-                    () -> new GearItem("draw_speed_test", gearProperties("draw_speed_test")));
-
-    /**
-     * 【测试用】固定法穿测试器（Flat Magic Penetration Tester）。槽位：腰带 belt。
-     * +100 法术穿透（lolaccessories:magic_pen，固定点数）。佩戴后对铁魔法法术目标结算时
-     * 无视等额「原版护甲 + 传说魔法抗性」，用于拿冰霜蜘蛛等自带护甲的怪验证穿透是否生效。
-     * 仅调试用途，后续版本会移除。数值来自 flat_pen_test.json。
-     */
-    public static final RegistryObject<GearItem> FLAT_PEN_TEST =
-            ITEMS.register("flat_pen_test",
-                    () -> new GearItem("flat_pen_test", gearProperties("flat_pen_test")));
-
-    /**
-     * 【测试用】百分比法穿测试器（Percent Magic Penetration Tester）。槽位：腰带 belt。
-     * +90% 法术穿透（lolaccessories:magic_pen_percent，0~1 百分比语义）。佩戴后对铁魔法
-     * 法术目标结算时按 90% 无视「原版护甲、护甲韧性、传说魔法抗性与铁魔法学派魔抗」，
-     * 用于拿冰霜蜘蛛等怪验证百分比穿透是否生效。仅调试用途，后续版本会移除。
-     * 数值来自 pct_pen_test.json。
-     */
-    public static final RegistryObject<GearItem> PCT_PEN_TEST =
-            ITEMS.register("pct_pen_test",
-                    () -> new GearItem("pct_pen_test", gearProperties("pct_pen_test")));
-
-    /**
      * 负极斗篷（Negatron Cloak）。槽位：腰带 belt。
      * +45 传说魔法抗性（lolaccessories:magic_resist）。抗魔斗篷（Null-Magic Mantle）在
      * 锻造台付费升级获得（见 negatron_cloak.json 付费锻造配方）。数值来自 negatron_cloak.json。
      */
     public static final RegistryObject<GearItem> NEGATRON_CLOAK =
             ITEMS.register("negatron_cloak", () -> new GearItem("negatron_cloak", gearProperties("negatron_cloak")));
+
+    // ===================== 第十五批 6 件（公理圆弧 狂妄 亵渎九头蛇 电震涡流剑 放血者的诅咒 深渊面具） =====================
+
+    /** 公理圆弧（Axiom Arc）。槽位：手饰 hands。+55 攻击力 / +18 穿甲 / +20 技能急速。
+     *  被动「涌动」：对英雄造成伤害后 3 秒内参与击杀 → 2 秒内获得 +500 终极技能急速。 */
+    public static final RegistryObject<GearItem> AXIOM_ARC =
+            ITEMS.register("axiom_arc", () -> new GearItem("axiom_arc", gearProperties("axiom_arc")));
+
+    /** 狂妄（Hubris）。槽位：手饰 hands。+55 攻击力 / +18 穿甲 / +10 技能急速。
+     *  被动「盛名」：3 秒内伤害过的英雄阵亡 → 90 秒内 +12+3×击杀数 攻击力。 */
+    public static final RegistryObject<GearItem> HUBRIS =
+            ITEMS.register("hubris", () -> new GearItem("hubris", gearProperties("hubris")));
+
+    /** 亵渎九头蛇（Profane Hydra）。槽位：手饰 hands。+55 攻击力 / +18 穿甲 / +10 技能急速。
+     *  被动「顺劈」+ 主动「邪斩」（与九头蛇系列共用新月按键）。 */
+    public static final RegistryObject<GearItem> PROFANE_HYDRA =
+            ITEMS.register("profane_hydra", () -> new GearItem("profane_hydra", gearProperties("profane_hydra")));
+
+    /** 电震涡流剑（Voltaic Cyclosword）。槽位：手饰 hands。+55 攻击力 / +10 穿甲 / +10 技能急速。
+     *  被动「通电/苍穹」：盈能满层（100）后攻击或技能命中触发盈能攻击。 */
+    public static final RegistryObject<GearItem> VOLTAIC_CYCLOSWORD =
+            ITEMS.register("voltaic_cyclosword", () -> new GearItem("voltaic_cyclosword", gearProperties("voltaic_cyclosword")));
+
+    /** 放血者的诅咒（Bloodletter's Curse）。槽位：手饰 hands。+65% 法术强度 / +400 生命值 / +15 技能急速。
+     *  被动「恶劣衰朽」：魔法伤害命中 → 获得传说百分比法穿 7.5%×层数（至多 4 层），6 秒。 */
+    public static final RegistryObject<GearItem> BLOODLETTERS_CURSE =
+            ITEMS.register("bloodletters_curse", () -> new GearItem("bloodletters_curse", gearProperties("bloodletters_curse")));
+
+    /** 深渊面具（Abyssal Mask）。槽位：头饰 head。+350 生命值 / +45 魔抗 / +15 技能急速。
+     *  被动「损毁」：12 格内的敌方英雄承受的魔法伤害提高 12%。 */
+    public static final RegistryObject<GearItem> ABYSSAL_MASK =
+            ITEMS.register("abyssal_mask", () -> new GearItem("abyssal_mask", gearProperties("abyssal_mask")));
 
     /**
      * 钢铁印章（Steel Sigil）。槽位：护符 charm。
@@ -923,6 +1300,73 @@ public final class ModItems {
             ITEMS.register("wardens_mail", () -> new GearItem("wardens_mail", gearProperties("wardens_mail")));
 
     /** 带翼的月板甲（Winged Moonplate）。槽位：足部 feet。+200 最大生命 / +4% 移动速度。数值来自 winged_moonplate.json。 */
+        // ===================== 第十六批 7 双 2 级（史诗）鞋 =====================
+
+    /** 狂战士胫甲（Berserker's Greaves）。槽位：足部 feet。+30% 攻速 / +30% 蓄力速度 / +45% 移速。 */
+    public static final RegistryObject<GearItem> BERSERKER_GREAVES =
+            ITEMS.register("berserker_greaves", () -> new GearItem("berserker_greaves", gearProperties("berserker_greaves")));
+
+    /** 暴食胫甲（Symbiote Soles）。槽位：足部 feet。+45% 移速 / +4% 全能吸血。
+     *  被动「杀戮」：参与击杀英雄获得 0.6% 全能吸血，至多 10 次。 */
+    public static final RegistryObject<GearItem> SYMBIOTE_SOLES =
+            ITEMS.register("symbiote_soles", () -> new GearItem("symbiote_soles", gearProperties("symbiote_soles")));
+
+    /** 轻灵之靴（Swift Boots）。槽位：足部 feet。+55% 移速。
+     *  被动「迅捷步」：受到的减速效果效能降低 25%。 */
+    public static final RegistryObject<GearItem> SWIFT_BOOTS =
+            ITEMS.register("swift_boots", () -> new GearItem("swift_boots", gearProperties("swift_boots")));
+
+    /** 法师之靴（Sorcerer's Shoes）。槽位：足部 feet。+12 固定法穿 / +45% 移速。 */
+    public static final RegistryObject<GearItem> SORCERERS_SHOES =
+            ITEMS.register("sorcerers_shoes", () -> new GearItem("sorcerers_shoes", gearProperties("sorcerers_shoes")));
+
+    /** 铁板靴（Plated Steelcaps）。槽位：足部 feet。+25 护甲 / +45% 移速。
+     *  被动「镀板」：使即将到来的攻击（物理）伤害降低 10%。 */
+    public static final RegistryObject<GearItem> PLATED_STEELCAPS =
+            ITEMS.register("plated_steelcaps", () -> new GearItem("plated_steelcaps", gearProperties("plated_steelcaps")));
+
+    /** 水银之靴（Mercury's Treads）。槽位：足部 feet。+20 魔抗 / +45% 移速 / +30% 韧性。 */
+    public static final RegistryObject<GearItem> MERCURYS_TREADS =
+            ITEMS.register("mercurys_treads", () -> new GearItem("mercurys_treads", gearProperties("mercurys_treads")));
+
+    /** 明朗之靴（Ionian Boots of Lucidity）。槽位：足部 feet。+20 技能急速 / +45% 移速
+     *  （10 技能急速 + 10 召唤师技能急速按约定替换为等额技能急速）。 */
+        /** 不朽之路（Undying Path）。槽位：足部 feet。+45% 移速 / +4% 全能吸血。
+     *  被动「杀戮」（同暴食）与「现在到永远」：一半生命以上造成 4% 额外伤害；以下获得 12% 额外治疗/护盾/回复。 */
+    public static final RegistryObject<GearItem> IMMORTAL_PATH =
+            ITEMS.register("immortal_path", () -> new GearItem("immortal_path", gearProperties("immortal_path")));
+
+    /** 迅捷行军（Swiftmarch）。槽位：足部 feet。+65% 移速。
+     *  被动「迅捷步」（-25% 减速）与「诺克萨斯的狂热」：获得相当于 5% 移速加成的适应之力。 */
+    public static final RegistryObject<GearItem> SWIFTMARCH =
+            ITEMS.register("swiftmarch", () -> new GearItem("swiftmarch", gearProperties("swiftmarch")));
+
+    /** 炮铜胫甲（Gunmetal Greaves）。槽位：足部 feet。+45% 攻速 / +45% 移速 / +5% 生命偷取。 */
+    public static final RegistryObject<GearItem> GUNMETAL_GREAVES =
+            ITEMS.register("gunmetal_greaves", () -> new GearItem("gunmetal_greaves", gearProperties("gunmetal_greaves")));
+
+    /** 猩红明朗（Crimson Lucidity）。槽位：足部 feet。+40 技能急速 / +45% 移速。
+     *  被动「诺克萨斯的急速」：施放技能或装备主动技后获得 10%/8% 移速，持续 4 秒。 */
+    public static final RegistryObject<GearItem> CRIMSON_LUCIDITY =
+            ITEMS.register("crimson_lucidity", () -> new GearItem("crimson_lucidity", gearProperties("crimson_lucidity")));
+
+    /** 带链碾碎者（Chainlaced Crushers）。槽位：足部 feet。+25 魔抗 / +45% 移速 / +30% 韧性。
+     *  被动「诺克萨斯的不懈」：受英雄魔法伤害 → 魔法护盾 100-200+8% 额外生命，5 秒（CD 15s）。 */
+    public static final RegistryObject<GearItem> CHAINLACED_CRUSHERS =
+            ITEMS.register("chainlaced_crushers", () -> new GearItem("chainlaced_crushers", gearProperties("chainlaced_crushers")));
+
+    /** 装甲战靴（Armored Advance）。槽位：足部 feet。+35 护甲 / +45% 移速。
+     *  被动「诺克萨斯的耐久」：受英雄物理伤害 → 物理护盾 100-200+8% 额外生命，5 秒（CD 15s）。 */
+    public static final RegistryObject<GearItem> ARMORED_ADVANCE =
+            ITEMS.register("armored_advance", () -> new GearItem("armored_advance", gearProperties("armored_advance")));
+
+    /** 灵能使之靴（Spellslinger's Shoes）。槽位：足部 feet。+20 法穿 / +8% 法穿 / +45% 移速。 */
+    public static final RegistryObject<GearItem> SPELLSLINGERS_SHOES =
+            ITEMS.register("spellslingers_shoes", () -> new GearItem("spellslingers_shoes", gearProperties("spellslingers_shoes")));
+
+public static final RegistryObject<GearItem> IONIAN_BOOTS =
+            ITEMS.register("ionian_boots", () -> new GearItem("ionian_boots", gearProperties("ionian_boots")));
+
     public static final RegistryObject<GearItem> WINGED_MOONPLATE =
             ITEMS.register("winged_moonplate", () -> new GearItem("winged_moonplate", gearProperties("winged_moonplate")));
 
@@ -930,9 +1374,29 @@ public final class ModItems {
     public static final RegistryObject<GearItem> ZEAL =
             ITEMS.register("zeal", () -> new GearItem("zeal", gearProperties("zeal")));
 
+    /** 中娅沙漏（Zhonya's Hourglass）。槽位：手镯 bracelet。+105% 法术强度 / +50 护甲；主动「时间停止」。 */
+    public static final RegistryObject<GearItem> ZHONYAS_HOURGLASS =
+            ITEMS.register("zhonyas_hourglass", () -> new GearItem("zhonyas_hourglass", gearProperties("zhonyas_hourglass")));
+
+    /** 朔极之矛（Spear of Shojin）。槽位：手饰 hands。+45 攻击力 / +450 最大生命；被动「专注意志」。 */
+    public static final RegistryObject<GearItem> SPEAR_OF_SHOJIN =
+            ITEMS.register("spear_of_shojin", () -> new GearItem("spear_of_shojin", gearProperties("spear_of_shojin")));
+
+    /** 莫雷洛秘典（Morellonomicon）。槽位：护符 charm。+90% 法术强度 / +350 最大生命。 */
+    public static final RegistryObject<GearItem> MORELLONOMICON =
+            ITEMS.register("morellonomicon", () -> new GearItem("morellonomicon", gearProperties("morellonomicon")));
+
+    /** 黯影阔剑（Umbral Glaive）。槽位：手饰 hands。+50 攻击力 / +15 固定护甲穿透；被动「夜行者」。 */
+    public static final RegistryObject<GearItem> UMBRAL_GLAIVE =
+            ITEMS.register("umbral_glaive", () -> new GearItem("umbral_glaive", gearProperties("umbral_glaive")));
+
+    /** 破舰者（Hullbreaker）。槽位：手饰 hands。+40 攻击力 / +500 最大生命 / +4% 移速；不含登舰小组被动。 */
+    public static final RegistryObject<GearItem> HULLBREAKER =
+            ITEMS.register("hullbreaker", () -> new GearItem("hullbreaker", gearProperties("hullbreaker")));
+
     /**
      * 金币（Gold Coin）。通用货币，非饰品，堆叠上限 64（原版默认值）。
-     * 击杀生物按目标血量分档掉落；可用 1 个金块无序合成。
+     * 仅可通过 5 个金粒摆成十字形合成。
      */
     public static final RegistryObject<Item> GOLD_COIN =
             ITEMS.register("gold_coin", () -> new GoldCoinItem(

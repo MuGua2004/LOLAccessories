@@ -1,0 +1,31 @@
+{
+  "template_version": 2,
+  "gear_id": "immortal_shieldbow",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "attributeslib:arrow_damage",
+      "operation": "ADDITION",
+      "amount": 0.55,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:crit_chance",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "shieldbow_lifeline",
+      "target": "self",
+      "enabled": true,
+      "shield_amount": 550.0,
+      "trigger_health_percent": 0.3,
+      "duration_seconds": 3.0,
+      "cooldown_seconds": 90.0
+    }
+  ]
+}

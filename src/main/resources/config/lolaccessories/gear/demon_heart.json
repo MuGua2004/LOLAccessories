@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 2,
   "gear_id": "demon_heart",
   "slot": "charm",
   "max_stack_size": 1,
@@ -60,7 +60,8 @@
       "amount": 0.0,
       "curse_ratio": 0.1,
       "buff_ratio": 0.15,
-      "duration_seconds": 0.0
+      "duration_seconds": 0.0,
+      "overwrite": true
     }
   ]
 }

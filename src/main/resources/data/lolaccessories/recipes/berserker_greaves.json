@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:boots"
+    },
+    {
+      "item": "lolaccessories:dagger"
+    },
+    {
+      "item": "lolaccessories:dagger"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:berserker_greaves"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 280
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

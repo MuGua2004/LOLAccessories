@@ -1,0 +1,35 @@
+{
+  "template_version": 2,
+  "gear_id": "sundered_sky",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 40.0
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 400.0
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 10,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "lightshield_strike",
+      "target": "enemy",
+      "enabled": true,
+      "amount": 0.9,
+      "ranged_ratio": 0.45,
+      "max_health_pct": 0.04,
+      "cooldown_seconds": 10.0
+    }
+  ]
+}

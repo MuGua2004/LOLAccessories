@@ -1,5 +1,6 @@
 package com.example.lolaccessories.event;
 
+import com.example.lolaccessories.compat.CuriosGearWear;
 import com.example.lolaccessories.init.ModAttributes;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
@@ -35,6 +36,11 @@ public final class LolTenacityEvents {
         int original = instance.getDuration();
         if (original <= 1) {
             return original;
+        }
+        // 迅捷步（轻灵之靴）：受到的减速效果效能降低 25%（时长 ×0.75）
+        if (instance.getEffect() == net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN
+                && CuriosGearWear.isWearing(player, "swift_boots")) {
+            original = Math.max(1, Math.round(original * 0.75F));
         }
         AttributeInstance attribute = player.getAttribute(ModAttributes.LOL_TENACITY.get());
         if (attribute == null) {

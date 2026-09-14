@@ -1,0 +1,27 @@
+{
+  "template_version": 1,
+  "gear_id": "emperors_new_clothes",
+  "slot": "body",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 10.0
+    },
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.10,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "new_clothes",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.99
+    }
+  ]
+}

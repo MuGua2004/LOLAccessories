@@ -1,0 +1,40 @@
+{
+  "template_version": 8,
+  "gear_id": "essence_reaver",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 50.0,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:crit_chance",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 20,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "spellblade",
+      "target": "self",
+      "enabled": true,
+      "power_ratio": 1.25,
+      "base_damage": 50.0,
+      "amount": 0.5,
+      "duration_seconds": 10.0,
+      "cooldown_seconds": 1.5,
+      "overwrite": true
+    }
+  ]
+}

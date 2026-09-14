@@ -2,6 +2,7 @@ package com.example.lolaccessories;
 
 import com.example.lolaccessories.compat.IronsCompat;
 import com.example.lolaccessories.config.ClientFxConfig;
+import com.example.lolaccessories.config.CommonConfig;
 import com.example.lolaccessories.config.GearConfigManager;
 import com.example.lolaccessories.init.ModAttributes;
 import com.example.lolaccessories.init.ModCreativeModeTabs;
@@ -61,5 +62,9 @@ public class LOLAccessories {
 
         // 客户端特效质量配置（CLIENT 型，仅客户端读写；服务端加载时不会创建/读取该文件）
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientFxConfig.SPEC);
+
+        // 通用配置（COMMON 型）：低数值模式等全局开关；配置加载/热重载时刷新缓存并联动装备配置缓存
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
+        modEventBus.addListener(CommonConfig::onModConfig);
     }
 }

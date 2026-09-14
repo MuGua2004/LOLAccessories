@@ -563,7 +563,7 @@ public final class LolLegendPassiveEvents {
                 double shield = player.getMaxHealth() * pct * (1.0D + healPowerBonus(player));
                 // 黄心护盾：直接写吸收值（显示为金色心），不挂药水效果，避免被清除/叠加异常
                 ShieldHpService.apply(player, ShieldHpService.SOURCE_ROOKERN,
-                        (float) shield, ROOKERN_SHIELD_DURATION_MS);
+                        (float) shield, ROOKERN_SHIELD_DURATION_MS, ShieldType.MAGIC);
             }
             ROOKERN_SHIELD_ACTIVE.put(uuid, true);
             syncRookernShieldFx(player, true);

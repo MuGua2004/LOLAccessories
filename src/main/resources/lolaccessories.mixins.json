@@ -9,7 +9,8 @@
     "LivingEntityMagicPenMixin",
     "LivingEntityTenacityMixin",
     "MobEffectInstanceAccessor",
-    "PhantomDancerCollisionMixin"
+    "PhantomDancerCollisionMixin",
+    "EntityTypeCreateMixin"
   ],
   "client": [
     "GuiTooltipBorderMixin",

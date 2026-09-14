@@ -1,0 +1,42 @@
+{
+  "template_version": 4,
+  "gear_id": "stormrazor",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 50
+    },
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.25,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:crit_chance",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:arrow_damage",
+      "operation": "ADDITION",
+      "amount": 0.5,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "stormrazor_bolt",
+      "target": "self",
+      "enabled": true,
+      "base_damage": 100.0,
+      "duration_seconds": 1.5,
+      "school": "lightning"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "template_version": 1,
+  "gear_id": "jaksho",
+  "slot": "body",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 350.0
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 45.0
+    },
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 45.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "protean",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.3,
+      "duration_seconds": 5.0
+    }
+  ]
+}

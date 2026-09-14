@@ -1,18 +1,20 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "thornmail",
   "slot": "body",
   "max_stack_size": 1,
   "attributes": [
     {
-      "id": "minecraft:generic.max_health",
-      "operation": "ADDITION",
-      "amount": 150
-    },
-    {
       "id": "minecraft:generic.armor",
       "operation": "ADDITION",
-      "amount": 75
+      "amount": 75,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 150,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [

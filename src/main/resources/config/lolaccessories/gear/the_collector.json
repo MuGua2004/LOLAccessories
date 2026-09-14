@@ -1,0 +1,44 @@
+{
+  "template_version": 1,
+  "gear_id": "the_collector",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 50.0
+    },
+    {
+      "id": "attributeslib:arrow_damage",
+      "operation": "ADDITION",
+      "amount": 0.5,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:armor_pierce",
+      "operation": "ADDITION",
+      "amount": 10.0
+    },
+    {
+      "id": "lolaccessories:crit_chance",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "collector_execute",
+      "target": "enemy",
+      "enabled": true,
+      "amount": 0.05
+    },
+    {
+      "id": "collector_toll",
+      "target": "self",
+      "enabled": true,
+      "amount": 25.0
+    }
+  ]
+}

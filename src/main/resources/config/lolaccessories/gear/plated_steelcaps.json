@@ -1,0 +1,29 @@
+{
+  "template_version": 1,
+  "gear_id": "plated_steelcaps",
+  "slot": "feet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 25,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "percent": true,
+      "overwrite": true,
+      "amount": 0.45
+    },
+    {
+      "id": "lolaccessories:physical_damage_reduction",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": []
+}

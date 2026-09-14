@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "blasting_wand",
   "slot": "hands",
   "max_stack_size": 1,
@@ -7,8 +7,9 @@
     {
       "id": "irons_spellbooks:spell_power",
       "operation": "ADDITION",
-      "amount": 0.45,
-      "percent": true
+      "amount": 0.4,
+      "percent": true,
+      "overwrite": true
     }
   ],
   "on_hit_effects": []

@@ -54,6 +54,18 @@ public final class LOLNetworking {
                 GearFxPacket::encode,
                 GearFxPacket::decode,
                 GearFxPacket::handle);
+        CHANNEL.registerMessage(nextId++, FxSpotPacket.class,
+                FxSpotPacket::encode,
+                FxSpotPacket::decode,
+                FxSpotPacket::handle);
+        CHANNEL.registerMessage(nextId++, EnergySyncPacket.class,
+                EnergySyncPacket::encode,
+                EnergySyncPacket::decode,
+                EnergySyncPacket::handle);
+        CHANNEL.registerMessage(nextId++, ShieldSyncPacket.class,
+                ShieldSyncPacket::encode,
+                ShieldSyncPacket::decode,
+                ShieldSyncPacket::handle);
     }
 
     /** 服务端通知指定玩家：回声被动已触发，其冷却为 cooldownTicks 游戏刻。 */
@@ -63,7 +75,18 @@ public final class LOLNetworking {
 
     /** 服务端通知指定玩家：主动技能（skillId）已触发，其冷却为 cooldownTicks 游戏刻。 */
     public static void sendSkillCooldown(ServerPlayer player, String skillId, int cooldownTicks) {
-        CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new SkillCooldownPacket(skillId, cooldownTicks));
+        sendSkillCooldown(player, skillId, cooldownTicks, false);
+    }
+
+    /**
+     * 服务端通知指定玩家：主动技能（skillId）已触发。
+     *
+     * @param debug 调试通道标记（{@code /lolaccessories cdtest}）：置真时客户端无视
+     *              常规可见条件强制显示冷却条
+     */
+    public static void sendSkillCooldown(ServerPlayer player, String skillId, int cooldownTicks, boolean debug) {
+        CHANNEL.send(PacketDistributor.PLAYER.with(() -> player),
+                new SkillCooldownPacket(skillId, cooldownTicks, debug));
     }
 
     /** 客户端按下「时间停止」按键时调用：请求服务端触发。 */
@@ -86,5 +109,29 @@ public final class LOLNetworking {
     public static void sendGearFx(net.minecraft.world.entity.Entity target, FxKind kind, boolean active, int ticks) {
         CHANNEL.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> target),
                 new GearFxPacket(kind, target.getUUID(), active, ticks));
+    }
+
+    /**
+     * 服务端向正在追踪施法点所在区块的客户端（含施法者本人）广播地点特效。
+     * 救赎「降临」、残疫「憎恨之雾」等以世界坐标为锚的特效使用此通道。
+     * {@code radius} 为特效作用半径（法阵圈大小）。
+     */
+    public static void sendSpotFx(net.minecraft.world.level.Level level, FxKind kind,
+                                  double x, double y, double z, int ticks, float radius) {
+        net.minecraft.world.level.ChunkPos chunkPos =
+                new net.minecraft.world.level.ChunkPos(net.minecraft.core.BlockPos.containing(x, y, z));
+        CHANNEL.send(PacketDistributor.TRACKING_CHUNK.with(() -> level.getChunk(chunkPos.x, chunkPos.z)),
+                new FxSpotPacket(kind, x, y, z, ticks, radius));
+    }
+
+    /** 服务端向指定玩家同步盈能能量（驱动客户端盈能条 HUD）。 */
+    public static void sendEnergySync(ServerPlayer player, float energy, float max) {
+        CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new EnergySyncPacket(energy, max));
+    }
+
+    /** 服务端向指定玩家同步三池护盾余额（白/魔/物，驱动快捷栏左侧护盾条）。 */
+    public static void sendShieldSync(ServerPlayer player, float white, float magic, float physical) {
+        CHANNEL.send(PacketDistributor.PLAYER.with(() -> player),
+                new ShieldSyncPacket(white, magic, physical));
     }
 }

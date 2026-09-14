@@ -66,6 +66,11 @@ public class GearItem extends Item implements ICurioItem {
     }
 
     @Override
+    public List<Component> getAttributesTooltip(List<Component> tooltips, ItemStack stack) {
+        return new ArrayList<>();
+    }
+
+    @Override
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
         return true;
     }
@@ -253,11 +258,18 @@ public class GearItem extends Item implements ICurioItem {
                 passiveLines.add(activeDesc("quicksilver",
                         formatNumber(effect.cooldown_seconds)));
             } else if ("crescent".equals(effect.id)) {
-                // 主动技「新月/血斩」：提亚马特固定伤害；贪欲九头蛇按攻击力比例（原版 80% AD）
-                passiveLines.add(activeTitle("crescent"));
                 if ("ravenous_hydra".equals(gearId)) {
+                    passiveLines.add(activeTitle("crescent"));
                     passiveLines.add(activeDesc("crescent",
                             formatPercent(effect.power_ratio > 0 ? effect.power_ratio : 0.8D),
+                            formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 3.0D),
+                            formatNumber(effect.cooldown_seconds)));
+                } else if ("titanic_hydra".equals(gearId)) {
+                    GearConfig.OnHitEffect cleave = config.findEffect("titanic_cleave").orElse(null);
+                    passiveLines.add(activeTitle("titanic_crescent"));
+                    passiveLines.add(activeDesc("titanic_crescent",
+                            formatPercent(effect.base_damage > 0 ? effect.base_damage : 0.04D),
+                            formatPercent(effect.max_health_pct > 0 ? effect.max_health_pct : 0.09D),
                             formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 3.0D),
                             formatNumber(effect.cooldown_seconds)));
                 } else {
@@ -338,6 +350,10 @@ public class GearItem extends Item implements ICurioItem {
                             formatPercent(effect.ap_ratio > 0 ? effect.ap_ratio : 0.1D),
                             formatPercent(effect.heal_ap_ratio > 0 ? effect.heal_ap_ratio : 0.1D),
                             formatPercent(effect.heal_hp_ratio > 0 ? effect.heal_hp_ratio : 0.03D)));
+                } else if ("essence_reaver".equals(gearId)) {
+                    passiveLines.add(passiveTitle("spellblade"));
+                    passiveLines.add(passiveDesc("spellblade",
+                            formatPercent(effect.power_ratio > 0 ? effect.power_ratio : 1.25D)));
                 } else {
                     // 咒刃（耀光）：魔法命中后下一次普攻附伤
                     passiveLines.add(passiveTitle("spellblade"));
@@ -350,6 +366,24 @@ public class GearItem extends Item implements ICurioItem {
                 passiveLines.add(passiveDesc("cleave",
                         formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 2.0D),
                         formatPercent(effect.amount > 0 ? effect.amount : 0.6D)));
+            } else if ("terminus".equals(effect.id)) {
+                passiveLines.add(passiveTitle("terminus"));
+                passiveLines.add(passiveDesc("terminus",
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 30.0D),
+                        formatNumber(effect.max_stacks > 0 ? effect.max_stacks : 3),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 5.0D)));
+            } else if ("shipwrecker".equals(effect.id)) {
+                passiveLines.add(passiveTitle("shipwrecker"));
+                passiveLines.add(passiveDesc("shipwrecker",
+                        formatNumber(effect.max_stacks > 0 ? effect.max_stacks : 100),
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 40.0D),
+                        formatPercent(effect.power_ratio > 0 ? effect.power_ratio : 1.0D)));
+            } else if ("titanic_cleave".equals(effect.id)) {
+                passiveLines.add(passiveTitle("titanic_cleave"));
+                passiveLines.add(passiveDesc("titanic_cleave",
+                        formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 2.5D),
+                        formatPercent(effect.base_damage > 0 ? effect.base_damage : 0.01D),
+                        formatPercent(effect.max_health_pct > 0 ? effect.max_health_pct : 0.03D)));
             } else if ("warmog_heart".equals(effect.id)) {
                 // 狂徒之心（狂徒铠甲）：饰品栏生命加成达标后脱战回复
                 passiveLines.add(passiveTitle("warmog_heart"));
@@ -367,6 +401,130 @@ public class GearItem extends Item implements ICurioItem {
                         ? stack.getTag().getDouble("lolaccessories_heartsteel_item_bonus") : 0.0D;
                 passiveLines.add(Component.translatable("passive.lolaccessories.heartsteel.progress",
                         formatNumber(fedBonus)).withStyle(ChatFormatting.GOLD));
+            } else if ("mock_fate".equals(effect.id)) {
+                // 主动技「嘲弄命运」（命运十面骰）——数值为固定设计，直接写死在词条里
+                com.example.lolaccessories.LOLAccessories.LOGGER.info("[命运骰] tooltip 数值：duration={} cooldown={}",
+                        effect.duration_seconds, effect.cooldown_seconds);
+                passiveLines.add(activeTitle("mock_fate"));
+                passiveLines.add(activeDesc("mock_fate"));
+            } else if ("qionghua".equals(effect.id)) {
+                // 梦之乌托邦（翡翠城）：法术命中施加琼华，目标受到的伤害提高
+                passiveLines.add(passiveTitle("qionghua"));
+                passiveLines.add(passiveDesc("qionghua",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.2D),
+                        formatNumber(effect.max_stacks > 0 ? effect.max_stacks : 10)));
+            } else if ("farewell_paradise".equals(effect.id)) {
+                // 主动技「再见桃花源」（翡翠城）——数值为固定设计，直接写死在词条里
+                passiveLines.add(activeTitle("farewell_paradise"));
+                passiveLines.add(activeDesc("farewell_paradise"));
+            } else if ("endless_grief".equals(effect.id)) {
+                // 主动技「此恨无绝」（灵恸）——数值为固定设计，直接写死在词条里
+                passiveLines.add(activeTitle("endless_grief"));
+                passiveLines.add(activeDesc("endless_grief"));
+            } else if ("new_clothes".equals(effect.id)) {
+                // 唯一被动「皇帝的新衣」（隐身衣）：99% 物理/魔法伤害减免（激活式投影）
+                passiveLines.add(passiveTitle("new_clothes"));
+                passiveLines.add(passiveDesc("new_clothes",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.99D)));
+            } else if ("i_want_for_nothing".equals(effect.id)) {
+                // 唯一被动「我什么都不缺了」（天帝）——三段成长，数值为固定设计
+                passiveLines.add(passiveTitle("i_want_for_nothing"));
+                passiveLines.add(passiveDesc("i_want_for_nothing"));
+            } else if ("poem_of_truth".equals(effect.id)) {
+                // 唯一被动「代行真理」（致明日之诗）：攻击附带真理伤害 + 佩戴切创造模式
+                passiveLines.add(passiveTitle("poem_of_truth"));
+                passiveLines.add(passiveDesc("poem_of_truth",
+                        formatNumber(effect.true_damage > 0 ? effect.true_damage : 1000.0D)));
+                passiveLines.add(passiveDesc("poem_of_truth.creative", 1.0D));
+            } else if ("zeal".equals(effect.id)) {
+                // 霜火风暴（基克的聚合）：终极技能后进入战斗召唤风暴
+                passiveLines.add(passiveTitle("zeal"));
+                passiveLines.add(passiveDesc("zeal",
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 30.0D),
+                        formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 4.0D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 5.0D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 45.0D)));
+            } else if ("stormrazor_dynamic_arrow".equals(effect.id)) {
+                // 岚切：弹射物伤害与攻击力等额（动态）
+                passiveLines.add(passiveTitle("stormrazor_dynamic_arrow"));
+                passiveLines.add(passiveDesc("stormrazor_dynamic_arrow"));
+            } else if ("stormrazor_bolt".equals(effect.id)) {
+                // 盈能：电弧（岚切）
+                passiveLines.add(passiveTitle("stormrazor_bolt"));
+                passiveLines.add(passiveDesc("stormrazor_bolt",
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 100.0D),
+                        formatPercent(0.45D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 1.5D)));
+            } else if ("pledge".equals(effect.id)) {
+                // 誓约（骑士之誓）
+                passiveLines.add(passiveTitle("pledge"));
+                passiveLines.add(passiveDesc("pledge",
+                        formatPercent(0.14D), formatPercent(0.12D)));
+                passiveLines.add(activeTitle("pledge"));
+                passiveLines.add(activeDesc("pledge"));
+            } else if ("winds_fury".equals(effect.id)) {
+                // 风怒（卢安娜的飓风）：普攻附带额外箭矢
+                passiveLines.add(passiveTitle("winds_fury"));
+                passiveLines.add(passiveDesc("winds_fury",
+                        formatNumber(effect.count > 0 ? effect.count : 2),
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.65D)));
+            } else if ("intervention".equals(effect.id)) {
+                // 主动技「降临」（救赎）：以施法时的玩家坐标为中心，延迟后圣光落下（敌伤友疗）
+                passiveLines.add(activeTitle("intervention"));
+                passiveLines.add(activeDesc("intervention",
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 2.5D),
+                        formatPercent(effect.base_damage > 0 ? effect.base_damage : 0.10D),
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.25D),
+                        formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 3.5D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 120.0D)));
+            } else if ("winters_caress".equals(effect.id)) {
+                // 冬之抚慰（冰霜之心光环）：周围敌人降攻速
+                passiveLines.add(passiveTitle("winters_caress"));
+                passiveLines.add(passiveDesc("winters_caress",
+                        formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 3.5D),
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.20D)));
+            } else if ("icathian_bite".equals(effect.id)) {
+                // 艾卡西亚之咬（纳什之牙）：普攻附加法强魔法伤害
+                passiveLines.add(passiveTitle("icathian_bite"));
+                passiveLines.add(passiveDesc("icathian_bite",
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 15.0D),
+                        formatPercent(effect.ap_power_ratio > 0 ? effect.ap_power_ratio : 0.15D)));
+            } else if ("rimefrost".equals(effect.id)) {
+                // 凝霜（瑞莱的冰晶节杖）：魔法伤害减速
+                passiveLines.add(passiveTitle("rimefrost"));
+                passiveLines.add(passiveDesc("rimefrost",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.30D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 1.0D)));
+            } else if ("hatefog".equals(effect.id)) {
+                // 憎恨之雾（残疫）：大招命中脚下紫雾圈
+                passiveLines.add(passiveTitle("hatefog"));
+                passiveLines.add(passiveDesc("hatefog",
+                        formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 4.5D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 3.0D),
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 15.0D),
+                        formatPercent(effect.ap_power_ratio > 0 ? effect.ap_power_ratio : 0.0125D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 3.0D)));
+            } else if ("statikk_chain".equals(effect.id)) {
+                // 盈能：电刃闪电（斯塔缇克电刃）
+                passiveLines.add(passiveTitle("statikk_chain"));
+                passiveLines.add(passiveDesc("statikk_chain",
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 70.0D),
+                        formatNumber(effect.amount > 0 ? effect.amount : 6.0D)));
+            } else if ("spell_amplify".equals(effect.id)) {
+                // 法术放大器（灭世者的死亡之帽）
+                passiveLines.add(passiveTitle("spell_amplify"));
+                passiveLines.add(passiveDesc("spell_amplify",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.30D)));
+            } else if ("wit_end_hit".equals(effect.id)) {
+                // 磨蚀（智慧末刃）：命中附加魔法伤害
+                passiveLines.add(passiveTitle("wit_end_hit"));
+                passiveLines.add(passiveDesc("wit_end_hit",
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 45.0D)));
+            } else if ("firecannon_bolt".equals(effect.id)) {
+                // 盈能：火炮（疾射火炮）
+                passiveLines.add(passiveTitle("firecannon_bolt"));
+                passiveLines.add(passiveDesc("firecannon_bolt",
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 120.0D)));
             } else if ("quicken".equals(effect.id)) {
                 // 疾行（三相之力 Quicken）：普攻命中后短暂加速
                 passiveLines.add(passiveTitle("quicken"));
@@ -585,6 +743,30 @@ public class GearItem extends Item implements ICurioItem {
                 passiveLines.add(passiveDesc("demon_king",
                         formatPercent(effect.curse_ratio > 0 ? effect.curse_ratio : 0.10D),
                         formatPercent(effect.buff_ratio > 0 ? effect.buff_ratio : 0.15D)));
+            } else if ("focused_will".equals(effect.id)) {
+                passiveLines.add(passiveTitle("focused_will"));
+                passiveLines.add(passiveDesc("focused_will",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.03D),
+                        formatNumber(effect.max_stacks > 0 ? effect.max_stacks : 4),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 6.0D)));
+            } else if ("dragonforce".equals(effect.id)) {
+                // 龙之力量（朔极之矛）：基础技能急速，仅作用于基础技能冷却（终极技能不受影响）
+                passiveLines.add(passiveTitle("dragonforce"));
+                passiveLines.add(passiveDesc("dragonforce",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.25D)));
+            } else if ("nightstalker".equals(effect.id)) {
+                passiveLines.add(passiveTitle("nightstalker"));
+                passiveLines.add(passiveDesc("nightstalker",
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 50.0D),
+                        formatPercent(effect.armor_pierce_scale > 0 ? effect.armor_pierce_scale : 1.5D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 3.0D)));
+            } else if ("skipper".equals(effect.id)) {
+                passiveLines.add(passiveTitle("skipper"));
+                passiveLines.add(passiveDesc("skipper",
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 10.0D),
+                        formatNumber(effect.max_stacks > 0 ? effect.max_stacks : 5),
+                        formatPercent(effect.ad_ratio > 0 ? effect.ad_ratio : 1.2D),
+                        formatPercent(effect.max_health_pct > 0 ? effect.max_health_pct : 0.05D)));
             } else if ("shaped_charge".equals(effect.id)) {
                 // 成型炸药（破垒者）：近战普攻命中后结算真实伤害（含穿甲加成）
                 passiveLines.add(passiveTitle("shaped_charge"));
@@ -648,6 +830,235 @@ public class GearItem extends Item implements ICurioItem {
                         formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 90.0D),
                         formatPercent(effect.move_speed_ratio > 0 ? effect.move_speed_ratio : 0.1D),
                         formatPercent(effect.tenacity_ratio > 0 ? effect.tenacity_ratio : 0.25D)));
+            } else if ("steadfast".equals(effect.id)) {
+                // 坚韧（自然之力）：受到魔法伤害叠层，满层获得额外魔抗与移速
+                passiveLines.add(passiveTitle("steadfast"));
+                passiveLines.add(passiveDesc("steadfast",
+                        formatNumber(effect.amount > 0 ? effect.amount : 70.0D),
+                        formatPercent(effect.bonus_pct > 0 ? effect.bonus_pct : 0.06D),
+                        formatNumber(effect.max_stacks > 0 ? effect.max_stacks : 8),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 7.0D)));
+            } else if ("hypershot".equals(effect.id)) {
+                // 超频射击（视界专注）：远距离魔法命中标记目标，标记期间对其魔法增伤
+                passiveLines.add(passiveTitle("hypershot"));
+                passiveLines.add(passiveDesc("hypershot",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.10D),
+                        formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 70.0D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 6.0D)));
+            } else if ("void_corruption".equals(effect.id)) {
+                // 虚空侵蚀（裂隙制造者）：与敌方作战时每秒叠层增伤，满层获全能吸血（近战/远程）
+                passiveLines.add(passiveTitle("void_corruption"));
+                passiveLines.add(passiveDesc("void_corruption",
+                        formatPercent(effect.per_stack > 0 ? effect.per_stack : 0.02D),
+                        formatNumber(effect.max_stacks > 0 ? effect.max_stacks : 4),
+                        formatNumber(effect.interval_seconds > 0 ? effect.interval_seconds : 1.0D),
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.10D),
+                        formatPercent(effect.bonus_pct > 0 ? effect.bonus_pct : 0.06D)));
+            } else if ("void_infusion".equals(effect.id)) {
+                // 虚空灌注（裂隙制造者）：获得相当于 2% 额外生命值的法术强度（附属词条，不单列标题）
+                passiveLines.add(passiveDesc("void_infusion",
+                        formatPercent(effect.bonus_pct > 0 ? effect.bonus_pct : 0.02D)));
+            } else if ("cinderbloom".equals(effect.id)) {
+                // 灰烬绽放（影焰）：对低生命值目标造成的魔法伤害提高
+                passiveLines.add(passiveTitle("cinderbloom"));
+                passiveLines.add(passiveDesc("cinderbloom",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.20D),
+                        formatPercent(effect.max_health_pct > 0 ? effect.max_health_pct : 0.40D)));
+            } else if ("stormraider".equals(effect.id)) {
+                // 风暴掠袭（风暴狂涌）：短窗内累计伤害达阈值后延迟引爆雷电伤害并获移速
+                passiveLines.add(passiveTitle("stormraider"));
+                passiveLines.add(passiveDesc("stormraider",
+                        formatPercent(effect.max_health_pct > 0 ? effect.max_health_pct : 0.25D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 2.0D),
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 125.0D),
+                        formatPercent(effect.ap_power_ratio > 0 ? effect.ap_power_ratio : 0.10D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 30.0D)));
+            } else if ("ignore_pain".equals(effect.id)) {
+                // 无视痛苦（死亡之舞）：所受伤害的一部分转为流血，3 秒内扣完
+                passiveLines.add(passiveTitle("ignore_pain"));
+                passiveLines.add(passiveDesc("ignore_pain",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.30D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 3.0D)));
+            } else if ("defy".equals(effect.id)) {
+                // 蔑视（死亡之舞）：3 秒内被我伤害过的目标阵亡 → 净化流血 + 持续回血
+                passiveLines.add(passiveTitle("defy"));
+                passiveLines.add(passiveDesc("defy",
+                        formatPercent(effect.bonus_pct > 0 ? effect.bonus_pct : 0.75D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 2.0D)));
+            } else if ("lightshield_strike".equals(effect.id)) {
+                // 光盾打击（焚天）：对目标的第一次普攻必定暴击并回复生命（每目标 10 秒）
+                passiveLines.add(passiveTitle("lightshield_strike"));
+                passiveLines.add(passiveDesc("lightshield_strike",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.90D),
+                        formatPercent(effect.bonus_pct > 0 ? effect.bonus_pct : 0.45D),
+                        formatPercent(effect.max_health_pct > 0 ? effect.max_health_pct : 0.04D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 10.0D)));
+            } else if ("shockwave".equals(effect.id)) {
+                // 主动技「破阵冲击波」（挺进破坏者）
+                passiveLines.add(activeTitle("shockwave"));
+                passiveLines.add(activeDesc("shockwave",
+                        formatPercent(effect.power_ratio > 0 ? effect.power_ratio : 0.80D),
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.35D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 3.0D),
+                        formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 4.5D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 15.0D)));
+            } else if ("torment".equals(effect.id)) {
+                // 折磨（兰德里的折磨）：技能伤害灼烧目标（每 0.5 秒 1% 最大生命，3 秒）
+                passiveLines.add(passiveTitle("torment"));
+                passiveLines.add(passiveDesc("torment",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.02D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 3.0D)));
+            } else if ("suffering".equals(effect.id)) {
+                // 受苦（兰德里的折磨）：作战每秒 +2% 伤害，至多 6%（附属词条）
+                passiveLines.add(passiveDesc("suffering",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.02D),
+                        formatPercent(effect.amount > 0 ? effect.amount * (effect.max_stacks > 0 ? effect.max_stacks : 3) : 0.06D)));
+            } else if ("timeless".equals(effect.id)) {
+                // 时无级（时光之杖）：每 60 秒成长一层，满层升 1 级
+                passiveLines.add(passiveTitle("timeless"));
+                passiveLines.add(passiveDesc("timeless",
+                        formatNumber(effect.interval_seconds > 0 ? effect.interval_seconds : 60.0D),
+                        formatNumber(effect.amount > 0 ? effect.amount : 10.0D),
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 30.0D),
+                        formatPercent(effect.bonus_pct > 0 ? effect.bonus_pct : 0.03D),
+                        formatNumber(effect.max_stacks > 0 ? effect.max_stacks : 10)));
+            } else if ("iceborn_spellblade".equals(effect.id)) {
+                // 咒刃（冰脉护手）：施法后下一次普攻额外物理伤害 + 冰冷地带
+                passiveLines.add(passiveTitle("iceborn_spellblade"));
+                passiveLines.add(passiveDesc("iceborn_spellblade",
+                        formatPercent(effect.amount > 0 ? effect.amount : 1.50D),
+                        formatPercent(effect.bonus_pct > 0 ? effect.bonus_pct : 0.25D),
+                        formatPercent(effect.melee_ratio > 0 ? effect.melee_ratio : 0.125D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 2.0D),
+                        formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 3.0D)));
+            } else if ("protean".equals(effect.id)) {
+                // 虚空生物的复原力（千变者贾修）：战斗 5 秒后 +30% 护甲/魔抗直到战斗结束
+                passiveLines.add(passiveTitle("protean"));
+                passiveLines.add(passiveDesc("protean",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.30D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 5.0D)));
+            } else if ("bring_it_down".equals(effect.id)) {
+                // 放倒它（海妖杀手）：每第三次弹射物攻击造成额外物理伤害（已损失生命加成）
+                passiveLines.add(passiveTitle("bring_it_down"));
+                passiveLines.add(passiveDesc("bring_it_down",
+                        formatNumber(effect.max_stacks > 0 ? effect.max_stacks + 1 : 3),
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 150.0D),
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.75D)));
+            } else if ("shieldbow_lifeline".equals(effect.id)) {
+                // 救主灵刃（不朽盾弓）：致命伤害 → 白盾 3 秒
+                passiveLines.add(passiveTitle("shieldbow_lifeline"));
+                passiveLines.add(passiveDesc("shieldbow_lifeline",
+                        formatPercent(effect.trigger_health_percent > 0 ? effect.trigger_health_percent : 0.30D),
+                        formatNumber(effect.shield_amount > 0 ? effect.shield_amount : 550.0D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 3.0D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 90.0D)));
+            } else if ("naavori_flicker".equals(effect.id)) {
+                passiveLines.add(passiveTitle("naavori_flicker"));
+                passiveLines.add(passiveDesc("naavori_flicker",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.15D)));
+            } else if ("collector_execute".equals(effect.id)) {
+                passiveLines.add(passiveTitle("collector_execute"));
+                passiveLines.add(passiveDesc("collector_execute",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.05D)));
+            } else if ("collector_toll".equals(effect.id)) {
+                passiveLines.add(passiveTitle("collector_toll"));
+                passiveLines.add(passiveDesc("collector_toll",
+                        formatNumber(effect.amount > 0 ? effect.amount : 25.0D)));
+            } else if ("ever_rising_moon".equals(effect.id)) {
+                passiveLines.add(passiveTitle("ever_rising_moon"));
+                passiveLines.add(passiveDesc("ever_rising_moon",
+                        formatNumber(effect.amount > 0 ? effect.amount : 150.0D),
+                        formatPercent(effect.bonus_pct > 0 ? effect.bonus_pct : 0.40D),
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 75.0D),
+                        formatPercent(effect.power_ratio > 0 ? effect.power_ratio : 0.20D),
+                        formatPercent(effect.max_health_pct > 0 ? effect.max_health_pct : 0.08D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 6.0D)));
+            } else if ("shield_reaver".equals(effect.id)) {
+                passiveLines.add(passiveTitle("shield_reaver"));
+                passiveLines.add(passiveDesc("shield_reaver",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.05D)));
+            } else if ("wrath".equals(effect.id)) {
+                // 鬼索·愤怒：普攻附带固定魔法伤害（攻击特效）
+                passiveLines.add(passiveTitle("wrath"));
+                passiveLines.add(passiveDesc("wrath"));
+            } else if ("seething_strike".equals(effect.id)) {
+                // 鬼索·汹涌打击：普攻叠攻速，满层后每第 3 次攻击额外再触发一次攻击特效
+                passiveLines.add(passiveTitle("seething_strike"));
+                passiveLines.add(passiveDesc("seething_strike",
+                        formatPercent(effect.per_stack > 0 ? effect.per_stack : 0.08D),
+                        formatNumber(effect.max_stacks > 0 ? effect.max_stacks : 4),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 4.0D)));
+            } else if ("life_from_death".equals(effect.id)) {
+                // 蜕生·死中新生：击杀位置爆发治疗新星，治疗自身与友方玩家
+                passiveLines.add(passiveTitle("life_from_death"));
+                passiveLines.add(passiveDesc("life_from_death",
+                        formatNumber(effect.base_damage > 0 ? effect.base_damage : 100.0D),
+                        formatPercent(effect.ap_power_ratio > 0 ? effect.ap_power_ratio : 0.20D),
+                        formatNumber(effect.radius_blocks > 0 ? effect.radius_blocks : 4.0D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 60.0D)));
+            } else if ("haunt".equals(effect.id)) {
+                // 幽梦·萦绕：脱战移速
+                passiveLines.add(passiveTitle("haunt"));
+                passiveLines.add(passiveDesc("haunt",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.06D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 3.0D)));
+            } else if ("mercurial".equals(effect.id)) {
+                // 水银弯刀·水银：解除全部有害状态 + 短时移速
+                passiveLines.add(activeTitle("mercurial"));
+                passiveLines.add(activeDesc("mercurial",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.50D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 2.0D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 90.0D)));
+            } else if ("wraith_step".equals(effect.id)) {
+                // 幽梦·鬼步：短时移速 + 无视单位碰撞
+                passiveLines.add(activeTitle("wraith_step"));
+                passiveLines.add(activeDesc("wraith_step",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.20D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 6.0D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 45.0D)));
+            } else if ("gunblade".equals(effect.id)) {
+                // 主动技「闪电弹球」（海克斯科技枪刃）
+                passiveLines.add(activeTitle("gunblade"));
+                passiveLines.add(activeDesc("gunblade",
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 40.0D)));
+            } else if ("rocketbelt".equals(effect.id)) {
+                // 主动技「魔法弹突进」（海克斯科技火箭腰带）
+                passiveLines.add(activeTitle("rocketbelt"));
+                passiveLines.add(activeDesc("rocketbelt",
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 40.0D)));
+            } else if ("maw_lifeline".equals(effect.id)) {
+                // 被动「救主灵刃」（玛莫提乌斯之噬）
+                passiveLines.add(passiveTitle("maw_lifeline"));
+                passiveLines.add(passiveDesc("maw_lifeline"));
+            } else if ("randuins_resilience".equals(effect.id)) {
+                // 被动「坚韧」（兰顿之兆）：受到暴击伤害减免
+                passiveLines.add(passiveTitle("randuins_resilience"));
+                passiveLines.add(passiveDesc("randuins_resilience",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.30D)));
+            } else if ("randuins_active".equals(effect.id)) {
+                // 主动技「减速光环」（兰顿之兆）
+                passiveLines.add(activeTitle("randuins_active"));
+                passiveLines.add(activeDesc("randuins_active",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.35D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 2.0D),
+                        formatNumber(effect.cooldown_seconds > 0 ? effect.cooldown_seconds : 60.0D)));
+            } else if ("ruined_king_current".equals(effect.id)) {
+                // 雾之锋（破败王者之刃）：普攻造成当前生命值额外伤害
+                passiveLines.add(passiveTitle("ruined_king_current"));
+                passiveLines.add(passiveDesc("ruined_king_current",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.08D)));
+            } else if ("ruined_king_claw".equals(effect.id)) {
+                // 抓挠之影（破败王者之刃）：同一目标第三次普攻造成短暂减速
+                passiveLines.add(passiveTitle("ruined_king_claw"));
+                passiveLines.add(passiveDesc("ruined_king_claw",
+                        formatPercent(effect.amount > 0 ? effect.amount : 0.30D),
+                        formatNumber(effect.duration_seconds > 0 ? effect.duration_seconds : 1.0D)));
+            } else if ("maw_vengeful".equals(effect.id)) {
+                // 被动「复仇之噬」（玛莫提乌斯之噬）
+                passiveLines.add(passiveTitle("maw_vengeful"));
+                passiveLines.add(passiveDesc("maw_vengeful",
+                        formatNumber(effect.amount > 0 ? effect.amount : 20.0D),
+                        formatNumber(effect.magic_resist_amount > 0 ? effect.magic_resist_amount : 35.0D)));
             }
         }
 

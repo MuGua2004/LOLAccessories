@@ -1,0 +1,14 @@
+{
+  "template_version": 1,
+  "gear_id": "edge_of_night",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    { "id": "minecraft:generic.attack_damage", "operation": "ADDITION", "amount": 50.0 },
+    { "id": "minecraft:generic.max_health", "operation": "ADDITION", "amount": 250.0 },
+    { "id": "attributeslib:armor_pierce", "operation": "ADDITION", "amount": 15.0 }
+  ],
+  "on_hit_effects": [
+    { "id": "annul", "target": "self", "enabled": true, "cooldown_seconds": 40.0 }
+  ]
+}

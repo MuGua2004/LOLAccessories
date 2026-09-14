@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:boots"
+    },
+    {
+      "item": "lolaccessories:oblivion_orb"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:sorcerers_shoes"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 280
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

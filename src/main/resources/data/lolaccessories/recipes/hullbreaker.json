@@ -1,0 +1,14 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    { "item": "lolaccessories:phage" },
+    { "item": "lolaccessories:rectrix" },
+    { "item": "lolaccessories:long_sword" }
+  ],
+  "result": { "item": "lolaccessories:hullbreaker" },
+  "cost": [
+    { "item": "lolaccessories:gold_coin", "count": 800 },
+    { "item": "minecraft:nether_star", "count": 3 },
+    { "item": "minecraft:dragon_egg", "count": 1 }
+  ]
+}

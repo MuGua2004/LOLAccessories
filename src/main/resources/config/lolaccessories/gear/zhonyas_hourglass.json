@@ -1,0 +1,29 @@
+{
+  "template_version": 3,
+  "gear_id": "zhonyas_hourglass",
+  "slot": "bracelet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 1.05,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 50.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "time_stop",
+      "target": "self",
+      "enabled": true,
+      "cooldown_seconds": 300,
+      "duration_seconds": 2.5
+    }
+  ]
+}

@@ -57,6 +57,12 @@ public class ModAdvancementProvider implements DataProvider {
             {"undefeated_brave", "myth_writing", LOLAccessories.MOD_ID + ":clear_skys_wish", "challenge", "true"},
             {"heaven_fall", "myth_writing", LOLAccessories.MOD_ID + ":clear_skys_wish", "challenge", "true"},
             {"unimaginable_horror", "myth_writing", LOLAccessories.MOD_ID + ":demon_heart", "challenge", "true"},
+            {"fate_dance", "myth_writing", LOLAccessories.MOD_ID + ":fate_die", "challenge", "true"},
+            {"fantasy_land", "fate_dance", LOLAccessories.MOD_ID + ":emerald_city", "challenge", "true"},
+            {"fraud_death", "myth_writing", LOLAccessories.MOD_ID + ":emperors_new_clothes", "challenge", "true"},
+            {"rui_tiandi", "myth_writing", LOLAccessories.MOD_ID + ":heavenly_emperor", "challenge", "true"},
+            {"farewell", "myth_writing", LOLAccessories.MOD_ID + ":souls_lament", "challenge", "true"},
+            {"truth_envoy", "champions", LOLAccessories.MOD_ID + ":poem_for_tomorrow", "challenge", "true"},
             // 全收集
             {"champions", "undefeated_brave", LOLAccessories.MOD_ID + ":gold_coin", "challenge", "false"},
             // 金币 / 合成

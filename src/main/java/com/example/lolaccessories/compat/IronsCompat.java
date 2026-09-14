@@ -83,6 +83,14 @@ public final class IronsCompat {
             LOLAccessories.LOGGER.error("[LOLAccessories] 注册铁魔法法术穿透联动失败", e);
         }
         try {
+            Class.forName("com.example.lolaccessories.event.LolSixthBatchPassiveEvents$IcebornCastListener")
+                    .getMethod("register")
+                    .invoke(null);
+            LOLAccessories.LOGGER.info("[LOLAccessories] 冰脉咒刃施法监听（IcebornCastListener）已注册");
+        } catch (ReflectiveOperationException | LinkageError e) {
+            LOLAccessories.LOGGER.error("[LOLAccessories] 注册冰脉咒刃施法监听失败", e);
+        }
+        try {
             Class.forName("com.example.lolaccessories.compat.IronsLegendCastingEvents")
                     .getMethod("register")
                     .invoke(null);
@@ -91,12 +99,12 @@ public final class IronsCompat {
             LOLAccessories.LOGGER.error("[LOLAccessories] 注册 2026 传说施法联动失败", e);
         }
         try {
-            Class.forName("com.example.lolaccessories.compat.IronsUltimateHasteEvents")
+            Class.forName("com.example.lolaccessories.compat.IronsAbilityHasteEvents")
                     .getMethod("register")
                     .invoke(null);
-            LOLAccessories.LOGGER.info("[LOLAccessories] 终极技能冷却缩减联动（IronsUltimateHasteEvents）已注册");
+            LOLAccessories.LOGGER.info("[LOLAccessories] 技能急速/终极急速冷却联动（IronsAbilityHasteEvents）已注册");
         } catch (ReflectiveOperationException | LinkageError e) {
-            LOLAccessories.LOGGER.error("[LOLAccessories] 注册终极技能冷却缩减联动失败", e);
+            LOLAccessories.LOGGER.error("[LOLAccessories] 注册技能急速冷却联动失败", e);
         }
     }
 }

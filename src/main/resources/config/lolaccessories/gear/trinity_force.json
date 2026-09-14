@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 5,
   "gear_id": "trinity_force",
   "slot": "hands",
   "max_stack_size": 1,
@@ -7,7 +7,8 @@
     {
       "id": "minecraft:generic.attack_damage",
       "operation": "ADDITION",
-      "amount": 36
+      "amount": 36,
+      "overwrite": true
     },
     {
       "id": "minecraft:generic.attack_speed",
@@ -16,21 +17,22 @@
       "percent": true
     },
     {
-      "id": "attributeslib:draw_speed",
-      "operation": "MULTIPLY_BASE",
-      "amount": 0.3,
-      "percent": true
-    },
-    {
       "id": "minecraft:generic.max_health",
       "operation": "ADDITION",
-      "amount": 333
+      "amount": 333,
+      "overwrite": true
     },
     {
-      "id": "irons_spellbooks:cooldown_reduction",
+      "id": "lolaccessories:ability_haste",
       "operation": "ADDITION",
-      "amount": 0.15,
-      "percent": true
+      "amount": 15,
+      "overwrite": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "ADDITION",
+      "amount": 0.3,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [

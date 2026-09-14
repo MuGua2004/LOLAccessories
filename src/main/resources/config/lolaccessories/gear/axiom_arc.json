@@ -1,0 +1,37 @@
+{
+  "template_version": 1,
+  "gear_id": "axiom_arc",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 55,
+      "overwrite": true
+    },
+    {
+      "id": "attributeslib:armor_pierce",
+      "operation": "ADDITION",
+      "amount": 18,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 20,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "flux",
+      "target": "self",
+      "enabled": true,
+      "amount": 500,
+      "duration_seconds": 2.0,
+      "window_seconds": 3.0,
+      "overwrite": true
+    }
+  ]
+}

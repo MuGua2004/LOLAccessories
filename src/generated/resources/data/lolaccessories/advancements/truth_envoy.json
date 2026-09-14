@@ -1,0 +1,26 @@
+{
+  "parent": "lolaccessories:champions",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#b3a6c4",
+      "translate": "advancements.lolaccessories.truth_envoy.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "lolaccessories:poem_for_tomorrow"
+    },
+    "show_toast": true,
+    "title": {
+      "bold": true,
+      "color": "#7b2cff",
+      "translate": "advancements.lolaccessories.truth_envoy.title"
+    }
+  }
+}

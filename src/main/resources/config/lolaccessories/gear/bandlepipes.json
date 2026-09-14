@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 2,
   "gear_id": "bandlepipes",
   "slot": "belt",
   "max_stack_size": 1,
@@ -10,10 +10,10 @@
       "amount": 200.0
     },
     {
-      "id": "irons_spellbooks:cooldown_reduction",
+      "id": "lolaccessories:ability_haste",
       "operation": "ADDITION",
-      "amount": 0.15,
-      "percent": true
+      "amount": 15,
+      "overwrite": true
     },
     {
       "id": "minecraft:generic.armor",

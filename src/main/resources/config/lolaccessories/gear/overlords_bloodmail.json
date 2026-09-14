@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "overlords_bloodmail",
   "slot": "body",
   "max_stack_size": 1,
@@ -7,12 +7,14 @@
     {
       "id": "minecraft:generic.attack_damage",
       "operation": "ADDITION",
-      "amount": 30.0
+      "amount": 40,
+      "overwrite": true
     },
     {
       "id": "minecraft:generic.max_health",
       "operation": "ADDITION",
-      "amount": 550.0
+      "amount": 400,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [

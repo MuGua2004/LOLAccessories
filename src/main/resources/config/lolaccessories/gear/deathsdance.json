@@ -1,0 +1,40 @@
+{
+  "template_version": 2,
+  "gear_id": "deathsdance",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 60.0
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 50.0
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 15,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "ignore_pain",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.3,
+      "duration_seconds": 3.0
+    },
+    {
+      "id": "defy",
+      "target": "self",
+      "enabled": true,
+      "bonus_pct": 0.75,
+      "duration_seconds": 2.0
+    }
+  ]
+}

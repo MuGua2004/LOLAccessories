@@ -374,7 +374,7 @@ public final class Lol2026LegendPassiveEvents {
         // 黄心护盾：以吸收值承载救主灵刃护盾（显示金色心，不挂药水效果，避免被清除/叠加异常）
         long shieldMs = Math.round(durationSec * 1000.0D);
         ShieldHpService.apply(player, ShieldHpService.SOURCE_PROTOPLASM,
-                (float) extraHealth, shieldMs);
+                (float) extraHealth, shieldMs, ShieldType.WHITE);
         GearFxBroadcast.window(player, FxKind.SHIELD_PROTOPLASM,
                 (int) Math.round(durationSec * 20.0D));
 
@@ -622,20 +622,21 @@ public final class Lol2026LegendPassiveEvents {
     // ===================== 每秒动态属性刷新 =====================
 
     private static void refreshFamine(ServerPlayer player) {
-        Attribute cdr = attributeOf(IronsCompat.COOLDOWN_REDUCTION, null);
+        Attribute gearHaste = attributeOf("lolaccessories:gear_haste", null);
         UUID uuid = player.getUUID();
         GearConfig.OnHitEffect effect = findEffect(GEAR_ENDLESS_HUNGER, EFFECT_FAMINE);
-        if (cdr == null || effect == null || !effect.enabled
+        if (gearHaste == null || effect == null || !effect.enabled
                 || !CuriosGearWear.isWearing(player, GEAR_ENDLESS_HUNGER)) {
-            removeTransient(player, cdr, FAMINE_CDR_UUID);
+            removeTransient(player, gearHaste, FAMINE_CDR_UUID);
             return;
         }
-        // 饥馑（英雄联盟近战口径）：不区分近战/远程，一律按 melee_ratio 折算
+        // 饥馑（英雄联盟近战口径）：不区分近战/远程，一律按 melee_ratio 折算。
+        // 2026-09 改为「装备技能急速」点数语义（LoL 公式独立乘区）：
+        // 急速 = amount(0.05) × 100 + ratio × 攻击力（0.05 → 5 点、13%×AD → 点数）
         double ratio = effect.melee_ratio > 0 ? effect.melee_ratio : 0.13D;
         double ad = player.getAttributeValue(Attributes.ATTACK_DAMAGE);
-        // 饥馑 = amount(0.05) + ratio × 攻击力 ÷100（点数换算成比例）
-        double attrBonus = effect.amount + ratio * ad / 100.0D;
-        setTransient(player, cdr, FAMINE_CDR_UUID, attrBonus, AttributeModifier.Operation.ADDITION);
+        double haste = (effect.amount > 0 ? effect.amount * 100.0D : 5.0D) + ratio * ad;
+        setTransient(player, gearHaste, FAMINE_CDR_UUID, haste, AttributeModifier.Operation.ADDITION);
     }
 
     private static void refreshFeast(ServerPlayer player, long now) {

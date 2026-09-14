@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:tunneler"
+    },
+    {
+      "item": "lolaccessories:caulfields_warhammer"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:sundered_sky"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 850
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

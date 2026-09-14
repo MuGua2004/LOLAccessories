@@ -106,6 +106,7 @@ public class EchoOrbRenderer extends EntityRenderer<EchoOrbEntity> {
         @SubscribeEvent
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(ModEntityTypes.ECHO_ORB.get(), EchoOrbRenderer::new);
+            event.registerEntityRenderer(ModEntityTypes.LIGHTNING_ORB.get(), LightningOrbRenderer::new);
             event.registerEntityRenderer(ModEntityTypes.HEARTSTEEL_MARK.get(), HeartsteelMarkRenderer::new);
             // 测试实体复用原版模型：蛮兵用僵尸、假人用猪灵（原版渲染器泛型是原版实体，做受检豁免转换）
             event.registerEntityRenderer(ModEntityTypes.TEST_BRUTE.get(), context -> {

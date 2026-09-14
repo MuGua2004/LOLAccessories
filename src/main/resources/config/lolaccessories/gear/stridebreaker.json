@@ -1,0 +1,16 @@
+{
+  "template_version": 1,
+  "gear_id": "stridebreaker",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {"id": "minecraft:generic.attack_damage", "operation": "ADDITION", "amount": 40.0},
+    {"id": "minecraft:generic.attack_speed", "operation": "MULTIPLY_BASE", "amount": 0.25, "percent": true},
+    {"id": "attributeslib:draw_speed", "operation": "MULTIPLY_BASE", "amount": 0.25, "percent": true},
+    {"id": "minecraft:generic.max_health", "operation": "ADDITION", "amount": 450.0}
+  ],
+  "on_hit_effects": [
+    {"id": "cleave", "target": "enemy", "enabled": true, "amount": 0.4, "radius_blocks": 3.5},
+    {"id": "shockwave", "target": "self", "enabled": true, "power_ratio": 0.8, "radius_blocks": 4.5, "amount": 0.35, "duration_seconds": 3.0, "cooldown_seconds": 15.0}
+  ]
+}

@@ -34,7 +34,7 @@ public final class ActiveGearFx {
     private static final Set<FxKind> SHIELD_KINDS = EnumSet.of(
             FxKind.SHIELD_ROOKERN, FxKind.SHIELD_PROTOPLASM,
             FxKind.SHIELD_SERAPH, FxKind.SHIELD_FIMBULWINTER,
-            FxKind.SHIELD_STERAK, FxKind.SHIELD_BLOODTHIRSTER);
+            FxKind.SHIELD_STERAK, FxKind.SHIELD_BLOODTHIRSTER, FxKind.SHIELD_MAW);
 
     private ActiveGearFx() {
     }

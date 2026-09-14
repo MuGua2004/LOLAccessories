@@ -1,0 +1,36 @@
+{
+  "template_version": 1,
+  "gear_id": "abyssal_mask",
+  "slot": "head",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 350,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 45,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 15,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "ruin",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.12,
+      "radius_blocks": 12.0,
+      "overwrite": true
+    }
+  ]
+}

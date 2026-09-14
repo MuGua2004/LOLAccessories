@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 2,
   "gear_id": "experimental_hexplate",
   "slot": "hands",
   "max_stack_size": 1,
@@ -24,13 +24,13 @@
     {
       "id": "minecraft:generic.max_health",
       "operation": "ADDITION",
-      "amount": 300.0
+      "amount": 450
     },
     {
-      "id": "lolaccessories:ultimate_cdr",
+      "id": "lolaccessories:ultimate_haste",
       "operation": "ADDITION",
-      "amount": 0.3,
-      "percent": true
+      "amount": 30,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [

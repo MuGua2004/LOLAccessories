@@ -1,0 +1,29 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:boots"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:symbiote_soles"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 255
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    },
+    {
+      "item": "minecraft:slime_ball",
+      "count": 8
+    }
+  ]
+}

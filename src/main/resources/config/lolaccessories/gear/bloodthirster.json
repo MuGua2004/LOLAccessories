@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "bloodthirster",
   "slot": "hands",
   "max_stack_size": 1,
@@ -7,13 +7,15 @@
     {
       "id": "minecraft:generic.attack_damage",
       "operation": "ADDITION",
-      "amount": 80.0
+      "amount": 80,
+      "overwrite": true
     },
     {
       "id": "attributeslib:life_steal",
       "operation": "ADDITION",
       "amount": 0.15,
-      "percent": true
+      "percent": true,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [

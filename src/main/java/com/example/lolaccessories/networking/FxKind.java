@@ -37,8 +37,28 @@ public enum FxKind {
     SHIELD_FIMBULWINTER,
     SHIELD_STERAK,
     SHIELD_BLOODTHIRSTER,
+    /** 玛莫提乌斯之噬·救主灵刃（暗紫魔法护盾球罩）。 */
+    SHIELD_MAW,
     ZEKES_STORM,
     SUNFIRE_AEGIS,
     HEXPLATE_OVERDRIVE,
-    TORCH
+    TORCH,
+    /** 救赎·降临——施法预告：以施法点为中心渐亮展开的圣光法阵（锚定地点，走 FxSpotPacket）。 */
+    REDEMPTION_CAST,
+    /** 救赎·降临——圣光落下：从天而降的光柱 + 落点冲击环（锚定地点，走 FxSpotPacket）。 */
+    REDEMPTION_DESCENT,
+    /** 狂徒铠甲·狂徒之心——回血时的贴地柔和绿金光环（锚定玩家，克制不遮挡视野）。 */
+    WARMOG_RESTORE,
+    /** 女妖面纱·废除——法术屏障（紫罗兰缓旋涡环，法盾就绪时常驻）。 */
+    SHIELD_BANSHEE,
+    /** 残疫·憎恨之雾——紫色贴地法阵圈界定恨雾范围（锚定地点，走 FxSpotPacket）。 */
+    HATEFOG,
+    /** 蜕生·死中新生——击杀位置爆发的绿色治疗新星（大光球 + 展开回血法阵，锚定地点，走 FxSpotPacket）。 */
+    LIFE_FROM_DEATH,
+    /** 翡翠城·再见桃花源——抹杀翡翠法阵：贴地三层展开法阵 + 对旋星芒环 + 八根上升光柱（锚定地点，走 FxSpotPacket）。 */
+    EMERALD_DOOM,
+    /** 自然之力·坚韧——满层时佩戴者周身的翠绿自然光环（上升风叶 + 大地法阵，锚定佩戴者）。 */
+    STEADFAST_AURA,
+    /** 风暴狂涌·骤风——标记目标周身攒聚的紫金电弧（延迟引爆前的风暴攒聚，锚定目标）。 */
+    STORMSURGE_MARK
 }

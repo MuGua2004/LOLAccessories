@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 2,
   "gear_id": "bandleglass_mirror",
   "slot": "charm",
   "max_stack_size": 1,
@@ -17,10 +17,10 @@
       "percent": true
     },
     {
-      "id": "irons_spellbooks:cooldown_reduction",
+      "id": "lolaccessories:ability_haste",
       "operation": "ADDITION",
-      "amount": 0.1,
-      "percent": true
+      "amount": 10,
+      "overwrite": true
     }
   ],
   "on_hit_effects": []

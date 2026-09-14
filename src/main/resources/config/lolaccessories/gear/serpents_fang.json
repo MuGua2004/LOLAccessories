@@ -1,0 +1,26 @@
+{
+  "template_version": 1,
+  "gear_id": "serpents_fang",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 55.0
+    },
+    {
+      "id": "attributeslib:armor_pierce",
+      "operation": "ADDITION",
+      "amount": 15.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "shield_reaver",
+      "target": "enemy",
+      "enabled": true,
+      "amount": 0.05
+    }
+  ]
+}

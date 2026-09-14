@@ -32,6 +32,25 @@ public final class ClientFxConfig {
             .comment("特效整体亮度倍率：0.25~2.0，默认 1.0（嫌闪眼可下调）")
             .defineInRange("brightness", 1.0D, 0.25D, 2.0D);
 
+    /** 技能冷却条总开关（快捷栏两侧的冷却进度条）。 */
+    public static final ForgeConfigSpec.BooleanValue SKILL_BAR_ENABLED = BUILDER
+            .comment("是否绘制技能冷却条（快捷栏两侧的冷却进度组件；false 完全关闭）")
+            .define("skillBar.enabled", true);
+
+    /**
+     * 技能冷却条（快捷栏右侧）横向偏移：正值向屏幕右外侧推、负值向快捷栏收。
+     * 护盾条（快捷栏左侧）位置固定，不受此配置影响。
+     */
+    public static final ForgeConfigSpec.IntValue SKILL_BAR_X_OFFSET = BUILDER
+            .comment("技能冷却条横向偏移（像素）：正值向屏幕右外侧推、负值向快捷栏收，默认 0。"
+                    + "与其他模组的 HUD 条重叠时用它手动错开。护盾条位置固定，不受此配置影响")
+            .defineInRange("skillBar.xOffset", 0, -120, 120);
+
+    /** 技能冷却条纵向偏移：正值整体向上抬、负值向下沉（护盾条不受影响）。 */
+    public static final ForgeConfigSpec.IntValue SKILL_BAR_Y_OFFSET = BUILDER
+            .comment("技能冷却条纵向偏移（像素）：正值向上抬、负值向下沉，默认 0。护盾条位置固定，不受此配置影响")
+            .defineInRange("skillBar.yOffset", 0, -120, 120);
+
     /** 已构建的配置规格（注册到 {@link ModConfig.Type#CLIENT}）。 */
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 

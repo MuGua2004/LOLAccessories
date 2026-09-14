@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:caulfields_warhammer"
+    },
+    {
+      "item": "lolaccessories:dagger"
+    },
+    {
+      "item": "lolaccessories:dagger"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:voltaic_cyclosword"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 800
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "wardens_mail",
   "slot": "body",
   "max_stack_size": 1,
@@ -7,7 +7,8 @@
     {
       "id": "minecraft:generic.armor",
       "operation": "ADDITION",
-      "amount": 40
+      "amount": 40,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [

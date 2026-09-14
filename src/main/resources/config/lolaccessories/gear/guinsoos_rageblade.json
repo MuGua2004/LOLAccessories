@@ -1,0 +1,55 @@
+{
+  "template_version": 4,
+  "gear_id": "guinsoos_rageblade",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 30
+    },
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.3,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "overwrite": true
+    },
+    {
+      "id": "attributeslib:arrow_damage",
+      "operation": "ADDITION",
+      "amount": 0.3,
+      "overwrite": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "wrath",
+      "target": "victim",
+      "enabled": true,
+      "base_damage": 30.0,
+      "school": "eldritch"
+    },
+    {
+      "id": "seething_strike",
+      "target": "victim",
+      "enabled": true,
+      "max_stacks": 4,
+      "per_stack": 0.08,
+      "duration_seconds": 4.0
+    }
+  ]
+}

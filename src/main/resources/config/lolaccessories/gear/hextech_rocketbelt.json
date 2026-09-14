@@ -1,0 +1,38 @@
+{
+  "template_version": 6,
+  "gear_id": "hextech_rocketbelt",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 350,
+      "overwrite": true
+    },
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.6,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 20,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "rocketbelt",
+      "target": "self",
+      "enabled": true,
+      "cooldown_seconds": 50.0,
+      "base_damage": 100.0,
+      "power_ratio": 0.1,
+      "school": "fire",
+      "overwrite": true
+    }
+  ]
+}

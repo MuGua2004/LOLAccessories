@@ -54,6 +54,25 @@ public final class LolCritSystem {
     private static final double OVERFLOW_PER_CONVERSION = 0.10D;
     private static final double CONVERSION_PER_STEP = 0.01D;
 
+    /** 焚天·光盾打击：目标 UUID → 强制暴击截止毫秒（下次可暴击伤害命中即消费）。 */
+    private static final java.util.Map<java.util.UUID, Long> FORCE_CRIT = new java.util.HashMap<>();
+
+    /**
+     * 强制下一次对该目标的可暴击伤害必定暴击（焚天·光盾打击用）。
+     * 由装备被动在伤害事件早期（HIGH 优先级）登记，本系统结算时消费。
+     */
+    public static void forceCrit(LivingEntity target, long untilMs) {
+        if (target != null) {
+            FORCE_CRIT.put(target.getUUID(), untilMs);
+        }
+    }
+
+    /** 消费强制暴击标记：存在且未过期返回 true（一次性，无论结果都移除）。 */
+    private static boolean consumeForceCrit(LivingEntity target) {
+        Long until = FORCE_CRIT.remove(target.getUUID());
+        return until != null && System.currentTimeMillis() <= until;
+    }
+
     private LolCritSystem() {
     }
 
@@ -79,6 +98,8 @@ public final class LolCritSystem {
 
         // 读取生效的 LOL 暴击率（即使在齐射里也用于判定“自然会心”分支）
         double chance = readCritChance(attacker);
+        // 焚天·光盾打击：强制暴击标记一次性消费（无视暴击率与是否自然会心判定）
+        boolean forcedCrit = consumeForceCrit(event.getEntity());
 
         // 猎魔人弩箭·开战弹幕：玩家射出的远程物理弹道命中时，若弹幕有充能则接管本击结算。
         // 必须放在“0% 暴击率放行”之前——齐射即使 0% 暴击率也要按 config 比例强制结算。
@@ -94,29 +115,29 @@ public final class LolCritSystem {
             }
         }
 
-        // 没有 LOL 暴击率（等于没带暴击属性）就直接放行
-        if (chance <= 0.0D) {
+        // 没有 LOL 暴击率（等于没带暴击属性）就直接放行（强制暴击除外）
+        if (!forcedCrit && chance <= 0.0D) {
             return;
         }
 
-        // 判定这次伤害是否允许暴击（法术需要特殊装备许可）
+        // 判定这次伤害是否允许暴击（法术需要特殊装备许可；强制暴击仅限可暴击来源）
         if (!isCritable(source, attacker)) {
             return;
         }
 
-        if (attacker.getRandom().nextDouble() >= chance) {
+        if (!forcedCrit && attacker.getRandom().nextDouble() >= chance) {
             return;
         }
 
+        LivingEntity victim = event.getEntity();
         double multiplier = readCritMultiplier(attacker);
+        multiplier *= (1.0D - randuinsResilienceReduction(victim));
         if (multiplier <= 1.0D) {
             return;
         }
 
-        // 独立乘区：最终伤害 × 暴击伤害倍率
+        // 独立乘区：最终伤害 × 暴击伤害倍率（兰顿「坚韧」已在上方扣减暴击伤害）
         event.setAmount((float) (event.getAmount() * multiplier));
-
-        LivingEntity victim = event.getEntity();
         if (victim.level() instanceof ServerLevel level) {
             boolean magic = IronsCompat.isIronSpellDamage(source)
                     || source.getDirectEntity() instanceof EchoOrbEntity;
@@ -173,9 +194,13 @@ public final class LolCritSystem {
     }
 
     /** 读取生效的 LOL 暴击率（属性上限 1.0 已由 RangedAttribute 封顶，永远 ≤ 100%）。 */
-    private static double readCritChance(LivingEntity entity) {
+    public static double getCritChance(LivingEntity entity) {
         AttributeInstance instance = entity.getAttribute(ModAttributes.LOL_CRIT_CHANCE.get());
         return instance == null ? 0.0D : instance.getValue();
+    }
+
+    private static double readCritChance(LivingEntity entity) {
+        return getCritChance(entity);
     }
 
     /**
@@ -205,5 +230,32 @@ public final class LolCritSystem {
             }
         }
         return Math.max(1.0D, multiplier);
+    }
+
+    /**
+     * 兰顿之兆·坚韧：佩戴者受到暴击伤害时减免的比例（0~1）。
+     * 现行版本 Randuin's Omen 的被动为 Resilience（30% 暴击伤害减免）。
+     */
+    private static double randuinsResilienceReduction(LivingEntity victim) {
+        if (!(victim instanceof Player player)) {
+            return 0.0D;
+        }
+        var inventory = CuriosApi.getCuriosInventory(player).resolve().orElse(null);
+        if (inventory == null) {
+            return 0.0D;
+        }
+        for (var result : inventory.findCurios(stack -> stack.getItem() instanceof GearItem gear
+                && "randuins_omen".equals(gear.getGearId()))) {
+            GearConfig config = GearConfigManager.get("randuins_omen");
+            if (config == null) {
+                continue;
+            }
+            for (GearConfig.OnHitEffect effect : config.on_hit_effects) {
+                if ("randuins_resilience".equals(effect.id) && effect.enabled && effect.amount > 0.0D) {
+                    return Math.min(1.0D, effect.amount);
+                }
+            }
+        }
+        return 0.0D;
     }
 }

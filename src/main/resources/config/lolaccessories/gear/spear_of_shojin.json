@@ -1,0 +1,34 @@
+{
+  "template_version": 3,
+  "gear_id": "spear_of_shojin",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 45.0
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 450.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "dragonforce",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.25
+    },
+    {
+      "id": "focused_will",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.03,
+      "max_stacks": 4,
+      "duration_seconds": 6.0
+    }
+  ]
+}

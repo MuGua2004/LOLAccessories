@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:rectrix"
+    },
+    {
+      "item": "lolaccessories:hearthbound_axe"
+    },
+    {
+      "item": "lolaccessories:recurve_bow"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:kraken_slayer"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 600
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

@@ -46,7 +46,7 @@ import java.util.UUID;
  * <p>「金身式凝滞」面向兼容性实现：不使用观察者模式、不执行任何命令。做法为短时
  * {@code invulnerable} 保底 + 抗性提升 V + 极高减速（禁锢），并在持续期间每个服务端 tick
  * 将动量归零、持续中断一切出伤 / 交互 / 攻击事件；期间仍可打开背包。持续时长与基础冷却
- * 来自 seekers_armguard.json 的 on_hit_effects[time_stop]（默认 2.5 秒 / 300 秒，
+ * 来自 seekers_armguard.json 或 zhonyas_hourglass.json 的 on_hit_effects[time_stop]（默认 2.5 秒 / 300 秒，
  * 300 秒基础冷却享受铁魔法「冷却缩减」属性减免，上限 {@link #MAX_COOLDOWN_REDUCTION}）。</p>
  */
 @Mod.EventBusSubscriber(modid = LOLAccessories.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -73,15 +73,25 @@ public final class LolTimeStopEvents {
         if (!player.isAlive()) {
             return;
         }
-        GearConfig config = GearConfigManager.get(GEAR_ID);
-        GearConfig.OnHitEffect skill = config.findEffect(SKILL_ID).orElse(null);
-        if (skill == null || !skill.enabled) {
+        String gearId;
+        Component itemName;
+        if (CuriosGearWear.isWearing(player, "zhonyas_hourglass")) {
+            gearId = "zhonyas_hourglass";
+            itemName = ModItems.ZHONYAS_HOURGLASS.get().getDefaultInstance().getHoverName();
+        } else if (CuriosGearWear.isWearing(player, GEAR_ID)) {
+            gearId = GEAR_ID;
+            itemName = ModItems.SEEKERS_ARMGUARD.get().getDefaultInstance().getHoverName();
+        } else {
+            itemName = ModItems.ZHONYAS_HOURGLASS.get().getDefaultInstance().getHoverName();
+            actionBar(player, Component.translatable("skill.lolaccessories.time_stop.need_item", itemName));
             return;
         }
-
-        if (!CuriosGearWear.isWearing(player, GEAR_ID)) {
-            Component itemName = ModItems.SEEKERS_ARMGUARD.get().getDefaultInstance().getHoverName();
-            actionBar(player, Component.translatable("skill.lolaccessories.time_stop.need_item", itemName));
+        GearConfig config = GearConfigManager.get(gearId);
+        if (config == null) {
+            return;
+        }
+        GearConfig.OnHitEffect skill = config.findEffect(SKILL_ID).orElse(null);
+        if (skill == null || !skill.enabled) {
             return;
         }
         if (FROZEN_TICKS.containsKey(player.getUUID())) {
@@ -91,7 +101,10 @@ public final class LolTimeStopEvents {
         double baseCooldownSec = Math.max(1.0D, skill.cooldown_seconds);
         double reduction = Math.max(0.0D, Math.min(MAX_COOLDOWN_REDUCTION,
                 readMagicBonus(player, IronsCompat.COOLDOWN_REDUCTION)));
-        long cooldownMs = Math.max(1000L, Math.round(baseCooldownSec * 1000.0D * (1.0D - reduction)));
+        // 装备技能急速独立乘区（LoL 公式：CDR = 急速/(100+急速)）
+        long cooldownMs = Math.max(1000L, Math.round(baseCooldownSec * 1000.0D
+                * (1.0D - reduction)
+                * com.example.lolaccessories.util.HasteMath.gearHasteFactor(player)));
 
         Long lastMs = LAST_USE_MS.get(player.getUUID());
         if (lastMs != null && nowMs - lastMs < cooldownMs) {

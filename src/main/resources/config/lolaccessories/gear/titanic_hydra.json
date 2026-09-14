@@ -1,0 +1,14 @@
+{
+  "template_version": 5,
+  "gear_id": "titanic_hydra",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    { "id": "minecraft:generic.attack_damage", "operation": "ADDITION", "amount": 40.0 },
+    { "id": "minecraft:generic.max_health", "operation": "ADDITION", "amount": 600.0 }
+  ],
+  "on_hit_effects": [
+    { "id": "titanic_cleave", "target": "victim", "enabled": true, "base_damage": 0.01, "max_health_pct": 0.03, "radius_blocks": 2.5, "overwrite": true },
+    { "id": "crescent", "target": "self", "enabled": true, "base_damage": 0.04, "max_health_pct": 0.09, "radius_blocks": 3.0, "duration_seconds": 10.0, "cooldown_seconds": 10.0, "overwrite": true }
+  ]
+}

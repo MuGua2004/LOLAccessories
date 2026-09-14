@@ -1,0 +1,40 @@
+{
+  "template_version": 1,
+  "gear_id": "immortal_path",
+  "slot": "feet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.45,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:omnivamp",
+      "operation": "ADDITION",
+      "amount": 0.04,
+      "percent": true,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "bloodfeast",
+      "target": "self",
+      "enabled": true,
+      "per_stack": 0.006,
+      "max_stacks": 10,
+      "overwrite": true
+    },
+    {
+      "id": "now_to_forever",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.04,
+      "heal_pct": 0.12,
+      "overwrite": true
+    }
+  ]
+}

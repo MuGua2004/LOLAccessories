@@ -1,0 +1,26 @@
+{
+  "template_version": 2,
+  "gear_id": "seryldas",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 45.0
+    },
+    {
+      "id": "attributeslib:armor_shred",
+      "operation": "ADDITION",
+      "amount": 0.35,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 15,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": []
+}

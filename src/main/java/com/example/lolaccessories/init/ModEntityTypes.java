@@ -2,6 +2,7 @@ package com.example.lolaccessories.init;
 
 import com.example.lolaccessories.LOLAccessories;
 import com.example.lolaccessories.entity.EchoOrbEntity;
+import com.example.lolaccessories.entity.LightningOrbEntity;
 import com.example.lolaccessories.entity.HeartsteelMarkEntity;
 import com.example.lolaccessories.entity.TestBruteEntity;
 import com.example.lolaccessories.entity.TestPlayerDummyEntity;
@@ -30,6 +31,14 @@ public final class ModEntityTypes {
                     .sized(0.3F, 0.3F)
                     .clientTrackingRange(10)
                     .build("echo_orb"));
+
+    /** 闪电弹球（海克斯科技枪刃主动技能视觉弹射物，伤害结算以命中为准）。 */
+    public static final RegistryObject<EntityType<LightningOrbEntity>> LIGHTNING_ORB =
+            ENTITY_TYPES.register("lightning_orb", () -> EntityType.Builder.<LightningOrbEntity>of(
+                            LightningOrbEntity::new, MobCategory.MISC)
+                    .sized(0.3F, 0.3F)
+                    .clientTrackingRange(10)
+                    .build("lightning_orb"));
 
     /** 测试蛮兵：100 万血敌对假怪（无 AI，模型套用僵尸）。 */
     public static final RegistryObject<EntityType<TestBruteEntity>> TEST_BRUTE =

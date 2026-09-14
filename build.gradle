@@ -283,4 +283,7 @@ publishing {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+    // Forge 的若干 API（如 ResourceLocation 旧构造器）被标记 forRemoval，但功能等价；
+    // 这些仅作 lint 提示，不应阻止编译（此前靠增量编译跳过，全量重编译时才会暴露）。
+    options.compilerArgs.add('-Xlint:-removal')
 }

@@ -7,7 +7,7 @@
     {
       "id": "minecraft:generic.attack_speed",
       "operation": "MULTIPLY_BASE",
-      "amount": 0.25,
+      "amount": 0.3,
       "percent": true
     },
     {

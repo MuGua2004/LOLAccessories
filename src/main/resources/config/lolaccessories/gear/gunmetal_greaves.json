@@ -1,0 +1,30 @@
+{
+  "template_version": 1,
+  "gear_id": "gunmetal_greaves",
+  "slot": "feet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.45,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.45,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "attributeslib:life_steal",
+      "operation": "ADDITION",
+      "amount": 0.05,
+      "percent": true,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": []
+}

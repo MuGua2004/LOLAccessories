@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:caulfields_warhammer"
+    },
+    {
+      "item": "lolaccessories:tiamat"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:profane_hydra"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 775
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

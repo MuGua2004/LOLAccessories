@@ -1,6 +1,7 @@
 package com.example.lolaccessories.mixin;
 
 import com.example.lolaccessories.client.PhantomDancerState;
+import com.example.lolaccessories.init.ModMobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -28,9 +29,11 @@ public abstract class PhantomDancerCollisionMixin {
         if (!((Object) this instanceof LivingEntity living)) {
             return;
         }
-        if (living instanceof net.minecraft.world.entity.player.Player player
-                && PhantomDancerState.isWearing(player)) {
-            cir.setReturnValue(false);
+        if (living instanceof net.minecraft.world.entity.player.Player player) {
+            if (PhantomDancerState.isWearing(player)
+                    || player.hasEffect(com.example.lolaccessories.init.ModMobEffects.WRAITH_STEP.get())) {
+                cir.setReturnValue(false);
+            }
         }
     }
 }

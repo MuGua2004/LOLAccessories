@@ -1,0 +1,21 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:chain_vest"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:randuins_omen"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 187
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 1
+    }
+  ]
+}

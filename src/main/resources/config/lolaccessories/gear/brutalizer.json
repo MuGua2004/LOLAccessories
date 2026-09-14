@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "brutalizer",
   "slot": "hands",
   "max_stack_size": 1,
@@ -10,15 +10,16 @@
       "amount": 25.0
     },
     {
-      "id": "irons_spellbooks:cooldown_reduction",
-      "operation": "ADDITION",
-      "amount": 0.1,
-      "percent": true
-    },
-    {
       "id": "attributeslib:armor_pierce",
       "operation": "ADDITION",
       "amount": 5.0
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true,
+      "overwrite": true
     }
   ],
   "on_hit_effects": []

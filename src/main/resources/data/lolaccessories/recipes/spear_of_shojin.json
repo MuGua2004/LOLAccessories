@@ -1,0 +1,14 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    { "item": "lolaccessories:caulfields_warhammer" },
+    { "item": "lolaccessories:kindlegem" },
+    { "item": "lolaccessories:long_sword" }
+  ],
+  "result": { "item": "lolaccessories:spear_of_shojin" },
+  "cost": [
+    { "item": "lolaccessories:gold_coin", "count": 750 },
+    { "item": "minecraft:nether_star", "count": 3 },
+    { "item": "minecraft:dragon_egg", "count": 1 }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "template_version": 1,
+  "gear_id": "emperors_new_clothes",
+  "enabled": true,
+  "advancement_id": "fraud_death",
+  "challenge": {
+    "type": "naked_warden_kill"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "template_version": 6,
+  "gear_id": "hextech_gunblade",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 40,
+      "overwrite": true
+    },
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.8,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:omnivamp",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "gunblade",
+      "target": "self",
+      "enabled": true,
+      "cooldown_seconds": 60.0,
+      "base_damage": 175.0,
+      "power_ratio": 0.3,
+      "school": "lightning",
+      "overwrite": true
+    }
+  ]
+}

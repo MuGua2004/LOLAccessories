@@ -1,0 +1,31 @@
+{
+  "template_version": 3,
+  "gear_id": "horizon_focus",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.75,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 25,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "hypershot",
+      "target": "enemy",
+      "enabled": true,
+      "amount": 0.1,
+      "duration_seconds": 6.0,
+      "radius_blocks": 70.0,
+      "cooldown_seconds": 30.0
+    }
+  ]
+}

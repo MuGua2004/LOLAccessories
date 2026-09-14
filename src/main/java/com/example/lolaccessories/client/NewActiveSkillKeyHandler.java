@@ -47,5 +47,38 @@ public final class NewActiveSkillKeyHandler {
         if (ModKeyBindings.isRealizePressed()) {
             LOLNetworking.sendActiveSkillTrigger(LolNewActiveSkillEvents.SKILL_REALIZE);
         }
+        if (ModKeyBindings.isMockFatePressed()) {
+            LOLNetworking.sendActiveSkillTrigger(LolNewActiveSkillEvents.SKILL_MOCK_FATE);
+        }
+        if (ModKeyBindings.isPledgePressed()) {
+            LOLNetworking.sendActiveSkillTrigger(LolNewActiveSkillEvents.SKILL_PLEDGE);
+        }
+        if (ModKeyBindings.isRedemptionPressed()) {
+            LOLNetworking.sendActiveSkillTrigger(LolNewActiveSkillEvents.SKILL_INTERVENTION);
+        }
+        if (ModKeyBindings.isMercurialPressed()) {
+            LOLNetworking.sendActiveSkillTrigger(LolNewActiveSkillEvents.SKILL_MERCURIAL);
+        }
+        if (ModKeyBindings.isYoumuusPressed()) {
+            LOLNetworking.sendActiveSkillTrigger(LolNewActiveSkillEvents.SKILL_WRAITH_STEP);
+        }
+        if (ModKeyBindings.isGunbladePressed()) {
+            LOLNetworking.sendActiveSkillTrigger(LolNewActiveSkillEvents.SKILL_GUNBLADE);
+        }
+        if (ModKeyBindings.isRocketbeltPressed()) {
+            LOLNetworking.sendActiveSkillTrigger(LolNewActiveSkillEvents.SKILL_ROCKETBELT);
+        }
+        if (ModKeyBindings.isRanduinsPressed()) {
+            LOLNetworking.sendActiveSkillTrigger(LolNewActiveSkillEvents.SKILL_RANDUINS);
+        }
+        if (ModKeyBindings.isFarewellParadisePressed()) {
+            LOLNetworking.sendActiveSkillTrigger(LolNewActiveSkillEvents.SKILL_FAREWELL_PARADISE);
+        }
+        if (ModKeyBindings.isStridebreakerPressed()) {
+            LOLNetworking.sendActiveSkillTrigger(LolNewActiveSkillEvents.SKILL_STRIDEBREAKER);
+        }
+        if (ModKeyBindings.isEndlessGriefPressed()) {
+            LOLNetworking.sendActiveSkillTrigger(LolNewActiveSkillEvents.SKILL_ENDLESS_GRIEF);
+        }
     }
 }

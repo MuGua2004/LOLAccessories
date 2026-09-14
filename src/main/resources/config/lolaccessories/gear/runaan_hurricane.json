@@ -1,0 +1,42 @@
+{
+  "template_version": 1,
+  "gear_id": "runaan_hurricane",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.4,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.4,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:crit_chance",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.05,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "winds_fury",
+      "target": "victim",
+      "enabled": true,
+      "amount": 0.65,
+      "count": 2,
+      "radius_blocks": 8.0
+    }
+  ]
+}

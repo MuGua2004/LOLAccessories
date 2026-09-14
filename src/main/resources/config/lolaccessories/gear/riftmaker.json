@@ -1,0 +1,44 @@
+{
+  "template_version": 4,
+  "gear_id": "riftmaker",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.7,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 350.0
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 15,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "void_corruption",
+      "target": "self",
+      "enabled": true,
+      "per_stack": 0.02,
+      "max_stacks": 4,
+      "interval_seconds": 1.0,
+      "duration_seconds": 3.0,
+      "amount": 0.1,
+      "bonus_pct": 0.06
+    },
+    {
+      "id": "void_infusion",
+      "target": "self",
+      "enabled": true,
+      "bonus_pct": 0.02
+    }
+  ]
+}

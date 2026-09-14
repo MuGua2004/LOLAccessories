@@ -60,8 +60,12 @@ public final class HeartsteelEvents {
     public static final String GEAR_HEARTSTEEL = "heartsteel";
     /** 印记成熟时间（毫秒）。 */
     private static final long MARK_MATURE_MS = 3000L;
-    /** 印记扫描半径（与敌人进入战斗状态的判定距离）。 */
-    private static final double ENGAGE_RADIUS = 12.0D;
+    /** 印记扫描半径：只认 4 格内的目标。 */
+    private static final double ENGAGE_RADIUS = 4.0D;
+    /** 战斗状态窗口：最后一次互相伤害后的毫秒数内视为「进入战斗状态」。 */
+    private static final long COMBAT_WINDOW_MS = 8000L;
+    /** 玩家与各目标的最后交战时间（双向：玩家攻击过它 / 它攻击过玩家）。 */
+    private static final Map<UUID, Map<UUID, Long>> COMBAT_SINCE = new HashMap<>();
     /** 每目标独立冷却（毫秒），不受冷却缩减影响。 */
     private static final long TARGET_COOLDOWN_MS = 30000L;
     /** 印记实体 tag（世界加载后清理孤儿印记用）。 */
@@ -126,25 +130,59 @@ public final class HeartsteelEvents {
         trySpawnMark(player, now);
     }
 
-    /** 印记实体自行跟随目标；这里只做内存表清理（目标死亡/印记消失时释放，可顺位下一名）。 */
+    /** 印记实体自行跟随目标；目标死亡或脱离战斗状态（8 秒无互相伤害）则印记消失，重新选择。 */
     private static void updateMarks(Player player, long now) {
+        UUID playerId = player.getUUID();
         Iterator<Map.Entry<UUID, Mark>> it = MARKS.entrySet().iterator();
         while (it.hasNext()) {
             Mark mark = it.next().getValue();
-            if (mark.entity.isRemoved() || mark.target.isRemoved() || mark.target.isDeadOrDying()) {
+            boolean inCombat = false;
+            Map<UUID, Long> combats = COMBAT_SINCE.get(playerId);
+            if (combats != null) {
+                Long last = combats.get(mark.target.getUUID());
+                inCombat = last != null && now - last <= COMBAT_WINDOW_MS;
+            }
+            if (mark.entity.isRemoved() || mark.target.isRemoved() || mark.target.isDeadOrDying()
+                    || !inCombat) {
+                if (!mark.entity.isRemoved()) {
+                    mark.entity.discard();
+                }
                 it.remove();
             }
         }
     }
 
-    /** 扫描交战目标，对生命值最高且无冷却者生成印记（同一时刻仅一枚）。 */
+    private static void recordCombat(UUID playerId, UUID targetId, long now) {
+        COMBAT_SINCE.computeIfAbsent(playerId, k -> new HashMap<>()).put(targetId, now);
+    }
+
+    /**
+     * 玩家与目标是否处于「进入战斗状态」（双向伤害记录，8 秒窗口）。
+     * 供冰霜之心等常驻光环复用：只对与自己交战过的目标生效，非常驻生效。
+     */
+    public static boolean isInCombatWith(Player player, LivingEntity target) {
+        long now = System.currentTimeMillis();
+        Map<UUID, Long> combats = COMBAT_SINCE.get(player.getUUID());
+        if (combats == null) {
+            return false;
+        }
+        Long last = combats.get(target.getUUID());
+        return last != null && now - last <= COMBAT_WINDOW_MS;
+    }
+
+    /** 扫描 4 格内「已进入战斗状态」（互相伤害过且在窗口内）的目标，取生命值最高者生成印记。 */
     private static void trySpawnMark(Player player, long now) {
         if (!MARKS.isEmpty()) {
             return;
         }
         LivingEntity best = null;
+        Map<UUID, Long> combats = COMBAT_SINCE.getOrDefault(player.getUUID(), Map.of());
         for (LivingEntity enemy : LolNewEpicPassiveEvents.enemiesAround(player, player, ENGAGE_RADIUS)) {
             UUID id = enemy.getUUID();
+            Long lastCombat = combats.get(id);
+            if (lastCombat == null || now - lastCombat > COMBAT_WINDOW_MS) {
+                continue; // 未进入战斗状态
+            }
             Long cd = TARGET_CD_MS.get(id);
             if (cd != null && now < cd) {
                 continue;
@@ -218,6 +256,15 @@ public final class HeartsteelEvents {
     public static void onLivingHurt(LivingHurtEvent event) {
         if (event.getEntity().level().isClientSide) {
             return;
+        }
+        long now = System.currentTimeMillis();
+        // 战斗状态记录（双向）：玩家攻击了谁 / 谁攻击了玩家
+        if (event.getSource().getEntity() instanceof ServerPlayer attacker) {
+            recordCombat(attacker.getUUID(), event.getEntity().getUUID(), now);
+        }
+        if (event.getEntity() instanceof ServerPlayer victimPlayer
+                && event.getSource().getEntity() instanceof LivingEntity striker) {
+            recordCombat(victimPlayer.getUUID(), striker.getUUID(), now);
         }
         if (!(event.getSource().getEntity() instanceof ServerPlayer player)) {
             return;

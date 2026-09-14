@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:fiendish_codex"
+    },
+    {
+      "item": "lolaccessories:oblivion_orb"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:bloodletters_curse"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 790
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

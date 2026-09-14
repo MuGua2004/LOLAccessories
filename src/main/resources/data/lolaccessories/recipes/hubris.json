@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:caulfields_warhammer"
+    },
+    {
+      "item": "lolaccessories:serrated_dirk"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:hubris"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 760
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

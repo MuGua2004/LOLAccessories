@@ -1,0 +1,39 @@
+{
+  "template_version": 4,
+  "gear_id": "liandrys_torment",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.6,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 300.0
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "torment",
+      "target": "enemy",
+      "enabled": true,
+      "amount": 0.02,
+      "duration_seconds": 3.0,
+      "school": "eldritch"
+    },
+    {
+      "id": "suffering",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.02,
+      "max_stacks": 3,
+      "interval_seconds": 1.0,
+      "duration_seconds": 3.0
+    }
+  ]
+}

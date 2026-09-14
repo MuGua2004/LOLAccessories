@@ -1,0 +1,33 @@
+{
+  "template_version": 2,
+  "gear_id": "chempunk_chainsword",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 45.0
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 450.0
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 15,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "grievous_wounds_physical",
+      "target": "enemy",
+      "enabled": true,
+      "amount": 0.4,
+      "duration_seconds": 3.0
+    }
+  ]
+}

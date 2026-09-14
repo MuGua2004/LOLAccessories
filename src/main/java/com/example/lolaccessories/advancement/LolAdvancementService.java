@@ -69,6 +69,16 @@ public final class LolAdvancementService {
     public static final String ID_FIRST_GOLD = "first_gold";
     public static final String ID_FIRST_CRAFT = "first_craft";
     public static final String ID_HERO_POWER = "hero_power";
+    /** 成就【遥远于世的幻想乡】：累计造成过 100 亿铁魔法法术伤害。 */
+    public static final String ID_FANTASY_LAND = "fantasy_land";
+    /** 成就【真理的使者】：完成【我们是冠军】后自动授予（致明日之诗的解锁进度）。 */
+    public static final String ID_TRUTH_ENVOY = "truth_envoy";
+    /** 不计入「集齐装备」统计的装备（自身依赖集齐，参与统计会死锁）。 */
+    private static final Set<String> EXCLUDED_FROM_COLLECTION = Set.of("lolaccessories:poem_for_tomorrow");
+    /** 遥远于世的幻想乡阈值：100 亿点（按最终结算伤害累计）。 */
+    private static final double FANTASY_LAND_SPELL_DAMAGE = 1.0e10D;
+    /** 玩家 NBT 里累计法术伤害的键（lolaccessories 复合标签）。 */
+    private static final String SPELL_DAMAGE_KEY = "spell_damage_total";
     public static final String ID_WEARING_5 = "wearing_5";
     public static final String ID_WEARING_10 = "wearing_10";
     public static final String ID_WEARING_20 = "wearing_20";
@@ -106,6 +116,33 @@ public final class LolAdvancementService {
     /** 第一次成功释放主动技能（服务端结算完成后调用）。 */
     public static void onActiveSkillCast(ServerPlayer player) {
         grant(player, ID_HERO_POWER);
+    }
+
+    /**
+     * 累计铁魔法法术伤害（成就【遥远于世的幻想乡】：累计造成过 100 亿点）。
+     * 由法术命中事件在服务端调用（对所有玩家生效，与是否佩戴翡翠城无关）。
+     * 累计值写入玩家持久化 NBT，跨存档保留；达到阈值即授予并停止累计。
+     */
+    public static void onSpellDamageDealt(ServerPlayer player, double amount) {
+        if (amount <= 0.0D) {
+            return;
+        }
+        CompoundTag data = dataOf(player);
+        if (data.contains(SPELL_DAMAGE_KEY, CompoundTag.TAG_DOUBLE)
+                && data.getDouble(SPELL_DAMAGE_KEY) >= FANTASY_LAND_SPELL_DAMAGE) {
+            return;
+        }
+        double total = data.getDouble(SPELL_DAMAGE_KEY) + amount;
+        if (total >= FANTASY_LAND_SPELL_DAMAGE) {
+            data.putDouble(SPELL_DAMAGE_KEY, FANTASY_LAND_SPELL_DAMAGE);
+            saveData(player, data);
+            grant(player, ID_FANTASY_LAND);
+            LOLAccessories.LOGGER.info("[成就] {} 达成遥远于世的幻想乡：累计法术伤害 100 亿",
+                    player.getName().getString());
+        } else {
+            data.putDouble(SPELL_DAMAGE_KEY, total);
+            saveData(player, data);
+        }
     }
 
     // ================= 图鉴扫描 / 佩戴计数 =================
@@ -293,6 +330,8 @@ public final class LolAdvancementService {
         }
         if (totalAll > 0 && haveAll >= totalAll) {
             grant(player, ID_ALL_GEAR);
+            // 成就【真理的使者】：完成「我们是冠军」后自动授予（联动发放致明日之诗）
+            grant(player, ID_TRUTH_ENVOY);
         }
     }
 
@@ -313,8 +352,12 @@ public final class LolAdvancementService {
         int total = 0;
         int have = 0;
         for (Holder<Item> holder : holders.get()) {
-            total++;
             ResourceLocation key = registry.getKey(holder.value());
+            // 致明日之诗自身的解锁条件是 champions（集齐全部装备），参与统计会死锁——排除
+            if (key != null && EXCLUDED_FROM_COLLECTION.contains(key.toString())) {
+                continue;
+            }
+            total++;
             if (key != null && seen.contains(key.toString())) {
                 have++;
             }

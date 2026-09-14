@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "infinity_edge",
   "slot": "charm",
   "max_stack_size": 1,
@@ -7,7 +7,8 @@
     {
       "id": "minecraft:generic.attack_damage",
       "operation": "ADDITION",
-      "amount": 75.0
+      "amount": 75,
+      "overwrite": true
     },
     {
       "id": "lolaccessories:crit_chance",
@@ -19,7 +20,8 @@
       "id": "lolaccessories:crit_damage",
       "operation": "ADDITION",
       "amount": 0.3,
-      "percent": true
+      "percent": true,
+      "overwrite": true
     },
     {
       "id": "attributeslib:arrow_damage",

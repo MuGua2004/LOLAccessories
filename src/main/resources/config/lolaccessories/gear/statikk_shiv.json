@@ -1,0 +1,57 @@
+{
+  "template_version": 4,
+  "gear_id": "statikk_shiv",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.3,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.3,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.04,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 45,
+      "overwrite": true
+    },
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.45,
+      "overwrite": true,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:arrow_damage",
+      "operation": "ADDITION",
+      "amount": 0.45,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "statikk_chain",
+      "target": "self",
+      "enabled": true,
+      "base_damage": 60,
+      "amount": 6.0,
+      "school": "lightning"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:wardens_mail"
+    },
+    {
+      "item": "lolaccessories:glacial_buckler"
+    }
+  ],
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 620
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:frozen_heart"
+  }
+}

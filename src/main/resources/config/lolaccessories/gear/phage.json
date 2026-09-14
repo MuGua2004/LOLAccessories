@@ -7,7 +7,7 @@
     {
       "id": "minecraft:generic.attack_damage",
       "operation": "ADDITION",
-      "amount": 15
+      "amount": 15.0
     },
     {
       "id": "minecraft:generic.max_health",

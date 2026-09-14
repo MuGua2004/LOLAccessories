@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "seekers_armguard",
   "slot": "bracelet",
   "max_stack_size": 1,
@@ -8,12 +8,14 @@
       "id": "irons_spellbooks:spell_power",
       "operation": "ADDITION",
       "amount": 0.4,
-      "percent": true
+      "percent": true,
+      "overwrite": true
     },
     {
       "id": "minecraft:generic.armor",
       "operation": "ADDITION",
-      "amount": 25.0
+      "amount": 25,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [

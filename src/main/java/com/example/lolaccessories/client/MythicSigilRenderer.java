@@ -132,6 +132,12 @@ public final class MythicSigilRenderer {
         return switch (key.getPath()) {
             case "clear_skys_wish" -> "clear";
             case "demon_heart" -> "demon";
+            case "fate_die" -> "fate";
+            case "emerald_city" -> "emerald";
+            case "emperors_new_clothes" -> "cloak";
+            case "heavenly_emperor" -> "emperor";
+            case "souls_lament" -> "lament";
+            case "poem_for_tomorrow" -> "poem";
             default -> DEFAULT_SET;
         };
     }

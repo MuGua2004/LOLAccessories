@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:boots"
+    },
+    {
+      "item": "lolaccessories:cloth_armor"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:plated_steelcaps"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 305
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

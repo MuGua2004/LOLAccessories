@@ -1,0 +1,39 @@
+{
+  "template_version": 3,
+  "gear_id": "randuins_omen",
+  "slot": "body",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 350.0,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 75.0,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "randuins_resilience",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.3,
+      "overwrite": true
+    },
+    {
+      "id": "randuins_active",
+      "target": "self",
+      "enabled": true,
+      "cooldown_seconds": 90.0,
+      "amount": 0.7,
+      "duration_seconds": 2.0,
+      "radius_blocks": 5.0,
+      "overwrite": true
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "template_version": 1,
+  "gear_id": "heavenly_emperor",
+  "enabled": true,
+  "advancement_id": "rui_tiandi",
+  "challenge": {
+    "type": "mana_spent_total",
+    "threshold": 100000.0
+  }
+}

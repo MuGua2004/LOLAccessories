@@ -1,0 +1,13 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    { "item": "lolaccessories:seekers_armguard" },
+    { "item": "lolaccessories:needlessly_large_rod" }
+  ],
+  "result": { "item": "lolaccessories:zhonyas_hourglass" },
+  "cost": [
+    { "item": "lolaccessories:gold_coin", "count": 800 },
+    { "item": "minecraft:nether_star", "count": 3 },
+    { "item": "minecraft:dragon_egg", "count": 1 }
+  ]
+}

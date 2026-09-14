@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "doran_shield",
   "slot": "hands",
   "max_stack_size": 1,
@@ -7,7 +7,8 @@
     {
       "id": "minecraft:generic.max_health",
       "operation": "ADDITION",
-      "amount": 110.0
+      "amount": 110,
+      "overwrite": true
     },
     {
       "id": "lolaccessories:natural_regen",

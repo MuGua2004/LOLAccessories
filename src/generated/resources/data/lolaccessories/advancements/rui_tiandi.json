@@ -1,0 +1,26 @@
+{
+  "parent": "lolaccessories:myth_writing",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#b3a6c4",
+      "translate": "advancements.lolaccessories.rui_tiandi.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "lolaccessories:heavenly_emperor"
+    },
+    "show_toast": true,
+    "title": {
+      "bold": true,
+      "color": "#7b2cff",
+      "translate": "advancements.lolaccessories.rui_tiandi.title"
+    }
+  }
+}

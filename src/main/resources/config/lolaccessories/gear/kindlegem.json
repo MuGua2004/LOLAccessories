@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "kindlegem",
   "slot": "belt",
   "max_stack_size": 1,
@@ -13,7 +13,8 @@
       "id": "irons_spellbooks:cooldown_reduction",
       "operation": "ADDITION",
       "amount": 0.1,
-      "percent": true
+      "percent": true,
+      "overwrite": true
     }
   ],
   "on_hit_effects": []

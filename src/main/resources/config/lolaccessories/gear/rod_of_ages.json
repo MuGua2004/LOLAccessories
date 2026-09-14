@@ -1,0 +1,47 @@
+{
+  "template_version": 3,
+  "gear_id": "rod_of_ages",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.45,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 350,
+      "overwrite": true
+    },
+    {
+      "id": "irons_spellbooks:max_mana",
+      "operation": "ADDITION",
+      "amount": 500,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "timeless",
+      "target": "self",
+      "enabled": true,
+      "max_stacks": 10,
+      "interval_seconds": 60.0,
+      "amount": 10.0,
+      "base_damage": 30.0,
+      "bonus_pct": 0.03
+    },
+    {
+      "id": "eternity",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.1,
+      "base_damage": 100.0,
+      "bonus_pct": 0.25
+    }
+  ]
+}

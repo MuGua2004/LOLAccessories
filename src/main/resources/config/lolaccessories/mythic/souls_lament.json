@@ -1,0 +1,10 @@
+{
+  "template_version": 1,
+  "gear_id": "souls_lament",
+  "enabled": true,
+  "advancement_id": "farewell",
+  "challenge": {
+    "type": "ghast_melee_kill",
+    "threshold": 20.0
+  }
+}

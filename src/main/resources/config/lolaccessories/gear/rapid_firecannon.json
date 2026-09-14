@@ -1,0 +1,41 @@
+{
+  "template_version": 1,
+  "gear_id": "rapid_firecannon",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.35,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.35,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:crit_chance",
+      "operation": "ADDITION",
+      "amount": 0.25,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.04,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "firecannon_bolt",
+      "target": "self",
+      "enabled": true,
+      "base_damage": 40.0,
+      "school": "fire"
+    }
+  ]
+}

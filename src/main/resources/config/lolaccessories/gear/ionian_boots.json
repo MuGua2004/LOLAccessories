@@ -1,0 +1,22 @@
+{
+  "template_version": 1,
+  "gear_id": "ionian_boots",
+  "slot": "feet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 20,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "percent": true,
+      "overwrite": true,
+      "amount": 0.45
+    }
+  ],
+  "on_hit_effects": []
+}

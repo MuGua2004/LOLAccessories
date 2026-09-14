@@ -3,6 +3,7 @@ package com.example.lolaccessories.compat;
 import com.example.lolaccessories.config.GearConfig;
 import com.example.lolaccessories.config.GearConfigManager;
 import com.example.lolaccessories.event.Lol2026LegendPassiveEvents;
+import com.example.lolaccessories.event.LolNewEpicPassiveEvents;
 import com.example.lolaccessories.event.LolNewLegendPassivesEvents;
 import io.redspace.ironsspellbooks.api.events.SpellOnCastEvent;
 import net.minecraft.server.level.ServerPlayer;
@@ -53,8 +54,9 @@ public final class IronsLegendCastingEvents {
             event.setManaCost(Math.max(originalManaCost, doubled));
         }
 
-        // 2) 黄昏黎明·咒刃装填
+        // 2) 黄昏黎明与夺萃之镰·咒刃装填
         Lol2026LegendPassiveEvents.armDuskSpellblade(player);
+        LolNewEpicPassiveEvents.armEssenceReaverSpellblade(player);
 
         // 3) 猎魔人弩箭·开战弹幕装填（基础法力消耗严格大于 200 视为终极技能）
         if (originalManaCost > ULTIMATE_MANA_THRESHOLD) {
@@ -63,6 +65,8 @@ public final class IronsLegendCastingEvents {
             LolNewLegendPassivesEvents.onUltimateCast(player);
             // 基克的聚合·霜火风暴：施放终极技能后 5 秒内就绪一个风暴
             LolNewLegendPassivesEvents.onUltimateCastZeke(player);
+            // 残疫·憎恨之雾：施放终极技能后 3 秒内的魔法伤害会在敌人脚下生成恨雾
+            com.example.lolaccessories.event.LolMalignanceEvents.onUltimateCast(player);
         }
     }
 }

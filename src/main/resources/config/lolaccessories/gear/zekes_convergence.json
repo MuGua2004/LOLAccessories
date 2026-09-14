@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 4,
   "gear_id": "zekes_convergence",
   "slot": "charm",
   "max_stack_size": 1,
@@ -17,13 +17,20 @@
     {
       "id": "lolaccessories:magic_resist",
       "operation": "ADDITION",
-      "amount": 30.0
+      "amount": 25.0
     },
     {
-      "id": "lolaccessories:ultimate_cdr",
+      "id": "lolaccessories:ultimate_haste",
       "operation": "ADDITION",
-      "amount": 0.15,
-      "percent": true
+      "amount": 18,
+      "overwrite": true
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [

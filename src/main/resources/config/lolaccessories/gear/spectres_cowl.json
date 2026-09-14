@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "spectres_cowl",
   "slot": "head",
   "max_stack_size": 1,
@@ -12,7 +12,8 @@
     {
       "id": "lolaccessories:magic_resist",
       "operation": "ADDITION",
-      "amount": 35
+      "amount": 35,
+      "overwrite": true
     },
     {
       "id": "lolaccessories:natural_regen",

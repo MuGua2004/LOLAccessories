@@ -1,0 +1,14 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    { "item": "lolaccessories:winged_moonplate" },
+    { "item": "lolaccessories:ruby_crystal" },
+    { "item": "lolaccessories:chain_vest" }
+  ],
+  "result": { "item": "lolaccessories:dead_mans_plate" },
+  "cost": [
+    { "item": "lolaccessories:gold_coin", "count": 900 },
+    { "item": "minecraft:nether_star", "count": 3 },
+    { "item": "minecraft:dragon_egg", "count": 1 }
+  ]
+}

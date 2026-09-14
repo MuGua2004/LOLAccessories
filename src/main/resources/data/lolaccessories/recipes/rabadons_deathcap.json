@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:needlessly_large_rod"
+    },
+    {
+      "item": "lolaccessories:amplifying_tome"
+    }
+  ],
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 950
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:rabadons_deathcap"
+  }
+}

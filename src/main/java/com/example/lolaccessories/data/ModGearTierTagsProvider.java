@@ -122,7 +122,17 @@ public class ModGearTierTagsProvider extends TagsProvider<Item> {
                 .add(itemKey(ModItems.VERDANT_BARRIER))
                 .add(itemKey(ModItems.WARDENS_MAIL))
                 .add(itemKey(ModItems.WINGED_MOONPLATE))
-                .add(itemKey(ModItems.ZEAL));
+                .add(itemKey(ModItems.ZEAL))
+                // 第十六批 7 双 2 级（史诗）鞋
+                .add(itemKey(ModItems.BERSERKER_GREAVES))
+                .add(itemKey(ModItems.SYMBIOTE_SOLES))
+                .add(itemKey(ModItems.SWIFT_BOOTS))
+                .add(itemKey(ModItems.SORCERERS_SHOES))
+                .add(itemKey(ModItems.PLATED_STEELCAPS))
+                .add(itemKey(ModItems.MERCURYS_TREADS))
+                .add(itemKey(ModItems.IONIAN_BOOTS))
+                // 第十一批：史诗级（兰顿之兆）
+                .add(itemKey(ModItems.RANDUINS_OMEN));
 
         // ---------- 3 级（传说，锻造台由 2 级升级；含既有传说装备） ----------
         this.tag(ModItemTags.TIER3)
@@ -172,14 +182,92 @@ public class ModGearTierTagsProvider extends TagsProvider<Item> {
                 .add(itemKey(ModItems.THORNMAIL))
                 .add(itemKey(ModItems.TRINITY_FORCE))
                 .add(itemKey(ModItems.WARMOGS_ARMOR))
-                .add(itemKey(ModItems.HEARTSTEEL));
+                .add(itemKey(ModItems.HEARTSTEEL))
+                // 第七批 5 件传说（卢安娜 / 电刃 / 死亡之帽 / 智慧末刃 / 疾射火炮）
+                .add(itemKey(ModItems.RUNAAN_HURRICANE))
+                .add(itemKey(ModItems.STATIKK_SHIV))
+                .add(itemKey(ModItems.RABADONS_DEATHCAP))
+                .add(itemKey(ModItems.WITS_END))
+                .add(itemKey(ModItems.RAPID_FIRECANNON))
+                // 第八批 5 件传说（岚切 / 巫妖之祸 / 女妖面纱 / 救赎 / 骑士之誓）
+                .add(itemKey(ModItems.STORMRAZOR))
+                .add(itemKey(ModItems.LICH_BANE))
+                .add(itemKey(ModItems.BANSHEES_VEIL))
+                .add(itemKey(ModItems.REDEMPTION))
+                .add(itemKey(ModItems.KNIGHTS_VOW))
+                // 第九批 4 件传说（冰霜之心 / 纳什之牙 / 瑞莱的冰晶节杖 / 残疫）
+                .add(itemKey(ModItems.FROZEN_HEART))
+                .add(itemKey(ModItems.NASHORS_TOOTH))
+                .add(itemKey(ModItems.RYLAIS_CRYSTAL_SCEPTER))
+                .add(itemKey(ModItems.MALIGNANCE))
+                // 第十批 5 件传说（鬼索的狂暴之刃 / 虚空之杖 / 蜕生 / 水银弯刀 / 幽梦之灵）
+                .add(itemKey(ModItems.GUINSOOS_RAGEBLADE))
+                .add(itemKey(ModItems.VOID_STAFF))
+                .add(itemKey(ModItems.CRYPTBLOOM))
+                .add(itemKey(ModItems.MERCURIAL_SCIMITAR))
+                .add(itemKey(ModItems.YOUMUUS_GHOSTBLADE))
+                // 第十一批 5 件传说（兰顿之兆为史诗，不在此列）：海克斯枪刃 / 火箭腰带 / 破败 / 玛莫提乌斯
+                .add(itemKey(ModItems.HEXTECH_GUNBLADE))
+                .add(itemKey(ModItems.HEXTECH_ROCKETBELT))
+                .add(itemKey(ModItems.RUINED_KING))
+                .add(itemKey(ModItems.MAW_OF_MALMORTIUS))
+                // 第十二批 5 件传说：中娅 / 朔极 / 莫雷洛 / 黯影 / 破舰
+                .add(itemKey(ModItems.ZHONYAS_HOURGLASS))
+                .add(itemKey(ModItems.SPEAR_OF_SHOJIN))
+                .add(itemKey(ModItems.MORELLONOMICON))
+                .add(itemKey(ModItems.UMBRAL_GLAIVE))
+                .add(itemKey(ModItems.HULLBREAKER))
+                // 第十三批 5 件传说：界弓 / 夺萃之镰 / 亡者的板甲 / 巨型九头蛇 / 夜之锋刃
+                .add(itemKey(ModItems.TERMINUS))
+                .add(itemKey(ModItems.ESSENCE_REAVER))
+                .add(itemKey(ModItems.DEAD_MANS_PLATE))
+                .add(itemKey(ModItems.TITANIC_HYDRA))
+                .add(itemKey(ModItems.EDGE_OF_NIGHT))
+                // 第十四批 5 件传说：自然之力 / 视界专注 / 裂隙制造者 / 影焰 / 风暴狂涌
+                .add(itemKey(ModItems.FORCE_OF_NATURE))
+                .add(itemKey(ModItems.HORIZON_FOCUS))
+                .add(itemKey(ModItems.RIFTMAKER))
+                .add(itemKey(ModItems.SHADOWFLAME))
+                .add(itemKey(ModItems.STORMSURGE))
+                // 第十五批 5 件 3 级（传说）装备
+                .add(itemKey(ModItems.DEATHS_DANCE))
+                .add(itemKey(ModItems.CHEMPUNK_CHAINSWORD))
+                .add(itemKey(ModItems.SUNDERED_SKY))
+                .add(itemKey(ModItems.STRIDEBREAKER))
+                .add(itemKey(ModItems.LIANDRYS_TORMENT))
+                // 第六批 5 件 3 级（传说）装备
+                .add(itemKey(ModItems.ROD_OF_AGES))
+                .add(itemKey(ModItems.ICEBORN_GAUNTLET))
+                .add(itemKey(ModItems.JAKSHO))
+                .add(itemKey(ModItems.KRAKEN_SLAYER))
+                .add(itemKey(ModItems.IMMORTAL_SHIELDBOW))
+                // 第七批 5 件 3 级（传说）装备
+                .add(itemKey(ModItems.NAAVORI_FLICKERBLADE))
+                .add(itemKey(ModItems.THE_COLLECTOR))
+                .add(itemKey(ModItems.ECLIPSE))
+                .add(itemKey(ModItems.SERYLDAS))
+                .add(itemKey(ModItems.SERPENTS_FANG))
+                // 第十六批 7 双 3 级（传说）鞋
+                .add(itemKey(ModItems.IMMORTAL_PATH))
+                .add(itemKey(ModItems.SWIFTMARCH))
+                .add(itemKey(ModItems.GUNMETAL_GREAVES))
+                .add(itemKey(ModItems.CRIMSON_LUCIDITY))
+                .add(itemKey(ModItems.CHAINLACED_CRUSHERS))
+                .add(itemKey(ModItems.ARMORED_ADVANCE))
+                .add(itemKey(ModItems.SPELLSLINGERS_SHOES));
 
         // ---------- 4 级（神话） ----------
         // 首件神话装备（澄空之愿）；后续神话装备像其它品阶一样 add 进来即可，
         // 「书写神话 / 不败的勇者 / 我们是冠军」等进度会自动随标签内容生效。
         this.tag(ModItemTags.TIER4)
                 .add(itemKey(ModItems.CLEAR_SKYS_WISH))
-                .add(itemKey(ModItems.DEMON_HEART));
+                .add(itemKey(ModItems.DEMON_HEART))
+                .add(itemKey(ModItems.FATE_DIE))
+                .add(itemKey(ModItems.EMERALD_CITY))
+                .add(itemKey(ModItems.EMPERORS_NEW_CLOTHES))
+                .add(itemKey(ModItems.HEAVENLY_EMPEROR))
+                .add(itemKey(ModItems.SOULS_LAMENT))
+                .add(itemKey(ModItems.POEM_FOR_TOMORROW));
     }
 
     /** RegistryObject.getKey() 泛型为 ResourceKey<GearItem>，此处向上转型为 ResourceKey<Item> 以满足标签追加 API。 */

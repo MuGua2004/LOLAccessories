@@ -1,14 +1,14 @@
 {
-  "template_version": 1,
+  "template_version": 2,
   "gear_id": "glowing_mote",
   "slot": "charm",
   "max_stack_size": 1,
   "attributes": [
     {
-      "id": "irons_spellbooks:cooldown_reduction",
+      "id": "lolaccessories:ability_haste",
       "operation": "ADDITION",
-      "amount": 0.05,
-      "percent": true
+      "amount": 5,
+      "overwrite": true
     }
   ],
   "on_hit_effects": []

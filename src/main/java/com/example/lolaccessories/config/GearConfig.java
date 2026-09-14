@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -80,6 +81,72 @@ public class GearConfig {
             }
         }
         return Optional.empty();
+    }
+
+    /**
+     * 低数值模式（CommonConfig#lowValueMode）：把本配置中所有「强度类」数值统一乘以
+     * factor（0.1 = 降为原来的 1/10）。
+     *
+     * <p>缩放范围：基础属性 {@link Attr#amount}；技能/被动的伤害、治疗、护盾、属性点数、
+     * 各种比例/系数（ap/ad/治疗/灼烧/咒刃/全能吸血/移速攻速/韧性/诅咒增减等）。</p>
+     *
+     * <p><b>不缩放</b>的机制类字段：冷却/持续/间隔/窗口秒数、作用半径与距离
+     * （radius_blocks/distance_blocks）、概率与概率系数（chance/chance_factor）、
+     * 层数与数量上限（max_stacks/count/charge_hits/echo_count）、生命阈值与触发线
+     * （health_threshold/trigger_health_percent/kill_health_ratio）、法力消耗倍率、
+     * 冲刺初速度、每击杀减冷却秒数。</p>
+     *
+     * <p>只作用于内存中的配置对象（外置 JSON 文件不会被改写），由
+     * {@link GearConfigManager} 在解析完成后调用一次。</p>
+     */
+    public void applyValueScale(double factor) {
+        for (Attr attr : attributes) {
+            attr.amount *= factor;
+        }
+        for (OnHitEffect effect : on_hit_effects) {
+            // 强度类：点数/比例/系数
+            effect.per_stack *= factor;
+            effect.max_total *= factor;
+            effect.amount *= factor;
+            effect.magic_resist_amount *= factor;
+            effect.true_damage *= factor;
+            effect.kill_stacks *= factor;
+            effect.death_loss *= factor;
+            effect.base_damage *= factor;
+            effect.power_ratio *= factor;
+            effect.bonus_pct *= factor;
+            effect.armor_ratio *= factor;
+            effect.ap_power_ratio *= factor;
+            effect.bonus_damage *= factor;
+            effect.shield_amount *= factor;
+            effect.reduction_flat *= factor;
+            effect.reduction_cap_pct *= factor;
+            effect.max_health_pct *= factor;
+            effect.heal_pct *= factor;
+            effect.burn_tick_damage *= factor;
+            effect.burn_ap_ratio *= factor;
+            effect.ap_pct_per_target *= factor;
+            effect.ad_ratio *= factor;
+            effect.ap_ratio *= factor;
+            effect.heal_ap_ratio *= factor;
+            effect.heal_hp_ratio *= factor;
+            effect.crit_fraction *= factor;
+            effect.crit_true_ratio *= factor;
+            effect.armor_pierce_scale *= factor;
+            effect.melee_ratio *= factor;
+            effect.ranged_ratio *= factor;
+            effect.omnivamp_ratio *= factor;
+            effect.move_speed_ratio *= factor;
+            effect.attack_speed_ratio *= factor;
+            effect.attack_flat *= factor;
+            effect.health_min *= factor;
+            effect.health_max *= factor;
+            effect.heal_min *= factor;
+            effect.heal_max *= factor;
+            effect.tenacity_ratio *= factor;
+            effect.curse_ratio *= factor;
+            effect.buff_ratio *= factor;
+        }
     }
 
     public Multimap<Attribute, AttributeModifier> buildAttributeModifiers(UUID slotUuid) {
@@ -197,8 +264,41 @@ public class GearConfig {
             return op;
         }
 
+        /**
+         * 比例语义属性表：这些属性的 amount 本身就是 0~1 的比例（0.15 = +15%），
+         * 即使 JSON 里漏写 {@code "percent": true}，tooltip 也强制按百分比显示，
+         * 避免出现 “+0.8 法术强度” 这类小数错误。注意
+         * {@code armor_pierce}（固定穿甲，LoL 穿甲点数 5/10/18…）与
+         * {@code magic_pen}（固定法穿点数）、{@code irons_spellbooks:max_mana}（平添法力）
+         * 是平添语义，<b>不</b>在此表内。
+         */
+        private static final Set<String> PERCENT_BY_DEFAULT = Set.of(
+                "irons_spellbooks:spell_power",
+                "irons_spellbooks:cooldown_reduction",
+                "irons_spellbooks:mana_regen",
+                "lolaccessories:crit_chance",
+                "lolaccessories:crit_damage",
+                "lolaccessories:omnivamp",
+                "lolaccessories:heal_power",
+                "lolaccessories:natural_regen",
+                "lolaccessories:tenacity",
+                "lolaccessories:magic_pen_percent",
+                "lolaccessories:ultimate_cdr",
+                "attributeslib:life_steal",
+                "attributeslib:armor_shred",
+                "attributeslib:healing_received",
+                "attributeslib:draw_speed",
+                "attributeslib:arrow_damage",
+                "apothic_attributes:life_steal",
+                "apothic_attributes:armor_shred",
+                "apothic_attributes:healing_received",
+                "apothic_attributes:draw_speed",
+                "apothic_attributes:arrow_damage"
+        );
+
         public boolean isPercentage() {
-            return percent || op != AttributeModifier.Operation.ADDITION;
+            return percent || op != AttributeModifier.Operation.ADDITION
+                    || PERCENT_BY_DEFAULT.contains(id);
         }
 
         public Component formatLine() {
@@ -272,10 +372,24 @@ public class GearConfig {
 
         // 共用
         public double duration_seconds = 0.0;
+        /** 玛莫提乌斯之噬·复仇之噬等：额外魔法抗性数值（点数）。 */
+        public double magic_resist_amount = 0.0;
 
         // clear_sky（澄澈天空：澄空之愿）
         /** 弹射物伤害转化为虚空伤害的概率（0.5 = 50%）。 */
         public double chance = 0.0;
+
+        // endless_grief（此恨无绝：灵恸主动）
+        /** 触发概率系数：近战攻击转化虚空的概率 = 佩戴者暴击率 × 该值（0.5 = 50%）。 */
+        public double chance_factor = 0.5;
+        /** 额外增伤系数：触发时的额外增伤 = 佩戴者暴击伤害 × 该值（0.8 = 80%）。 */
+        public double crit_damage_factor = 0.8;
+        /** 每击杀一个敌对生物减少的主动冷却秒数。 */
+        public double kill_cooldown_reduce = 5.0;
+
+        // poem_of_truth（代行真理：致明日之诗被动）
+        /** 攻击附带的真理伤害固定点数。 */
+        public double true_damage = 0.0;
 
         // echo（回声，铁魔法联动技能，见 ludens_echo.json；不会在普通命中里生效，由 IronMagicEvents 处理）
         /** 回声基础弹道数；每有 100% 末影法术强度会额外 +1 道。 */
@@ -290,6 +404,10 @@ public class GearConfig {
         public double bonus_pct = 0.0;
         /** 反伤类效果的护甲加成比例（荆棘之甲：20 + 10% 额外护甲）。 */
         public double armor_ratio = 0.0;
+        /** 目标数量上限（卢安娜的飓风：额外箭矢数）。 */
+        public int count = 0;
+        /** 魔法咒刃比例（巫妖之祸：额外伤害 = 法术强度 × 该值，魔法伤害结算）。 */
+        public double ap_power_ratio = 0.0;
 
         // helping_hand（帮助之手：多兰盾/多兰戒/多兰盔/女神之泪共用，只生效一次）
         /** 对「生命值低于 health_threshold」的目标额外造成的物理伤害点数。 */

@@ -1,0 +1,14 @@
+{
+  "template_version": 4,
+  "gear_id": "dead_mans_plate",
+  "slot": "body",
+  "max_stack_size": 1,
+  "attributes": [
+    { "id": "minecraft:generic.max_health", "operation": "ADDITION", "amount": 350.0 },
+    { "id": "minecraft:generic.armor", "operation": "ADDITION", "amount": 55.0 },
+    { "id": "minecraft:generic.movement_speed", "operation": "MULTIPLY_BASE", "amount": 0.04, "percent": true }
+  ],
+  "on_hit_effects": [
+    { "id": "shipwrecker", "target": "victim", "enabled": true, "base_damage": 40.0, "power_ratio": 1.0, "amount": 0.10, "max_stacks": 100, "count": 7, "duration_seconds": 0.25 }
+  ]
+}

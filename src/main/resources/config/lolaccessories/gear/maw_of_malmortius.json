@@ -1,0 +1,37 @@
+{
+  "template_version": 7,
+  "gear_id": "maw_of_malmortius",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 60,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 40,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 15,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "maw_lifeline",
+      "target": "self",
+      "enabled": true,
+      "shield_amount": 0.25,
+      "trigger_health_percent": 0.3,
+      "duration_seconds": 3,
+      "overwrite": true
+    }
+  ]
+}

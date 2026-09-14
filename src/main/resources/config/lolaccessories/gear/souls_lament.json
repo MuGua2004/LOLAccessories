@@ -1,0 +1,32 @@
+{
+  "template_version": 1,
+  "gear_id": "souls_lament",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "lolaccessories:crit_chance",
+      "operation": "ADDITION",
+      "amount": 0.20,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:crit_damage",
+      "operation": "ADDITION",
+      "amount": 0.10,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "endless_grief",
+      "target": "self",
+      "enabled": true,
+      "cooldown_seconds": 300.0,
+      "duration_seconds": 30.0,
+      "chance_factor": 0.5,
+      "crit_damage_factor": 0.8,
+      "kill_cooldown_reduce": 5.0
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "template_version": 4,
+  "gear_id": "mercurial_scimitar",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 50,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 35,
+      "overwrite": true
+    },
+    {
+      "id": "attributeslib:life_steal",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "mercurial",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.5,
+      "duration_seconds": 2.0,
+      "cooldown_seconds": 90.0
+    }
+  ]
+}

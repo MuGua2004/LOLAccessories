@@ -98,8 +98,10 @@ public final class IronMagicEvents {
         long nowMs = System.currentTimeMillis();
         double cooldownReduction = Math.max(0.0D, Math.min(0.8D,
                 readMagicBonus(player, IronsCompat.COOLDOWN_REDUCTION)));
+        // 装备技能急速独立乘区（LoL 公式：CDR = 急速/(100+急速)）
         long cooldownMs = Math.max(1L,
-                Math.round(echo.cooldown_seconds * 1000.0D * (1.0D - cooldownReduction)));
+                Math.round(echo.cooldown_seconds * 1000.0D * (1.0D - cooldownReduction)
+                        * com.example.lolaccessories.util.HasteMath.gearHasteFactor(player)));
         Long lastMs = LAST_ECHO_MS.get(player.getUUID());
         if (lastMs != null && nowMs - lastMs < cooldownMs) {
             return;

@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:pickaxe"
+    },
+    {
+      "item": "lolaccessories:noonquiver"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:immortal_shieldbow"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 800
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

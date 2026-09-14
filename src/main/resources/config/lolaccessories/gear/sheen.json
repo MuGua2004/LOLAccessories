@@ -1,14 +1,14 @@
 {
-  "template_version": 1,
+  "template_version": 4,
   "gear_id": "sheen",
   "slot": "hands",
   "max_stack_size": 1,
   "attributes": [
     {
-      "id": "irons_spellbooks:cooldown_reduction",
+      "id": "lolaccessories:ability_haste",
       "operation": "ADDITION",
-      "amount": 0.1,
-      "percent": true
+      "amount": 10,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [

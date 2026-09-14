@@ -23,6 +23,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -125,7 +126,8 @@ public final class LolNewLegendPassivesEvents {
                 ? player.getAbsorptionAmount() : 0.0F;
         float amount = Math.min(cap, current + event.getAmount());
         event.setCanceled(true);
-        ShieldHpService.apply(player, ShieldHpService.SOURCE_BLOODTHIRSTER, amount, durationMs);
+        ShieldHpService.apply(player, ShieldHpService.SOURCE_BLOODTHIRSTER, amount, durationMs,
+                ShieldType.WHITE);
         // 血色护盾特效：与护盾同窗口
         GearFxBroadcast.window(player, FxKind.SHIELD_BLOODTHIRSTER,
                 (int) Math.max(20, durationMs / 50L));
@@ -176,12 +178,67 @@ public final class LolNewLegendPassivesEvents {
         double bonusHealth = Math.max(0.0D, maxHp - 20.0D);
         float shield = (float) (bonusHealth * (effect.shield_amount > 0
                 ? effect.shield_amount : 0.60D));
-        ShieldHpService.apply(player, ShieldHpService.SOURCE_STERAK, shield, durationMs);
+        ShieldHpService.apply(player, ShieldHpService.SOURCE_STERAK, shield, durationMs,
+                ShieldType.PHYSICAL);
         GearFxBroadcast.window(player, FxKind.SHIELD_STERAK, (int) (durationMs / 50L));
 
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 0.7F, 0.8F);
         LOLAccessories.LOGGER.info("[斯特拉克] {} 触发救主灵刃：护盾 {}（60% 额外生命）{} 秒",
+                player.getName().getString(), fmt(shield), fmt(durationMs / 1000.0D));
+    }
+
+    private static final java.util.Map<UUID, Long> MAW_NEXT_MS = new java.util.HashMap<>();
+
+    // ------------------------------------------------------------------ //
+    // 玛莫提乌斯之噬·救主灵刃（复用救主灵刃框架；护盾 = 25% 最大生命值，5 秒魔法护盾）
+    // ------------------------------------------------------------------ //
+
+    @SubscribeEvent
+    public static void onMawLifeline(LivingDamageEvent event) {
+        if (event.isCanceled() || event.getAmount() <= 0.0F
+                || event.getEntity().level().isClientSide) {
+            return;
+        }
+        if (!(event.getEntity() instanceof ServerPlayer player)
+                || player.isSpectator() || player.isDeadOrDying()) {
+            return;
+        }
+        if (!CuriosGearWear.isWearing(player, "maw_of_malmortius")) {
+            return;
+        }
+        GearConfig.OnHitEffect effect = findEffect("maw_of_malmortius", "maw_lifeline");
+        if (effect == null || !effect.enabled) {
+            return;
+        }
+        UUID uuid = player.getUUID();
+        long now = System.currentTimeMillis();
+        Long nextMs = MAW_NEXT_MS.get(uuid);
+        if (nextMs != null && now < nextMs) {
+            return;
+        }
+        double maxHp = player.getMaxHealth();
+        double threshold = maxHp * Math.max(0.0D, effect.trigger_health_percent);
+        if (player.getHealth() - event.getAmount() > threshold) {
+            return;
+        }
+        if (player.hasEffect(MobEffects.ABSORPTION)) {
+            return; // 外部黄心（金苹果等）在场时不覆盖
+        }
+
+        // 官方救主灵刃无冷却，但为避免同一波多段伤害瞬间反复刷盾，保留 1 秒硬节流
+        MAW_NEXT_MS.put(uuid, now + 1000L);
+        long durationMs = Math.round(Math.max(1.0D, effect.duration_seconds) * 1000.0D);
+
+        // 玛莫提乌斯：护盾 = 25% 最大生命值（魔法护盾，呼应其暗影主题）
+        float shield = (float) (maxHp * (effect.shield_amount > 0 ? effect.shield_amount : 0.25D));
+        ShieldHpService.apply(player, ShieldHpService.SOURCE_MAW, shield, durationMs,
+                ShieldType.MAGIC);
+        GearFxBroadcast.window(player, FxKind.SHIELD_MAW, (int) (durationMs / 50L));
+
+        player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
+                SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 0.7F, 0.8F);
+        LOLAccessories.LOGGER.info("[玛莫提乌斯] {} 触发救主灵刃：魔法护盾 {}（25% 最大生命）{} 秒",
                 player.getName().getString(), fmt(shield), fmt(durationMs / 1000.0D));
     }
 
@@ -344,6 +401,22 @@ public final class LolNewLegendPassivesEvents {
                 GearFxBroadcast.window(player, FxKind.SUNFIRE_AEGIS, 40);
             }
         }
+        // 玛莫提乌斯之噬·复仇之噬：生命值低于 50% 时获得攻击力与魔法抗性
+        if (CuriosGearWear.isWearing(player, "maw_of_malmortius")) {
+            GearConfig.OnHitEffect effect = findEffect("maw_of_malmortius", "maw_vengeful");
+            boolean lowHp = player.getHealth() < player.getMaxHealth() * 0.5D;
+            if (effect != null && effect.enabled && lowHp) {
+                double ad = effect.amount > 0 ? effect.amount : 20.0D;
+                double mr = effect.magic_resist_amount > 0 ? effect.magic_resist_amount : 35.0D;
+                applyTransient(player, "minecraft:generic.attack_damage", MAW_VENGEFUL_AS,
+                        ad, "lolaccessories:maw_vengeful", false);
+                applyTransient(player, "lolaccessories:magic_resist", MAW_VENGEFUL_MR,
+                        mr, "lolaccessories:maw_vengeful", false);
+            } else {
+                removeTransient(player, MAW_VENGEFUL_AS);
+                removeTransient(player, MAW_VENGEFUL_MR);
+            }
+        }
         // 基克的聚合：风暴就绪判定 + 风暴持续伤害
         tickZekesStorm(player);
         tickZekesStormDamage(player);
@@ -423,5 +496,72 @@ public final class LolNewLegendPassivesEvents {
             return String.valueOf((long) rounded);
         }
         return String.format(java.util.Locale.ROOT, "%.1f", rounded);
+    }
+
+    // ------------------------------------------------------------------ //
+    // 兰顿之兆·寒冬（被动：被普攻命中降低攻击者攻速/移速）
+    // ------------------------------------------------------------------ //
+
+    private static final UUID RANDUINS_AS_UUID = UUID.fromString("d1e2f3a4-0019-4000-8000-0000000000a1");
+    private static final Map<UUID, Long> RANDUINS_AS_EXPIRE = new HashMap<>();
+    private static final UUID MAW_VENGEFUL_AS = UUID.fromString("d1e2f3a4-0017-4000-8000-0000000000a7");
+    private static final UUID MAW_VENGEFUL_MR = UUID.fromString("d1e2f3a4-0018-4000-8000-0000000000a8");
+
+    /** 兰顿之兆·寒冬（Cold Steel）：玩家被敌方攻击命中时，使攻击者的攻速/移速降低 amount（默认 15%）。 */
+    @SubscribeEvent
+    public static void onRanduinsColdSteel(LivingDamageEvent event) {
+        if (event.isCanceled() || event.getEntity().level().isClientSide) {
+            return;
+        }
+        if (!(event.getEntity() instanceof ServerPlayer victim) || victim.isSpectator()) {
+            return;
+        }
+        if (!CuriosGearWear.isWearing(victim, "randuins_omen")) {
+            return;
+        }
+        LivingEntity attacker = event.getSource().getDirectEntity() instanceof LivingEntity le ? le : null;
+        if (attacker == null) {
+            return;
+        }
+        if (!LolNewEpicPassiveEvents.isEnemyOf(victim, attacker)) {
+            return;
+        }
+        GearConfig.OnHitEffect effect = findEffect("randuins_omen", "randuins_cold_steel");
+        if (effect == null || !effect.enabled || effect.amount <= 0.0D) {
+            return;
+        }
+        long durationTicks = Math.round((effect.duration_seconds > 0 ? effect.duration_seconds : 1.0D) * 20.0D);
+        attacker.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, (int) durationTicks, 0, false, true));
+        Attribute asAttr = attributeOf("minecraft:generic.attack_speed");
+        if (asAttr != null) {
+            AttributeInstance inst = attacker.getAttribute(asAttr);
+            if (inst != null) {
+                inst.removeModifier(RANDUINS_AS_UUID);
+                inst.addTransientModifier(new AttributeModifier(RANDUINS_AS_UUID,
+                        "lolaccessories:randuins_cold_steel", effect.amount,
+                        AttributeModifier.Operation.MULTIPLY_BASE));
+            }
+        }
+        RANDUINS_AS_EXPIRE.put(attacker.getUUID(), System.currentTimeMillis() + durationTicks * 50L);
+    }
+
+    /** 清理兰顿寒冬施于攻击者身上的攻速降低修饰符（到期移除）。 */
+    @SubscribeEvent
+    public static void onLivingTick(LivingTickEvent event) {
+        LivingEntity e = event.getEntity();
+        if (e.level().isClientSide) {
+            return;
+        }
+        Long exp = RANDUINS_AS_EXPIRE.get(e.getUUID());
+        if (exp != null && System.currentTimeMillis() > exp) {
+            RANDUINS_AS_EXPIRE.remove(e.getUUID());
+            Attribute asAttr = attributeOf("minecraft:generic.attack_speed");
+            if (asAttr != null) {
+                AttributeInstance inst = e.getAttribute(asAttr);
+                if (inst != null) {
+                    inst.removeModifier(RANDUINS_AS_UUID);
+                }
+            }
+        }
     }
 }

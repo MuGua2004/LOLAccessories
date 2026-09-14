@@ -1,0 +1,40 @@
+{
+  "template_version": 6,
+  "gear_id": "lich_bane",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 1.0,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.06,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 10,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "spellblade",
+      "target": "victim",
+      "enabled": true,
+      "base_damage": 0.0,
+      "power_ratio": 0.75,
+      "ap_power_ratio": 0.45,
+      "cooldown_seconds": 1.5,
+      "overwrite": true
+    }
+  ]
+}

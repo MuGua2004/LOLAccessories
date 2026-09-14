@@ -5,8 +5,13 @@ import com.example.lolaccessories.config.GearConfig;
 import com.example.lolaccessories.config.GearConfigManager;
 import com.example.lolaccessories.init.ModMobEffects;
 import com.example.lolaccessories.item.GearItem;
+import com.example.lolaccessories.networking.LOLNetworking;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -45,7 +50,38 @@ public final class ModForgeEvents {
                                     () -> Component.translatable("commands.lolaccessories.reload.success");
                             context.getSource().sendSuccess(message, true);
                             return 1;
-                        })));
+                        }))
+                // 调试：同时触发 4 种装备的冷却条（无视佩戴条件强制显示），便于观察 HUD 观感
+                .then(Commands.literal("cdtest")
+                        .requires(source -> source.hasPermission(2))
+                        .executes(context -> runCooldownTest(context.getSource(), 15))
+                        .then(Commands.argument("seconds", IntegerArgumentType.integer(1, 600))
+                                .executes(context -> runCooldownTest(context.getSource(),
+                                        IntegerArgumentType.getInteger(context, "seconds"))))));
+    }
+
+    /**
+     * 调试冷却条：同时点亮 4 个不同主题色的冷却条
+     * （时间停止·琥珀金 / 回声·紫 / 净化·银蓝 / 魔法弹突进·橙红）。
+     * 走调试通道，不要求玩家实际佩戴对应装备。
+     */
+    private static int runCooldownTest(CommandSourceStack source, int seconds) {
+        ServerPlayer player;
+        try {
+            player = source.getPlayerOrException();
+        } catch (CommandSyntaxException e) {
+            source.sendFailure(Component.literal("该指令只能由玩家执行"));
+            return 0;
+        }
+        int ticks = seconds * 20;
+        String[] skills = {"time_stop", "echo", "quicksilver", "rocketbelt"};
+        for (String skillId : skills) {
+            LOLNetworking.sendSkillCooldown(player, skillId, ticks, true);
+        }
+        source.sendSuccess(() -> Component.literal(
+                "[LOLAccessories] 已同时触发 " + skills.length + " 条调试冷却（" + seconds + " 秒），"
+                        + "无需佩戴对应装备即可在快捷栏左上方观察"), false);
+        return 1;
     }
 
     @SubscribeEvent

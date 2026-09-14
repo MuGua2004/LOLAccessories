@@ -1,0 +1,13 @@
+{
+  "template_version": 1,
+  "gear_id": "shadowflame",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {"id": "irons_spellbooks:spell_power", "operation": "ADDITION", "amount": 1.1, "percent": true},
+    {"id": "lolaccessories:magic_pen", "operation": "ADDITION", "amount": 15.0}
+  ],
+  "on_hit_effects": [
+    {"id": "cinderbloom", "target": "enemy", "enabled": true, "amount": 0.2, "max_health_pct": 0.4}
+  ]
+}

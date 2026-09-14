@@ -1,0 +1,40 @@
+{
+  "template_version": 6,
+  "gear_id": "iceborn_gauntlet",
+  "slot": "belt",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.armor",
+      "operation": "ADDITION",
+      "amount": 70,
+      "overwrite": true
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 300,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "iceborn_spellblade",
+      "target": "enemy",
+      "enabled": true,
+      "amount": 1.5,
+      "radius_blocks": 3.0,
+      "bonus_pct": 0.25,
+      "melee_ratio": 0.125,
+      "duration_seconds": 2.0,
+      "cooldown_seconds": 1.5
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "parent": "lolaccessories:fate_dance",
+  "criteria": {
+    "unlock": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "#b3a6c4",
+      "translate": "advancements.lolaccessories.fantasy_land.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "lolaccessories:emerald_city"
+    },
+    "show_toast": true,
+    "title": {
+      "bold": true,
+      "color": "#7b2cff",
+      "translate": "advancements.lolaccessories.fantasy_land.title"
+    }
+  }
+}

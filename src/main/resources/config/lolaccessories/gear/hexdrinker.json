@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 3,
   "gear_id": "hexdrinker",
   "slot": "hands",
   "max_stack_size": 1,
@@ -20,10 +20,10 @@
       "id": "lifeline",
       "target": "self",
       "enabled": true,
-      "shield_amount": 150.0,
+      "shield_amount": 150,
       "trigger_health_percent": 0.3,
       "duration_seconds": 2.5,
-      "cooldown_seconds": 60.0
+      "cooldown_seconds": 60
     }
   ]
 }

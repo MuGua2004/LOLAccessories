@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:boots"
+    },
+    {
+      "item": "lolaccessories:kindlegem"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:ionian_boots"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 230
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

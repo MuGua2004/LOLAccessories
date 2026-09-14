@@ -1,0 +1,22 @@
+{
+  "template_version": 1,
+  "gear_id": "rabadons_deathcap",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 1.3,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "spell_amplify",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.3
+    }
+  ]
+}

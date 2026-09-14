@@ -1,0 +1,22 @@
+{
+  "template_version": 4,
+  "gear_id": "void_staff",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.95,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:magic_pen_percent",
+      "operation": "ADDITION",
+      "amount": 0.4,
+      "percent": true,
+      "overwrite": true
+    }
+  ]
+}

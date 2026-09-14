@@ -1,0 +1,14 @@
+{
+  "template_version": 2,
+  "gear_id": "force_of_nature",
+  "slot": "head",
+  "max_stack_size": 1,
+  "attributes": [
+    {"id": "minecraft:generic.max_health", "operation": "ADDITION", "amount": 400.0},
+    {"id": "lolaccessories:magic_resist", "operation": "ADDITION", "amount": 55.0},
+    {"id": "minecraft:generic.movement_speed", "operation": "MULTIPLY_TOTAL", "amount": 0.04}
+  ],
+  "on_hit_effects": [
+    {"id": "steadfast", "target": "self", "enabled": true, "amount": 70.0, "max_stacks": 8, "duration_seconds": 7.0, "bonus_pct": 0.06}
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 4,
   "gear_id": "sunfire_aegis",
   "slot": "body",
   "max_stack_size": 1,
@@ -12,7 +12,7 @@
     {
       "id": "minecraft:generic.armor",
       "operation": "ADDITION",
-      "amount": 40.0
+      "amount": 50
     }
   ],
   "on_hit_effects": [

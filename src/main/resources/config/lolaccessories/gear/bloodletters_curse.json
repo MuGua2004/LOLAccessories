@@ -1,0 +1,38 @@
+{
+  "template_version": 1,
+  "gear_id": "bloodletters_curse",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.65,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 400,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 15,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "blight",
+      "target": "self",
+      "enabled": true,
+      "per_stack": 0.075,
+      "max_stacks": 4,
+      "duration_seconds": 6.0,
+      "overwrite": true
+    }
+  ]
+}

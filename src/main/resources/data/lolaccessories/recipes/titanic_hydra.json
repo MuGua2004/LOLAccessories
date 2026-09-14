@@ -1,0 +1,14 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    { "item": "lolaccessories:tiamat" },
+    { "item": "lolaccessories:tunneler" },
+    { "item": "lolaccessories:giant_belt" }
+  ],
+  "result": { "item": "lolaccessories:titanic_hydra" },
+  "cost": [
+    { "item": "lolaccessories:gold_coin", "count": 50 },
+    { "item": "minecraft:nether_star", "count": 3 },
+    { "item": "minecraft:dragon_egg", "count": 1 }
+  ]
+}

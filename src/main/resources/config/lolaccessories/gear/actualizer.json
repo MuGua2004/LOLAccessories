@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 4,
   "gear_id": "actualizer",
   "slot": "charm",
   "max_stack_size": 1,
@@ -16,10 +16,10 @@
       "amount": 300.0
     },
     {
-      "id": "irons_spellbooks:cooldown_reduction",
+      "id": "lolaccessories:ability_haste",
       "operation": "ADDITION",
-      "amount": 0.1,
-      "percent": true
+      "amount": 10,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [
@@ -27,7 +27,7 @@
       "id": "realize",
       "target": "self",
       "enabled": true,
-      "duration_seconds": 5.0,
+      "duration_seconds": 5,
       "cooldown_seconds": 180.0,
       "mana_cost_multiplier": 2.0
     }

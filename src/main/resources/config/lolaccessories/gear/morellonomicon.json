@@ -1,0 +1,35 @@
+{
+  "template_version": 8,
+  "gear_id": "morellonomicon",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.75,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 15,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 350,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "grievous_wounds_magic",
+      "target": "victim",
+      "enabled": true,
+      "amount": 0.4,
+      "duration_seconds": 3
+    }
+  ]
+}

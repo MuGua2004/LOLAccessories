@@ -1,0 +1,45 @@
+{
+  "template_version": 1,
+  "gear_id": "profane_hydra",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 55,
+      "overwrite": true
+    },
+    {
+      "id": "attributeslib:armor_pierce",
+      "operation": "ADDITION",
+      "amount": 18,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 10,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "cleave",
+      "target": "victim",
+      "enabled": true,
+      "amount": 0.4,
+      "radius_blocks": 3.5
+    },
+    {
+      "id": "crescent",
+      "target": "self",
+      "enabled": true,
+      "base_damage": 0.0,
+      "power_ratio": 0.8,
+      "radius_blocks": 4.5,
+      "cooldown_seconds": 10.0,
+      "overwrite": true
+    }
+  ]
+}

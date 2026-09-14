@@ -1,0 +1,50 @@
+{
+  "template_version": 6,
+  "gear_id": "youmuus_ghostblade",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 55,
+      "overwrite": true
+    },
+    {
+      "id": "attributeslib:armor_pierce",
+      "operation": "ADDITION",
+      "amount": 18,
+      "overwrite": true
+    },
+    {
+      "id": "irons_spellbooks:cooldown_reduction",
+      "operation": "ADDITION",
+      "amount": 0.1,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "ADDITION",
+      "amount": 0.04,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "haunt",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.06,
+      "duration_seconds": 3.0
+    },
+    {
+      "id": "wraith_step",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.2,
+      "duration_seconds": 6.0,
+      "cooldown_seconds": 45.0
+    }
+  ]
+}

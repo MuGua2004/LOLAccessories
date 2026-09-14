@@ -1,0 +1,44 @@
+{
+  "template_version": 2,
+  "gear_id": "kraken_slayer",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "attributeslib:arrow_damage",
+      "operation": "ADDITION",
+      "amount": 0.45,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.4,
+      "percent": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.4,
+      "percent": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.04,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "bring_it_down",
+      "target": "enemy",
+      "enabled": true,
+      "base_damage": 150.0,
+      "amount": 0.75,
+      "duration_seconds": 4.0,
+      "max_stacks": 2,
+      "bonus_pct": 3.5
+    }
+  ]
+}

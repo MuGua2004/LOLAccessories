@@ -1,0 +1,44 @@
+{
+  "template_version": 1,
+  "gear_id": "voltaic_cyclosword",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 55,
+      "overwrite": true
+    },
+    {
+      "id": "attributeslib:armor_pierce",
+      "operation": "ADDITION",
+      "amount": 10,
+      "overwrite": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 10,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "galvanize",
+      "target": "self",
+      "enabled": true,
+      "max_stacks": 100,
+      "melee_pct": 0.09,
+      "ranged_pct": 0.07,
+      "melee_pierce": 15,
+      "ranged_pierce": 12,
+      "pierce_seconds": 4.0,
+      "mob_cap": 200.0,
+      "move_blocks_per_stack": 2.0,
+      "attack_stacks": 6,
+      "skill_stacks": 6,
+      "overwrite": true
+    }
+  ]
+}

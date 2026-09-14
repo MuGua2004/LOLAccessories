@@ -1,0 +1,34 @@
+{
+  "template_version": 5,
+  "gear_id": "umbral_glaive",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 60.0
+    },
+    {
+      "id": "attributeslib:armor_pierce",
+      "operation": "ADDITION",
+      "amount": 18.0
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 15,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "nightstalker",
+      "target": "victim",
+      "enabled": true,
+      "base_damage": 50.0,
+      "armor_pierce_scale": 1.5,
+      "cooldown_seconds": 3.0
+    }
+  ]
+}

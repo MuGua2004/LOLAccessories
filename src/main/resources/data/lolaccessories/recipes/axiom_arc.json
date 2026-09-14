@@ -1,0 +1,28 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:brutizer"
+    },
+    {
+      "item": "lolaccessories:caulfields_warhammer"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:axiom_arc"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 750
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

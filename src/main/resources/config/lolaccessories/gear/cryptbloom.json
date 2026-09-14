@@ -1,0 +1,37 @@
+{
+  "template_version": 3,
+  "gear_id": "cryptbloom",
+  "slot": "charm",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "irons_spellbooks:spell_power",
+      "operation": "ADDITION",
+      "amount": 0.75,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:magic_pen_percent",
+      "operation": "ADDITION",
+      "amount": 0.3,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:ability_haste",
+      "operation": "ADDITION",
+      "amount": 20,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "life_from_death",
+      "target": "victim",
+      "enabled": true,
+      "base_damage": 100.0,
+      "ap_power_ratio": 0.2,
+      "radius_blocks": 4.0,
+      "cooldown_seconds": 60.0
+    }
+  ]
+}

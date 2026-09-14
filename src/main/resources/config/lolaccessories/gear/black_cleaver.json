@@ -1,5 +1,5 @@
 {
-  "template_version": 1,
+  "template_version": 6,
   "gear_id": "black_cleaver",
   "slot": "hands",
   "max_stack_size": 1,
@@ -7,18 +7,21 @@
     {
       "id": "minecraft:generic.max_health",
       "operation": "ADDITION",
-      "amount": 400.0
+      "amount": 400,
+      "overwrite": true
     },
     {
       "id": "minecraft:generic.attack_damage",
       "operation": "ADDITION",
-      "amount": 45.0
+      "amount": 45,
+      "overwrite": true
     },
     {
       "id": "irons_spellbooks:cooldown_reduction",
       "operation": "ADDITION",
-      "amount": 0.2,
-      "percent": true
+      "amount": 0.1,
+      "percent": true,
+      "overwrite": true
     }
   ],
   "on_hit_effects": [
@@ -28,7 +31,7 @@
       "enabled": true,
       "per_stack": 0.06,
       "max_stacks": 5,
-      "max_total": 0.30,
+      "max_total": 0.3,
       "amount": 0.0,
       "duration_seconds": 6.0
     },
@@ -39,7 +42,7 @@
       "per_stack": 0.0,
       "max_stacks": 1,
       "max_total": 0.0,
-      "amount": 0.20,
+      "amount": 0.2,
       "duration_seconds": 2.0
     }
   ]

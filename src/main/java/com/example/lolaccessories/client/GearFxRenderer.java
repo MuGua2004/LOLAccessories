@@ -129,7 +129,8 @@ public final class GearFxRenderer {
         try {
             Minecraft mc = Minecraft.getInstance();
             ClientLevel level = mc.level;
-            if (level == null || !ClientFxConfig.ENABLED.get() || !ActiveGearFx.hasActiveFx()) {
+            if (level == null || !ClientFxConfig.ENABLED.get()
+                    || (!ActiveGearFx.hasActiveFx() && !ActiveSpotFx.hasSpots())) {
                 return;
             }
             Camera camera = event.getCamera();
@@ -140,16 +141,16 @@ public final class GearFxRenderer {
             // 漏网目标 = 当前持有特效窗口、但本帧尚未经 LivingEntityRenderer 系事件绘制过的目标。
             Set<UUID> pending = new HashSet<>(ActiveGearFx.activeTargets());
             pending.removeAll(FX_TARGETS_DRAWN_THIS_FRAME);
-            if (pending.isEmpty()) {
-                return;
-            }
+            // 关键修复：pending 为空时不能在此 return。地点锚定特效（残疫·憎恨之雾、蜕生·死中新生
+            // 等 FxSpotPacket）不走实体漏网目标，必须继续到下方 renderSpots 才会被绘制；否则 spot
+            // 特效（紫圈 / 光球）永远不显示。下方“pending 为空且无 Spot”已由第 153 行兜底 return。
             // 第一人称下本机玩家不会触发 RenderPlayerEvent（躯干不渲染），其自身的装饰性特效
             // 不需要兜底，直接剔除，避免无谓的全量实体遍历。
             Player self = mc.player;
             if (self != null) {
                 pending.remove(self.getUUID());
             }
-            if (pending.isEmpty()) {
+            if (pending.isEmpty() && !ActiveSpotFx.hasSpots()) {
                 return;
             }
 
@@ -188,6 +189,11 @@ public final class GearFxRenderer {
                 poseStack.translate(ex - camX, ey - camY, ez - camZ);
                 renderFor(living, poseStack, buffer, partialTick);
                 poseStack.popPose();
+            }
+
+            // 地点锚定特效（救赎·降临的施法点法阵 / 圣光光柱）
+            if (ActiveSpotFx.hasSpots()) {
+                renderSpots(poseStack, buffer, level, partialTick, camX, camY, camZ);
             }
         } finally {
             // 每帧结算后清空，下一帧重新累计哪些实体已被事件绘制过。
@@ -232,9 +238,13 @@ public final class GearFxRenderer {
             case SHIELD_FIMBULWINTER -> renderFimbulwinterShield(entity, poseStack, buffer, age, win, bright);
             case SHIELD_STERAK -> renderSterakShield(entity, poseStack, buffer, age, win, bright);
             case SHIELD_BLOODTHIRSTER -> renderBloodthirsterShield(entity, poseStack, buffer, age, win, bright);
+            case SHIELD_MAW -> renderMawShield(entity, poseStack, buffer, age, win, bright);
+            case SHIELD_BANSHEE -> renderBansheeShield(entity, poseStack, buffer, age, win, bright);
             case ZEKES_STORM -> renderZekesStorm(entity, poseStack, buffer, age, win, density, bright);
             case SUNFIRE_AEGIS -> renderSunfire(entity, poseStack, buffer, age, win, density, bright);
             case HEXPLATE_OVERDRIVE -> renderHexplateOverdrive(entity, poseStack, buffer, age, win, bright);
+            case STEADFAST_AURA -> renderSteadfastAura(entity, poseStack, buffer, age, win, density, bright);
+            case STORMSURGE_MARK -> renderStormsurgeMark(entity, poseStack, buffer, age, win, bright);
         }
     }
 
@@ -829,6 +839,25 @@ public final class GearFxRenderer {
     }
 
     /**
+     * 玛莫提乌斯之噬·救主灵刃——「暗影魔法护盾球罩」。
+     *
+     * <p>深紫主色 + 暗红边缘（呼应玛莫提乌斯的暗影 / 吸血鬼主题），罩体带缓慢的竖向魔法流光。</p>
+     */
+    private static void renderMawShield(LivingEntity entity, PoseStack poseStack,
+                                       MultiBufferSource buffer, float age, float win, float bright) {
+        float w = Math.max(entity.getBbWidth(), 0.1F);
+        float h = Math.max(entity.getBbHeight(), 0.2F);
+        float cy = h * 0.52F;
+        float r = Math.max(w, h * 0.42F) * 1.10F;
+        renderShieldShell(entity, poseStack, buffer, age, win, bright, cy,
+                r * 1.10F, r * 1.10F, r * 1.10F,
+                0.55F, 0.20F, 1.00F, 0.16F, 0.55F, 0.85F);
+        drawRing(poseStack, buffer, 0.0F, cy, 0.0F, r * 1.12F,
+                0.5F, age * 0.08F, 44,
+                0.75F, 0.30F, 1.00F, 0.30F * win * bright);
+    }
+
+    /**
      * 基克的聚合·聚合风暴——「冰火双色对流螺旋」。
      *
      * <p>冰蓝与炽橙两股反向螺旋绕身对流（冻结与焚烧交缠），脚下双色相扣的环，
@@ -961,6 +990,104 @@ public final class GearFxRenderer {
         drawSoftGlow(poseStack, buffer, 0.0F, cy, 0.0F,
                 core * (1.0F + pulse * 0.15F), core * (1.0F + pulse * 0.15F), core,
                 0.85F, 0.97F, 1.0F, 0.70F * fade);
+    }
+
+    /**
+     * 自然之力·坚韧——「翠绿自然光环」。
+     *
+     * <p>满层坚韧时的视觉反馈：脚下舒展的大地绿法阵 + 双股翠绿上升风叶（反向对旋、
+     * 顺体螺旋上升），配合周身呼吸式绿光——呼应英雄联盟自然之力的自然之息。</p>
+     */
+    private static void renderSteadfastAura(LivingEntity entity, PoseStack poseStack,
+                                            MultiBufferSource buffer, float age, float win, float density, float bright) {
+        float w = Math.max(entity.getBbWidth(), 0.1F);
+        float h = Math.max(entity.getBbHeight(), 0.2F);
+        float fade = win * bright;
+        if (fade <= 0.02F) {
+            return;
+        }
+        float foot = Math.max(w, h * 0.16F);
+        float groundR = Math.max(foot * 1.30F, 1.00F);
+        float bodyR = Math.max(foot * 0.50F, 0.42F);
+        // 脚下大地绿法阵（双层缓旋）
+        VertexConsumer vc = buffer.getBuffer(GLOW_TYPE);
+        Matrix4f matrix = poseStack.last().pose();
+        drawGroundCircle(vc, matrix, 0.04F, groundR, 44, 0.35F, 0.95F, 0.45F, 0.60F * fade);
+        drawGroundCircle(vc, matrix, 0.06F, groundR * 0.78F, 36, 0.75F, 1.0F, 0.60F, 0.45F * fade);
+        // 双股反向上升风叶（翠绿 → 嫩白，顺体螺旋）
+        int chainDots = 4;
+        for (int chain = 0; chain < 2; chain++) {
+            float offset = chain * Mth.PI + age * 0.16F;
+            for (int i = 0; i < chainDots; i++) {
+                float t = i / (float) chainDots;
+                float y = h * 0.05F + t * h * 1.00F;
+                float angle = offset - t * 2.2F;
+                float radius = bodyR * (1.0F - 0.35F * t);
+                float sway = 1.0F + Mth.sin(age * 0.45F + i * 1.9F) * 0.22F;
+                float s = foot * 0.14F * (1.0F - 0.3F * t) * sway;
+                // 外层绿
+                drawSoftGlow(poseStack, buffer,
+                        Mth.cos(angle) * radius, y, Mth.sin(angle) * radius,
+                        s, s * 1.2F, s, 0.30F, 0.95F, 0.42F, 0.55F * fade);
+                // 内层嫩白
+                drawSoftGlow(poseStack, buffer,
+                        Mth.cos(angle) * radius, y + s * 0.25F, Mth.sin(angle) * radius,
+                        s * 0.5F, s * 0.6F, s * 0.5F, 0.80F, 1.0F, 0.82F, 0.65F * fade);
+            }
+        }
+        // 环绕旋转的绿叶光点
+        int dots = Math.max(4, Math.round(6.0F * density));
+        for (int i = 0; i < dots; i++) {
+            float a = age * 0.22F + i * Mth.TWO_PI / dots;
+            float s = foot * 0.08F * (0.85F + 0.3F * Mth.sin(age * 0.5F + i * 2.3F));
+            drawSoftGlow(poseStack, buffer,
+                    Mth.cos(a) * groundR, h * 0.45F, Mth.sin(a) * groundR,
+                    s, s, s, 0.40F, 0.98F, 0.50F, 0.70F * fade);
+        }
+    }
+
+    /**
+     * 风暴狂涌·骤风——「紫金电弧攒聚」。
+     *
+     * <p>骤风标记目标：脚下快速脉动的紫罗兰电圈 + 周身攒聚的紫金电光点
+     * （越接近引爆越亮），劈雷前的风暴蓄能观感。</p>
+     */
+    private static void renderStormsurgeMark(LivingEntity entity, PoseStack poseStack,
+                                             MultiBufferSource buffer, float age, float win, float bright) {
+        float w = Math.max(entity.getBbWidth(), 0.1F);
+        float h = Math.max(entity.getBbHeight(), 0.2F);
+        float fade = win * bright;
+        if (fade <= 0.02F) {
+            return;
+        }
+        float foot = Math.max(w, h * 0.16F);
+        float groundR = Math.max(foot * 1.20F, 0.95F);
+        float pulse = 0.5F + 0.5F * Mth.sin(age * 0.9F);
+        // 脚下紫罗兰电圈（双层反向快旋 + 脉动）
+        VertexConsumer vc = buffer.getBuffer(GLOW_TYPE);
+        Matrix4f matrix = poseStack.last().pose();
+        drawGroundCircle(vc, matrix, 0.04F, groundR * (1.0F + pulse * 0.10F), 40,
+                0.72F, 0.55F, 1.0F, 0.65F * fade);
+        drawGroundCircle(vc, matrix, 0.06F, groundR * 0.70F, 32,
+                1.0F, 0.90F, 0.45F, 0.50F * fade);
+        // 周身攒聚电光点（紫金，快速环绕）
+        int dots = 6;
+        for (int i = 0; i < dots; i++) {
+            float a = age * 0.55F + i * Mth.TWO_PI / dots;
+            float y = h * (0.15F + 0.10F * Mth.sin(age * 0.7F + i * 2.6F));
+            float r = groundR * 0.85F;
+            float s = foot * 0.10F * (0.9F + 0.4F * pulse);
+            drawSoftGlow(poseStack, buffer,
+                    Mth.cos(a) * r, y, Mth.sin(a) * r,
+                    s, s * 1.3F, s, 0.80F, 0.65F, 1.0F, 0.75F * fade);
+            drawSoftGlow(poseStack, buffer,
+                    Mth.cos(a) * r, y + s * 0.2F, Mth.sin(a) * r,
+                    s * 0.45F, s * 0.55F, s * 0.45F, 1.0F, 0.95F, 0.70F, 0.80F * fade);
+        }
+        // 头顶攒聚核心（引爆前的亮核）
+        float core = foot * 0.26F * (1.0F + pulse * 0.2F);
+        drawSoftGlow(poseStack, buffer, 0.0F, h * 1.02F, 0.0F,
+                core, core * 1.4F, core, 0.85F, 0.72F, 1.0F, 0.60F * fade);
     }
 
     /**
@@ -1249,6 +1376,166 @@ public final class GearFxRenderer {
                 .endVertex();
     }
 
+    /**
+     * 女妖面纱·废除：法术屏障护罩（紫罗兰色三层缓旋涡环 + 贴地法阵刻线）。
+     * 法盾就绪时常驻（服务端每秒刷新），被打破后熄灭，冷却结束重新亮起。
+     */
+    private static void renderBansheeShield(Entity entity, PoseStack poseStack,
+                                            MultiBufferSource buffer, float age, float win, float bright) {
+        float h = entity.getBbHeight();
+        float cy = h * 0.5F;
+        float alpha = 0.32F * win * bright;
+        // 三层缓旋紫环：不同高度、半径与转向，构成“涡流屏障”轮廓
+        drawRing(poseStack, buffer, 0.0F, cy - h * 0.25F, 0.0F, 0.55F,
+                0.15F, age * 0.10F, 28, 0.62F, 0.30F, 0.95F, alpha);
+        drawRing(poseStack, buffer, 0.0F, cy, 0.0F, 0.70F,
+                0.0F, -age * 0.07F, 32, 0.72F, 0.42F, 1.00F, alpha * 0.9F);
+        drawRing(poseStack, buffer, 0.0F, cy + h * 0.28F, 0.0F, 0.48F,
+                0.20F, age * 0.13F, 24, 0.80F, 0.55F, 1.00F, alpha * 0.8F);
+        // 脚下贴地小法阵刻线
+        VertexConsumer vc = buffer.getBuffer(GLOW_TYPE);
+        Matrix4f matrix = poseStack.last().pose();
+        drawGroundCircle(vc, matrix, 0.05F, 0.62F, 28, 0.65F, 0.35F, 1.00F, alpha * 0.7F);
+    }
+
+    /**
+     * 地点锚定特效绘制（世界坐标，AFTER_ENTITIES 兜底阶段）。
+     *
+     * <ul>
+     *   <li>{@link FxKind#REDEMPTION_CAST}——救赎·降临施法预告：贴地金色法阵，
+     *       半径从 0 展开到施法范围、渐亮，附带内环与缓旋标记环；</li>
+     *   <li>{@link FxKind#REDEMPTION_DESCENT}——圣光落下：八根贴天光柱 +
+     *       自天而降的冲击环，落地瞬间扩散波纹；</li>
+     *   <li>{@link FxKind#WARMOG_RESTORE}——狂徒之心回血：贴地柔和绿金双环
+     *       （克制半径与透明度，不遮挡视野，替代原版心形粒子）。</li>
+     * </ul>
+     */
+    private static void renderSpots(PoseStack poseStack, MultiBufferSource buffer,
+                                    ClientLevel level, float partialTick,
+                                    double camX, double camY, double camZ) {
+        float now = level.getGameTime() + partialTick;
+        VertexConsumer vc = buffer.getBuffer(GLOW_TYPE);
+        for (ActiveSpotFx.Spot spot : ActiveSpotFx.spots()) {
+            float remaining = spot.expireGameTime() - now;
+            if (remaining <= 0.0F) {
+                continue;
+            }
+            float progress = Mth.clamp(1.0F - remaining / spot.totalTicks(), 0.0F, 1.0F);
+            poseStack.pushPose();
+            poseStack.translate(spot.x() - camX, spot.y() - camY, spot.z() - camZ);
+            Matrix4f matrix = poseStack.last().pose();
+            switch (spot.kind()) {
+                case EMERALD_DOOM -> {
+                    // 再见桃花源·抹杀翡翠法阵：三层展开法阵 + 对旋星芒环 + 八根上升光柱
+                    float ease = 1.0F - (1.0F - progress) * (1.0F - progress);
+                    float r = Math.max(0.6F, spot.radius() * (0.45F + 0.55F * ease));
+                    float fade = Mth.clamp(remaining / 8.0F, 0.0F, 1.0F);
+                    float alpha = Math.min(0.85F, 0.30F + 0.45F * progress) * fade;
+                    // 贴地三层法阵（外环实、中环密、内环亮）
+                    drawGroundCircle(vc, matrix, 0.05F, r, 48, 0.20F, 1.00F, 0.55F, alpha);
+                    drawGroundCircle(vc, matrix, 0.05F, r * 0.72F, 40, 0.45F, 1.00F, 0.70F, alpha * 0.85F);
+                    drawGroundCircle(vc, matrix, 0.06F, r * 0.45F, 32, 0.05F, 0.95F, 0.35F, alpha * 0.9F);
+                    // 双层对旋星芒环（外层大环正转、内层小环反转）
+                    poseStack.pushPose();
+                    drawRing(poseStack, buffer, 0.0F, 0.06F, 0.0F, r * 0.6F,
+                            0.0F, now * 1.6F, 12, 0.35F, 1.00F, 0.65F, alpha);
+                    drawRing(poseStack, buffer, 0.0F, 0.10F, 0.0F, r * 0.34F,
+                            0.0F, -now * 2.2F, 8, 0.80F, 1.00F, 0.85F, alpha);
+                    poseStack.popPose();
+                    // 八根绕心缓旋上升光柱
+                    for (int i = 0; i < 8; i++) {
+                        float ang = (float) (i / 8.0D * Math.PI * 2.0D) + now * 0.35F;
+                        float px = Mth.cos(ang) * (r * 0.8F);
+                        float pz = Mth.sin(ang) * (r * 0.8F);
+                        line(vc, matrix, px, 0.0F, pz, px, 4.5F, pz,
+                                0.30F, 1.00F, 0.60F, alpha * 0.8F);
+                    }
+                }
+                case REDEMPTION_CAST -> {
+                    // 施法预告：展开的金色法阵（半径 = 施法范围 × easeOut）
+                    float ease = 1.0F - (1.0F - progress) * (1.0F - progress) * (1.0F - progress);
+                    float r = spot.radius() * ease;
+                    float alpha = 0.15F + 0.30F * progress;
+                    drawGroundCircle(vc, matrix, 0.05F, r, 48, 1.00F, 0.94F, 0.55F, alpha);
+                    drawGroundCircle(vc, matrix, 0.05F, r * 0.74F, 40, 1.00F, 0.86F, 0.45F, alpha * 0.8F);
+                    // 中心缓旋小环
+                    poseStack.pushPose();
+                    drawRing(poseStack, buffer, 0.0F, 0.05F, 0.0F, r * 0.22F,
+                            0.0F, now * 0.6F, 24, 1.00F, 1.00F, 0.85F, alpha);
+                    poseStack.popPose();
+                }
+                case REDEMPTION_DESCENT -> {
+                    // 圣光落下：贴天光柱 + 下落冲击环 + 落地扩散
+                    float fade = 1.0F - 0.5F * progress;
+                    float alpha = 0.35F * fade;
+                    float r = spot.radius();
+                    for (int i = 0; i < 8; i++) {
+                        float ang = (float) (i / 8.0D * Math.PI * 2.0D);
+                        float px = Mth.cos(ang) * (r * 0.62F);
+                        float pz = Mth.sin(ang) * (r * 0.62F);
+                        line(vc, matrix, px, 10.0F, pz, px, 0.0F, pz,
+                                1.00F, 0.95F, 0.70F, alpha);
+                    }
+                    float fallY = (1.0F - progress) * 9.0F + 0.05F;
+                    float ringAlpha = 0.20F + 0.45F * progress;
+                    drawGroundCircle(vc, matrix, fallY, r, 48, 1.00F, 0.95F, 0.60F, ringAlpha);
+                    if (progress > 0.8F) {
+                        float boom = (progress - 0.8F) / 0.2F;
+                        drawGroundCircle(vc, matrix, 0.05F, r + boom * 2.0F, 48,
+                                1.00F, 0.98F, 0.80F, 0.45F * (1.0F - boom));
+                        drawGroundCircle(vc, matrix, 0.05F, r, 48, 1.00F, 0.94F, 0.55F,
+                                0.55F * (1.0F - boom));
+                    }
+                }
+                case HATEFOG -> {
+                    // 残疫·憎恨之雾：极淡紫色填充表现雾气覆盖区 + 紫色描边圆圈界定范围
+                    drawGroundDisc(vc, matrix, 0.05F, spot.radius(), 48,
+                            0.55F, 0.20F, 1.00F, 0.14F);
+                    drawGroundCircle(vc, matrix, 0.06F, spot.radius(), 48,
+                            0.72F, 0.30F, 1.00F, 0.55F);
+                }
+                case LIFE_FROM_DEATH -> {
+                    // 蜕生·死中新生：击杀位置爆发的绿色治疗新星（上升光球 + 展开回血法阵）
+                    float ease = 1.0F - (1.0F - progress) * (1.0F - progress);
+                    float r = spot.radius() * ease;
+                    float fade = 1.0F - progress;
+                    // 地面回血法阵：展开的绿色光环 + 半透明填充
+                    drawGroundDisc(vc, matrix, 0.05F, r, 48,
+                            0.20F, 0.95F, 0.35F, 0.18F * fade);
+                    drawGroundCircle(vc, matrix, 0.06F, r, 48,
+                            0.30F, 1.00F, 0.45F, 0.55F * fade);
+                    drawGroundCircle(vc, matrix, 0.06F, r * 0.5F, 36,
+                            0.45F, 1.00F, 0.55F, 0.40F * fade);
+                    // 上升的绿色治疗光球：随进度升腾并膨胀后消散
+                    float orbY = 0.2F + progress * 2.2F;
+                    float orbR = 0.6F + 0.4F * Mth.sin(progress * 3.14159F);
+                    for (int i = 0; i < 5; i++) {
+                        float yy = orbY + i * 0.18F;
+                        drawRing(poseStack, buffer, 0.0F, yy, 0.0F, orbR * (0.5F + i * 0.12F),
+                                0.0F, now * 0.5F + i, 28,
+                                0.35F, 1.00F, 0.50F, (0.5F - i * 0.08F) * fade);
+                    }
+                    VertexConsumer orbVc = buffer.getBuffer(GLOW_TYPE);
+                    drawGroundDisc(orbVc, matrix, orbY, orbR, 32,
+                            0.30F, 1.00F, 0.55F, 0.30F * fade);
+                }
+                case WARMOG_RESTORE -> {
+                    // 狂徒之心：贴地柔和绿金双环（呼吸明暗，克制不遮挡视野）
+                    float breath = 0.8F + 0.2F * Mth.sin(now * 0.25F);
+                    poseStack.pushPose();
+                    drawRing(poseStack, buffer, 0.0F, 0.06F, 0.0F, 0.90F,
+                            0.0F, now * 0.35F, 32, 0.45F, 0.90F, 0.55F, 0.30F * breath);
+                    drawRing(poseStack, buffer, 0.0F, 0.06F, 0.0F, 0.55F,
+                            0.0F, -now * 0.5F, 24, 0.95F, 0.85F, 0.40F, 0.22F * breath);
+                    poseStack.popPose();
+                }
+                default -> {
+                }
+            }
+            poseStack.popPose();
+        }
+    }
+
     private static void drawRing(PoseStack poseStack, MultiBufferSource buffer,
                                   float cx, float cy, float cz, float radius,
                                   float tilt, float roll, int segments,
@@ -1283,6 +1570,30 @@ public final class GearFxRenderer {
      * <p>光带本身平躺在水平面上：俯视、斜视都清晰可见，像“用光绘在地面的法阵刻线”，
      * 不会出现相机朝向描边在正俯视时完全消失的问题。半宽按半径折算，保持笔画粗细一致。</p>
      */
+    /**
+     * 水平面柔光填充圆盘（xz 平面），用于清晰标示一片地面区域（如恨雾范围/治疗新星）。
+     * 三角扇两种绕序各画一遍，规避背面剔除导致俯视不可见。
+     */
+    private static void drawGroundDisc(VertexConsumer vc, Matrix4f matrix, float y, float radius,
+                                       int segments, float r, float g, float b, float a) {
+        if (a <= 0.01F || radius <= 0.0F) {
+            return;
+        }
+        float step = Mth.TWO_PI / segments;
+        for (int i = 0; i < segments; i++) {
+            float a1 = i * step;
+            float a2 = ((i + 1) % segments) * step;
+            float x1 = Mth.cos(a1) * radius, z1 = Mth.sin(a1) * radius;
+            float x2 = Mth.cos(a2) * radius, z2 = Mth.sin(a2) * radius;
+            strokeVertex(vc, matrix, 0.0F, y, 0.0F, 0.5F, 0.5F, r, g, b, a, 0.0F, 1.0F, 0.0F);
+            strokeVertex(vc, matrix, x1, y, z1, 0.5F, 0.5F, r, g, b, a, 0.0F, 1.0F, 0.0F);
+            strokeVertex(vc, matrix, x2, y, z2, 0.5F, 0.5F, r, g, b, a, 0.0F, 1.0F, 0.0F);
+            strokeVertex(vc, matrix, x2, y, z2, 0.5F, 0.5F, r, g, b, a, 0.0F, 1.0F, 0.0F);
+            strokeVertex(vc, matrix, x1, y, z1, 0.5F, 0.5F, r, g, b, a, 0.0F, 1.0F, 0.0F);
+            strokeVertex(vc, matrix, 0.0F, y, 0.0F, 0.5F, 0.5F, r, g, b, a, 0.0F, 1.0F, 0.0F);
+        }
+    }
+
     private static void drawGroundCircle(VertexConsumer vc, Matrix4f matrix, float y, float radius,
                                          int segments, float r, float g, float b, float a) {
         if (a <= 0.02F || radius <= 0.0F) {

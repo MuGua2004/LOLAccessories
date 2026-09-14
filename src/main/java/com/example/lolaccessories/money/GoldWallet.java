@@ -54,6 +54,26 @@ public final class GoldWallet {
         return trySpendItems(player, ModItems.GOLD_COIN.get(), amount);
     }
 
+    /** 向玩家发放指定物品（背包优先，放不下掉落在脚下；收集者·税的击杀奖励用）。 */
+    public static void giveItems(Player player, Item item, int amount) {
+        if (item == null || amount <= 0) {
+            return;
+        }
+        while (amount > 0) {
+            int take = Math.min(amount, item.getMaxStackSize());
+            amount -= take;
+            ItemStack stack = new ItemStack(item, take);
+            if (!player.getInventory().add(stack) && player.level() instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+                player.drop(stack, false, false);
+            }
+        }
+    }
+
+    /** 向玩家发放指定数量的金币。 */
+    public static void giveCoins(Player player, int amount) {
+        giveItems(player, ModItems.GOLD_COIN.get(), amount);
+    }
+
     private static int countIn(Container container, Item item) {
         int count = 0;
         for (int i = 0; i < container.getContainerSize(); i++) {

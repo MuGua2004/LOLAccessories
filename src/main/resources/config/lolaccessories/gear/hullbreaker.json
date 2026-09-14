@@ -1,0 +1,35 @@
+{
+  "template_version": 3,
+  "gear_id": "hullbreaker",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "amount": 40.0
+    },
+    {
+      "id": "minecraft:generic.max_health",
+      "operation": "ADDITION",
+      "amount": 500.0
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_TOTAL",
+      "amount": 0.04,
+      "percent": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "skipper",
+      "target": "victim",
+      "enabled": true,
+      "max_stacks": 5,
+      "duration_seconds": 10.0,
+      "ad_ratio": 1.2,
+      "max_health_pct": 0.05
+    }
+  ]
+}

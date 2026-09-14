@@ -1,0 +1,14 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    { "item": "lolaccessories:sheen" },
+    { "item": "lolaccessories:caulfields_warhammer" },
+    { "item": "lolaccessories:cloak_of_agility" }
+  ],
+  "result": { "item": "lolaccessories:essence_reaver" },
+  "cost": [
+    { "item": "lolaccessories:gold_coin", "count": 500 },
+    { "item": "minecraft:nether_star", "count": 3 },
+    { "item": "minecraft:dragon_egg", "count": 1 }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:sheen"
+    },
+    {
+      "item": "lolaccessories:ruby_crystal"
+    },
+    {
+      "item": "lolaccessories:chain_vest"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:iceborn_gauntlet"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 600
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

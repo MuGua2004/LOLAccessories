@@ -1,0 +1,42 @@
+{
+  "template_version": 3,
+  "gear_id": "wits_end",
+  "slot": "hands",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 45,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.attack_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.5,
+      "percent": true,
+      "overwrite": true
+    },
+    {
+      "id": "attributeslib:draw_speed",
+      "operation": "MULTIPLY_BASE",
+      "amount": 0.5,
+      "percent": true
+    },
+    {
+      "id": "lolaccessories:tenacity",
+      "operation": "ADDITION",
+      "amount": 0.2,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "wit_end_hit",
+      "target": "victim",
+      "enabled": true,
+      "base_damage": 45,
+      "school": "eldritch"
+    }
+  ]
+}

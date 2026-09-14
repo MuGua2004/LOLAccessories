@@ -110,6 +110,12 @@ public final class GearConfigManager {
                 }
             }
             LOGGER.info("[GearConfig] 已加载配置 {}", file);
+            // 低数值模式（config/lolaccessories-common.toml 的 lowValueMode）：
+            // 强度类数值统一乘 0.1，只作用于内存对象，不回写外置 JSON
+            if (CommonConfig.isLowValueMode()) {
+                config.applyValueScale(0.1D);
+                LOGGER.info("[GearConfig] {} 已按低数值模式缩放（×0.1）", gearId);
+            }
             return config;
         } catch (JsonSyntaxException | IOException e) {
             LOGGER.error("[GearConfig] 解析装备配置 {} 失败：{}", file, e.getMessage());
@@ -230,7 +236,20 @@ public final class GearConfigManager {
             String id = entry.getKey();
             JsonObject diskKeep = diskById.get(id);
             if (diskKeep != null) {
-                merged.add(diskKeep); // 保留玩家改过的数值
+                boolean overwrite = false;
+                try {
+                    overwrite = entry.getValue().has("overwrite")
+                            && entry.getValue().get("overwrite").getAsBoolean();
+                } catch (UnsupportedOperationException | IllegalStateException ignored) {
+                    // 无 overwrite 字段或类型异常 → 按常规保留外置数值
+                }
+                if (overwrite) {
+                    // 模板显式声明覆盖（数值演进，如同 id 效果的公式调整）：以模板为准
+                    merged.add(entry.getValue());
+                    changed = true;
+                } else {
+                    merged.add(diskKeep); // 保留玩家改过的数值
+                }
             } else {
                 added.add(id);
                 changed = true;

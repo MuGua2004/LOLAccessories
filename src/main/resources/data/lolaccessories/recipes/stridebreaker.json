@@ -1,0 +1,31 @@
+{
+  "type": "lolaccessories:paid_smithing",
+  "components": [
+    {
+      "item": "lolaccessories:tunneler"
+    },
+    {
+      "item": "lolaccessories:caulfields_warhammer"
+    },
+    {
+      "item": "lolaccessories:tiamat"
+    }
+  ],
+  "result": {
+    "item": "lolaccessories:stridebreaker"
+  },
+  "cost": [
+    {
+      "item": "lolaccessories:gold_coin",
+      "count": 500
+    },
+    {
+      "item": "minecraft:nether_star",
+      "count": 3
+    },
+    {
+      "item": "minecraft:dragon_egg",
+      "count": 1
+    }
+  ]
+}

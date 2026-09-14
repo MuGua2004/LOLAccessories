@@ -7,12 +7,12 @@
     {
       "id": "minecraft:generic.attack_damage",
       "operation": "ADDITION",
-      "amount": 15.0
+      "amount": 10
     },
     {
       "id": "attributeslib:life_steal",
       "operation": "ADDITION",
-      "amount": 0.07,
+      "amount": 0.1,
       "percent": true
     }
   ],

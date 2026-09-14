@@ -1,0 +1,29 @@
+{
+  "template_version": 1,
+  "gear_id": "mercurys_treads",
+  "slot": "feet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "lolaccessories:magic_resist",
+      "operation": "ADDITION",
+      "amount": 20,
+      "overwrite": true
+    },
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "percent": true,
+      "overwrite": true,
+      "amount": 0.45
+    },
+    {
+      "id": "lolaccessories:tenacity",
+      "operation": "ADDITION",
+      "amount": 0.3,
+      "percent": true,
+      "overwrite": true
+    }
+  ],
+  "on_hit_effects": []
+}

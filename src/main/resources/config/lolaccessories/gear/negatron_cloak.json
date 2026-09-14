@@ -7,7 +7,7 @@
     {
       "id": "lolaccessories:magic_resist",
       "operation": "ADDITION",
-      "amount": 45.0
+      "amount": 40
     }
   ],
   "on_hit_effects": []

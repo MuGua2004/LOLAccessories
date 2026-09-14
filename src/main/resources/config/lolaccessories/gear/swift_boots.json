@@ -1,0 +1,24 @@
+{
+  "template_version": 1,
+  "gear_id": "swift_boots",
+  "slot": "feet",
+  "max_stack_size": 1,
+  "attributes": [
+    {
+      "id": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_BASE",
+      "percent": true,
+      "overwrite": true,
+      "amount": 0.55
+    }
+  ],
+  "on_hit_effects": [
+    {
+      "id": "swift_step",
+      "target": "self",
+      "enabled": true,
+      "amount": 0.25,
+      "overwrite": true
+    }
+  ]
+}
